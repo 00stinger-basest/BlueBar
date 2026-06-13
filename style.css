@@ -1,3 +1,8 @@
+/* ============================================================
+   BlueBar 3.1 — Premium UI Stylesheet
+   Clean, modern, slightly-angular, outline-first aesthetic
+   ============================================================ */
+
 :root {
   --bg: #0b0c10;
   --panel-bg: #15171f;
@@ -5,13 +10,15 @@
   --text-main: #f5f5f5;
   --text-muted: #a0a4b8;
 
+  /* Icon colors */
   --color-liquors: #3fa9f5;
   --color-liqueurs: #f7b6d5;
   --color-fortified: #c23b3b;
-  --color-bitters: #c9a0ff;
-  --color-sparkling: #e8d27c;
   --color-aromatized: #ffa64d;
+  --color-sparkling: #e8d27c;
+  --color-bitters: #c9a0ff;
   --color-mixers: #c0c4cc;
+  --color-perishables: #7bd47b;
 }
 
 * {
@@ -31,6 +38,10 @@ body {
   padding: 24px;
 }
 
+/* ============================================================
+   HEADER
+   ============================================================ */
+
 .app-header {
   display: flex;
   flex-direction: column;
@@ -49,6 +60,10 @@ body {
   font-size: 0.9rem;
 }
 
+/* ============================================================
+   MAIN LAYOUT
+   ============================================================ */
+
 .app-main {
   display: grid;
   grid-template-columns: 1.1fr 1.4fr;
@@ -62,7 +77,9 @@ body {
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
 }
 
-/* Inventory sections */
+/* ============================================================
+   INVENTORY PANEL
+   ============================================================ */
 
 .inventory-panel h2,
 .recipes-panel h2 {
@@ -74,62 +91,80 @@ body {
 }
 
 .inventory-section {
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
 .section-header {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   margin-bottom: 6px;
 }
 
-.section-title {
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--text-muted);
-}
+/* ============================================================
+   ICONS — 64×64 premium outline icons
+   ============================================================ */
 
 .section-icon {
-  width: 22px;
-  height: 22px;
+  width: 64px;
+  height: 64px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
 
-/* inventory items will be pills later */
+.section-icon svg {
+  width: 64px;
+  height: 64px;
+  stroke-width: 2.5px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+/* ============================================================
+   INVENTORY PILLS
+   ============================================================ */
+
 .section-body {
   min-height: 20px;
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 8px;
 }
 
 .inventory-pill {
-  padding: 4px 8px;
+  padding: 6px 12px;
   border-radius: 999px;
   background: #1f2230;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: var(--text-main);
+  cursor: pointer;
+  transition: background 0.15s ease;
 }
 
-/* Add item input */
+.inventory-pill:hover {
+  background: #2a2e3f;
+}
+
+/* ============================================================
+   ADD ITEM INPUT
+   ============================================================ */
 
 .inventory-add {
-  margin-top: 16px;
+  margin-top: 20px;
   display: flex;
   gap: 8px;
 }
 
 #add-item-input {
   flex: 1;
-  padding: 8px 10px;
+  padding: 10px 14px;
   border-radius: 999px;
   border: 1px solid #2a2e3f;
   background: #10121a;
   color: var(--text-main);
+  font-size: 0.9rem;
 }
 
 #add-item-input::placeholder {
@@ -137,16 +172,23 @@ body {
 }
 
 #add-item-button {
-  padding: 8px 14px;
+  padding: 10px 16px;
   border-radius: 999px;
   border: none;
   background: var(--accent-blue);
   color: #050608;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
+  transition: opacity 0.15s ease;
 }
 
-/* Recipes panel */
+#add-item-button:hover {
+  opacity: 0.85;
+}
+
+/* ============================================================
+   RECIPES PANEL
+   ============================================================ */
 
 .recipes-header {
   display: flex;
@@ -161,13 +203,18 @@ body {
 }
 
 .recipes-controls button {
-  padding: 6px 10px;
+  padding: 6px 12px;
   border-radius: 999px;
   border: 1px solid #2a2e3f;
   background: #10121a;
   color: var(--text-main);
   font-size: 0.8rem;
   cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.recipes-controls button:hover {
+  background: #1a1d28;
 }
 
 .recipes-controls button.active {
@@ -178,17 +225,22 @@ body {
 #recipe-list {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
 .recipe-card {
-  padding: 10px 12px;
+  padding: 12px 14px;
   border-radius: 12px;
   background: #1a1d28;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: background 0.15s ease;
+}
+
+.recipe-card:hover {
+  background: #222533;
 }
 
 .recipe-main {
@@ -198,15 +250,17 @@ body {
 }
 
 .recipe-title {
-  font-size: 0.95rem;
+  font-size: 1rem;
 }
 
 .recipe-status {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: var(--text-muted);
 }
 
-/* Modal */
+/* ============================================================
+   MODAL
+   ============================================================ */
 
 .modal {
   position: fixed;
@@ -226,7 +280,7 @@ body {
   max-width: 90vw;
   background: #15171f;
   border-radius: 16px;
-  padding: 16px 18px;
+  padding: 20px 22px;
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7);
 }
 
@@ -234,13 +288,13 @@ body {
   border: none;
   background: transparent;
   color: var(--text-muted);
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   float: right;
   cursor: pointer;
 }
 
 .modal-section {
-  margin-top: 10px;
+  margin-top: 14px;
 }
 
 .modal-section h3 {
@@ -248,7 +302,7 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--text-muted);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 #modal-ingredients {
@@ -258,11 +312,11 @@ body {
 }
 
 #modal-ingredients li {
-  font-size: 0.85rem;
-  margin-bottom: 2px;
+  font-size: 0.9rem;
+  margin-bottom: 4px;
 }
 
 #modal-substitutions {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--text-muted);
 }
