@@ -1,175 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="apple-touch-icon" href="icons/bluebar-icon.png">
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BlueBar</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <div id="app">
-    <header class="app-header">
-      <h1>BlueBar</h1>
-    </header>
 
-    <main>
-      <section id="dashboard" class="view active">
-        <div class="dashboard-buttons">
-          <button class="dash-btn" data-target="inventory-view">
-            Inventory
-          </button>
-          <button class="dash-btn" data-target="drinks-view">
-            Drinks
-          </button>
-          <button class="dash-btn" data-target="make-view">
-            What I Can Make
-          </button>
-        </div>
-      </section>
-
-      <section id="inventory-view" class="view">
-        <div class="view-header">
-          <button class="back-btn" data-target="dashboard">← Dashboard</button>
-          <h2>Inventory</h2>
-        </div>
-
-        <div class="inventory-layout">
-          <div class="inventory-form">
-            <h3>Add Item</h3>
-            <label>
-              Name
-              <input type="text" id="inv-name" />
-            </label>
-            <label>
-              Category
-              <select id="inv-category">
-                <option value="spirit">Spirit</option>
-                <option value="liqueur">Liqueur</option>
-                <option value="mixer">Mixer</option>
-              </select>
-            </label>
-            <label>
-              Base Type
-              <select id="inv-base">
-                <option value="">None</option>
-                <option value="gin">Gin</option>
-                <option value="vodka">Vodka</option>
-                <option value="rum">Rum</option>
-                <option value="tequila">Tequila</option>
-                <option value="whiskey">Whiskey</option>
-                <option value="mezcal">Mezcal</option>
-                <option value="brandy">Brandy</option>
-              </select>
-            </label>
-            <label>
-              Flavor Tags (comma-separated)
-              <input type="text" id="inv-flavors" placeholder="citrus, herbal" />
-            </label>
-            <button id="inv-add-btn" class="primary-btn">Add to Inventory</button>
-          </div>
-
-          <div class="inventory-list">
-            <h3>Your Inventory</h3>
-            <input type="text" id="inv-search" placeholder="Search inventory..." />
-            <ul id="inv-items"></ul>
-          </div>
-        </div>
-
-        <div class="perishables">
-          <h3>Perishables On Hand</h3>
-          <div class="perishable-toggles" id="perishable-toggles"></div>
-        </div>
-      </section>
-
-      <section id="drinks-view" class="view">
-        <div class="view-header">
-          <button class="back-btn" data-target="dashboard">← Dashboard</button>
-          <h2>Drinks</h2>
-        </div>
-
-        <div class="drinks-controls">
-          <button id="add-drink-btn" class="primary-btn">Add Recipe (Paste)</button>
-          <input type="text" id="drink-search" placeholder="Search drinks..." />
-          <div class="filters">
-            <select id="filter-main">
-              <option value="">Main Alcohol</option>
-              <option value="gin">Gin</option>
-              <option value="vodka">Vodka</option>
-              <option value="rum">Rum</option>
-              <option value="tequila">Tequila</option>
-              <option value="whiskey">Whiskey</option>
-              <option value="mezcal">Mezcal</option>
-              <option value="brandy">Brandy</option>
-              <option value="none">None (Mocktail)</option>
-            </select>
-            <select id="filter-type">
-              <option value="">Drink Type</option>
-              <option value="sour">Sour</option>
-              <option value="highball">Highball</option>
-              <option value="old fashioned">Old Fashioned</option>
-              <option value="martini">Martini</option>
-              <option value="tiki">Tiki</option>
-              <option value="spritz">Spritz</option>
-              <option value="mocktail">Mocktail</option>
-              <option value="low-abv">Low-ABV</option>
-            </select>
-            <select id="filter-flavor">
-              <option value="">Flavor Profile</option>
-              <option value="sweet">Sweet</option>
-              <option value="fruity">Fruity</option>
-              <option value="bitter">Bitter</option>
-              <option value="smoky">Smoky</option>
-              <option value="sour">Sour</option>
-              <option value="herbal">Herbal</option>
-              <option value="boozy">Boozy</option>
-              <option value="light">Light</option>
-              <option value="refreshing">Refreshing</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="drinks-list">
-          <ul id="drink-items"></ul>
-        </div>
-      </section>
-
-      <section id="make-view" class="view">
-        <div class="view-header">
-          <button class="back-btn" data-target="dashboard">← Dashboard</button>
-          <h2>What I Can Make</h2>
-        </div>
-
-        <div class="make-controls">
-          <label>
-            Show:
-            <select id="make-filter">
-              <option value="all">All</option>
-              <option value="can">Can Make</option>
-              <option value="almost">Almost Can Make</option>
-            </select>
-          </label>
-        </div>
-
-        <div class="make-list">
-          <ul id="make-items"></ul>
-        </div>
-      </section>
-    </main>
-  </div>
-
-  <!-- Add Recipe Modal -->
-  <div id="recipe-modal" class="modal hidden">
-    <div class="modal-content">
-      <h2>Add Recipe (Paste)</h2>
-      <textarea id="recipe-text" placeholder="Paste recipe text here..."></textarea>
-      <div class="modal-actions">
-        <button id="recipe-cancel" class="secondary-btn">Cancel</button>
-        <button id="recipe-parse" class="primary-btn">Parse & Save</button>
-      </div>
-      <div id="recipe-preview" class="recipe-preview hidden"></div>
+<body class="theme-dark">
+  <header class="app-header">
+    <h1>BlueBar</h1>
+    <div class="header-controls">
+      <button id="theme-toggle" class="toggle-button">Dark</button>
+      <input
+        id="inventory-search"
+        type="text"
+        placeholder="Search inventory..."
+        class="search-input"
+      />
     </div>
-  </div>
+  </header>
 
+  <!-- Inventory Sections -->
+  <main>
+    <section class="inventory-section">
+      <div class="section-header">
+        <span class="section-icon" id="liquor-header-icon"></span>
+        <h2>Liquors & Spirits</h2>
+      </div>
+      <div id="liquor-grid" class="icon-grid"></div>
+    </section>
+
+    <section class="inventory-section">
+      <div class="section-header">
+        <span class="section-icon" id="mixer-header-icon"></span>
+        <h2>Mixers</h2>
+      </div>
+      <div id="mixer-grid" class="icon-grid"></div>
+    </section>
+
+    <section class="inventory-section">
+      <div class="section-header">
+        <span class="section-icon" id="perishable-header-icon"></span>
+        <h2>Perishables</h2>
+      </div>
+      <div id="perishables-container" class="perishables-buttons"></div>
+      <div id="perishable-grid" class="icon-grid"></div>
+    </section>
+
+    <!-- Recipe Engine -->
+    <section class="recipe-section">
+      <h2>What Can I Make?</h2>
+      <div class="recipe-columns">
+        <div class="recipe-column">
+          <h3>Ready Now</h3>
+          <ul id="recipes-ready" class="recipe-list"></ul>
+        </div>
+        <div class="recipe-column">
+          <h3>One Ingredient Away</h3>
+          <ul id="recipes-one-away" class="recipe-list"></ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="icons.js"></script>
+  <script src="recipes.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
