@@ -1,6 +1,13 @@
-const STORAGE_KEY = "bluebar_inventory_v31";
+/* ============================================================
+   BlueBar 3.1 — Application Logic
+   Inventory, classification, rendering, recipes, modal
+   ============================================================ */
 
-const inventory = {
+/* ============================================================
+   INVENTORY STORAGE
+   ============================================================ */
+
+let inventory = {
   liquors: [],
   liqueurs: [],
   fortified: [],
@@ -11,22 +18,103 @@ const inventory = {
   perishables: []
 };
 
-function loadInventory() {
-  const raw = localStorage.getItem(STORAGE_KEY);
-  if (!raw) return;
-  try {
-    const data = JSON.parse(raw);
-    Object.keys(inventory).forEach(key => {
-      if (Array.isArray(data[key])) inventory[key] = data[key];
-    });
-  } catch (e) {
-    console.warn("Inventory parse error", e);
-  }
+function saveInventory() {
+  localStorage.setItem("bluebar_inventory", JSON.stringify(inventory));
 }
 
-function saveInventory() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(inventory));
+function loadInventory() {
+  const data = localStorage.getItem("bluebar_inventory");
+  if (data) inventory = JSON.parse(data);
 }
+
+/* ============================================================
+   CLASSIFICATION LOGIC
+   ============================================================ */
+
+function classifyItem(name) {
+  const n = name.toLowerCase().trim();
+
+  // PERISHABLES
+  const perishables = [
+    "lemon", "lemons",
+    "lime", "limes",
+    "orange", "oranges",
+    "grapefruit", "grapefruits",
+    "pineapple", "pineapples",
+    "mint", "basil", "rosemary",
+    "cucumber", "cucumbers",
+    "strawberry", "strawberries",
+    "blueberry", "blueberries",
+    "cream", "half and half",
+    "egg", "eggs"
+  ];
+  if (perishables.some(p => n.includes(p))) return "perishables";
+
+  // BITTERS
+  if (n.includes("bitters")) return "bitters";
+
+  // SPARKLING
+  if (
+    n.includes("champagne") ||
+    n.includes("prosecco") ||
+    n.includes("cava") ||
+    n.includes("sparkling")
+  ) {
+    return "sparkling";
+  }
+
+  // AROMATIZED WINES
+  if (
+    n.includes("lillet") ||
+    n.includes("cocchi") ||
+    n.includes("dubon") ||
+    n.includes("kina")
+  ) {
+    return "aromatized";
+  }
+
+  // FORTIFIED WINES
+  if (
+    n.includes("vermouth") ||
+    n.includes("sherry") ||
+    n.includes("port") ||
+    n.includes("madeira")
+  ) {
+    return "fortified";
+  }
+
+  // MIXERS
+  const mixers = [
+    "soda", "club soda", "tonic",
+    "ginger beer", "cola", "juice",
+    "orange juice", "cranberry juice",
+    "pineapple juice", "grapefruit juice",
+    "tomato juice", "coffee", "espresso",
+    "simple syrup", "honey syrup",
+    "agave", "grenadine", "orgeat",
+    "falernum", "syrup"
+  ];
+  if (mixers.some(m => n.includes(m))) return "mixers";
+
+  // LIQUEURS
+  const liqueurKeywords = [
+    "liqueur", "cointreau", "triple sec", "curaçao", "curacao",
+    "campari", "aperol", "amaro", "montenegro", "fernet",
+    "chartreuse", "st-germain", "elderflower",
+    "crème de cacao", "creme de cacao",
+    "crème de menthe", "creme de menthe",
+    "cassis", "maraschino", "drambuie", "galliano",
+    "baileys", "coffee liqueur", "cream liqueur"
+  ];
+  if (liqueurKeywords.some(k => n.includes(k))) return "liqueurs";
+
+  // DEFAULT → LIQUORS
+  return "liquors";
+}
+
+/* ============================================================
+   RENDER INVENTORY
+   ============================================================ */
 
 function renderInventory() {
   const map = {
@@ -42,87 +130,84 @@ function renderInventory() {
 
   Object.entries(map).forEach(([key, id]) => {
     const container = document.getElementById(id);
-    if (!container) return;
     container.innerHTML = "";
-    inventory[key].forEach(item => {
+
+    inventory[key].forEach((item, index) => {
       const pill = document.createElement("div");
       pill.className = "inventory-pill";
       pill.textContent = item;
+
+      // CLICK TO REMOVE
+      pill.addEventListener("click", () => {
+        inventory[key].splice(index, 1);
+        saveInventory();
+        renderInventory();
+      });
+
       container.appendChild(pill);
     });
   });
 }
 
-// Very simple classifier for now; we’ll expand with your full mapping logic.
-function classifyItem(name) {
-  const n = name.toLowerCase();
+/* ============================================================
+   ADD ITEM
+   ============================================================ */
 
-  if (n.includes("champagne") || n.includes("prosecco") || n.includes("cava")) {
-    return "sparkling";
-  }
-  if (n.includes("lillet") || n.includes("cocchi")) {
-    return "aromatized";
-  }
-  if (n.includes("vermouth") || n.includes("sherry") || n.includes("port")) {
-    return "fortified";
-  }
-  if (n.includes("campari") || n.includes("aperol") || n.includes("amaro")) {
-    return "liqueurs";
-  }
-  if (n.includes("bitters")) {
-    return "bitters";
-  }
-  if (n.includes("soda") || n.includes("tonic") || n.includes("ginger beer") || n.includes("juice")) {
-    return "mixers";
-  }
-  // default: liquors
-  return "liquors";
-}
+function addItem() {
+  const input = document.getElementById("add-item-input");
+  const value = input.value.trim();
+  if (!value) return;
 
-function addItem(name) {
-  const category = classifyItem(name);
-  inventory[category].push(name);
+  const category = classifyItem(value);
+  inventory[category].push(value);
+
   saveInventory();
   renderInventory();
+
+  input.value = "";
 }
 
-function initAddItem() {
-  const input = document.getElementById("add-item-input");
-  const button = document.getElementById("add-item-button");
+document.getElementById("add-item-button").addEventListener("click", addItem);
+document.getElementById("add-item-input").addEventListener("keypress", e => {
+  if (e.key === "Enter") addItem();
+});
 
-  button.addEventListener("click", () => {
-    const value = input.value.trim();
-    if (!value) return;
-    addItem(value);
-    input.value = "";
-  });
+/* ============================================================
+   RECIPE FILTERING
+   ============================================================ */
 
-  input.addEventListener("keydown", e => {
-    if (e.key === "Enter") button.click();
-  });
+function hasAllIngredients(recipe) {
+  return recipe.ingredients.every(i => isInInventory(i));
 }
 
-function hasIngredient(ing) {
-  const list = inventory[ing.category] || [];
-  return list.some(x => x.toLowerCase().includes(ing.name.toLowerCase()));
+function isInInventory(ingredient) {
+  const all = Object.values(inventory).flat();
+  return all.some(item => item.toLowerCase() === ingredient.toLowerCase());
 }
 
-function computeStatus(recipe) {
-  let missing = 0;
-  recipe.ingredients.forEach(ing => {
-    if (!hasIngredient(ing)) missing++;
-  });
-  if (missing === 0) return "Ready Now";
-  if (missing === 1) return "One Ingredient Away";
-  return `${missing} Ingredients Away`;
+function isOneAway(recipe) {
+  const missing = recipe.ingredients.filter(i => !isInInventory(i));
+  return missing.length === 1;
 }
 
-function renderRecipes() {
+/* ============================================================
+   RENDER RECIPES
+   ============================================================ */
+
+function renderRecipes(filter = "all") {
   const list = document.getElementById("recipe-list");
   list.innerHTML = "";
-  RECIPES.forEach(recipe => {
+
+  recipes.forEach(recipe => {
+    const ready = hasAllIngredients(recipe);
+    const oneAway = isOneAway(recipe);
+
+    if (filter === "ready" && !ready) return;
+    if (filter === "one" && !oneAway) return;
+
     const card = document.createElement("div");
     card.className = "recipe-card";
+
     const main = document.createElement("div");
     main.className = "recipe-main";
 
@@ -132,10 +217,15 @@ function renderRecipes() {
 
     const status = document.createElement("div");
     status.className = "recipe-status";
-    status.textContent = computeStatus(recipe);
+    status.textContent = ready
+      ? "Ready to make"
+      : oneAway
+      ? "One ingredient away"
+      : "Missing ingredients";
 
     main.appendChild(title);
     main.appendChild(status);
+
     card.appendChild(main);
 
     card.addEventListener("click", () => openRecipeModal(recipe));
@@ -144,38 +234,50 @@ function renderRecipes() {
   });
 }
 
+document.getElementById("filter-ready").addEventListener("click", () => {
+  renderRecipes("ready");
+});
+document.getElementById("filter-one-away").addEventListener("click", () => {
+  renderRecipes("one");
+});
+document.getElementById("surprise-me").addEventListener("click", () => {
+  const r = recipes[Math.floor(Math.random() * recipes.length)];
+  openRecipeModal(r);
+});
+
+/* ============================================================
+   MODAL
+   ============================================================ */
+
 function openRecipeModal(recipe) {
-  const modal = document.getElementById("recipe-modal");
   document.getElementById("modal-title").textContent = recipe.name;
-  document.getElementById("modal-subtitle").textContent = computeStatus(recipe);
+  document.getElementById("modal-subtitle").textContent = recipe.glass || "";
 
   const ingList = document.getElementById("modal-ingredients");
   ingList.innerHTML = "";
-  recipe.ingredients.forEach(ing => {
+  recipe.ingredients.forEach(i => {
     const li = document.createElement("li");
-    li.textContent = `${ing.name}`;
+    li.textContent = i;
     ingList.appendChild(li);
   });
 
-  // substitution notes placeholder – we’ll wire your full logic here
   document.getElementById("modal-substitutions").textContent =
-    "Substitution notes will appear here based on your inventory and preferences.";
+    recipe.substitutions || "No substitution notes.";
 
-  document.getElementById("modal-instructions").textContent = recipe.instructions;
+  document.getElementById("modal-instructions").textContent =
+    recipe.instructions || "";
 
-  modal.classList.remove("hidden");
+  document.getElementById("recipe-modal").classList.remove("hidden");
 }
 
-function initModal() {
-  const modal = document.getElementById("recipe-modal");
-  const close = document.getElementById("modal-close");
-  close.addEventListener("click", () => modal.classList.add("hidden"));
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  loadInventory();
-  renderInventory();
-  initAddItem();
-  renderRecipes();
-  initModal();
+document.getElementById("modal-close").addEventListener("click", () => {
+  document.getElementById("recipe-modal").classList.add("hidden");
 });
+
+/* ============================================================
+   INIT
+   ============================================================ */
+
+loadInventory();
+renderInventory();
+renderRecipes();
