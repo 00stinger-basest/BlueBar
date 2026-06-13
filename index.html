@@ -2,112 +2,143 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BlueBar</title>
-
+  <title>BlueBar 3.1</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="apple-touch-icon" href="icons/bluebar-icon.png">
 </head>
+<body>
+  <div id="app">
+    <header class="app-header">
+      <h1>BlueBar</h1>
+      <p class="subtitle">Your smart home bar</p>
+    </header>
 
-<body class="theme-dark">
-  <header class="app-header">
-    <h1>BlueBar</h1>
-    <div class="header-controls">
-      <button id="theme-toggle" class="toggle-button">Dark</button>
-      <input
-        id="inventory-search"
-        type="text"
-        placeholder="Search inventory..."
-        class="search-input"
-      />
+    <main class="app-main">
+      <!-- INVENTORY PANEL -->
+      <section class="panel inventory-panel">
+        <h2>Inventory</h2>
+
+        <!-- Liquors & Spirits -->
+        <div class="inventory-section">
+          <div class="section-header">
+            <span class="section-icon" id="icon-liquors"></span>
+            <span class="section-title">Liquors & Spirits</span>
+          </div>
+          <div class="section-body" id="inventory-liquors"></div>
+        </div>
+
+        <!-- Liqueurs & Aperitifs -->
+        <div class="inventory-section">
+          <div class="section-header">
+            <span class="section-icon" id="icon-liqueurs"></span>
+            <span class="section-title">Liqueurs & Aperitifs</span>
+          </div>
+          <div class="section-body" id="inventory-liqueurs"></div>
+        </div>
+
+        <!-- Fortified Wines -->
+        <div class="inventory-section">
+          <div class="section-header">
+            <span class="section-icon" id="icon-fortified"></span>
+            <span class="section-title">Fortified Wines</span>
+          </div>
+          <div class="section-body" id="inventory-fortified"></div>
+        </div>
+
+        <!-- Aromatized Wines -->
+        <div class="inventory-section">
+          <div class="section-header">
+            <span class="section-icon" id="icon-aromatized"></span>
+            <span class="section-title">Aromatized Wines</span>
+          </div>
+          <div class="section-body" id="inventory-aromatized"></div>
+        </div>
+
+        <!-- Sparkling Wines -->
+        <div class="inventory-section">
+          <div class="section-header">
+            <span class="section-icon" id="icon-sparkling"></span>
+            <span class="section-title">Sparkling Wines</span>
+          </div>
+          <div class="section-body" id="inventory-sparkling"></div>
+        </div>
+
+        <!-- Bitters -->
+        <div class="inventory-section">
+          <div class="section-header">
+            <span class="section-icon" id="icon-bitters"></span>
+            <span class="section-title">Bitters</span>
+          </div>
+          <div class="section-body" id="inventory-bitters"></div>
+        </div>
+
+        <!-- Mixers -->
+        <div class="inventory-section">
+          <div class="section-header">
+            <span class="section-icon" id="icon-mixers"></span>
+            <span class="section-title">Mixers</span>
+          </div>
+          <div class="section-body" id="inventory-mixers"></div>
+        </div>
+
+        <!-- Perishables -->
+        <div class="inventory-section">
+          <div class="section-header">
+            <span class="section-icon" id="icon-perishables"></span>
+            <span class="section-title">Perishables</span>
+          </div>
+          <div class="section-body" id="inventory-perishables"></div>
+        </div>
+
+        <!-- Add item input -->
+        <div class="inventory-add">
+          <input
+            type="text"
+            id="add-item-input"
+            placeholder="Add bottle or ingredient (e.g., Campari, Lillet Blanc, Angostura)"
+          />
+          <button id="add-item-button">Add</button>
+        </div>
+      </section>
+
+      <!-- RECIPES PANEL -->
+      <section class="panel recipes-panel">
+        <div class="recipes-header">
+          <h2>Recipes</h2>
+          <div class="recipes-controls">
+            <button id="filter-ready">Ready Now</button>
+            <button id="filter-one-away">One Away</button>
+            <button id="surprise-me">Surprise Me</button>
+          </div>
+        </div>
+
+        <div id="recipe-list"></div>
+      </section>
+    </main>
+
+    <!-- RECIPE DETAIL POPUP -->
+    <div id="recipe-modal" class="modal hidden">
+      <div class="modal-content">
+        <button class="modal-close" id="modal-close">×</button>
+        <h2 id="modal-title"></h2>
+        <p id="modal-subtitle"></p>
+
+        <div class="modal-section">
+          <h3>Ingredients</h3>
+          <ul id="modal-ingredients"></ul>
+        </div>
+
+        <div class="modal-section">
+          <h3>Substitution Notes</h3>
+          <div id="modal-substitutions"></div>
+        </div>
+
+        <div class="modal-section">
+          <h3>Instructions</h3>
+          <p id="modal-instructions"></p>
+        </div>
+      </div>
     </div>
-  </header>
-
-  <main>
-    <!-- Inventory Sections -->
-    <section class="inventory-section">
-      <div class="section-header">
-        <span class="section-icon" id="liquor-header-icon"></span>
-        <h2>Liquors & Spirits</h2>
-      </div>
-      <div id="liquor-grid" class="icon-grid"></div>
-    </section>
-
-    <section class="inventory-section">
-      <div class="section-header">
-        <span class="section-icon" id="mixer-header-icon"></span>
-        <h2>Mixers</h2>
-      </div>
-      <div id="mixer-grid" class="icon-grid"></div>
-    </section>
-
-    <section class="inventory-section">
-      <div class="section-header">
-        <span class="section-icon" id="perishable-header-icon"></span>
-        <h2>Perishables</h2>
-      </div>
-      <div id="perishables-container" class="perishables-buttons"></div>
-      <div id="perishable-grid" class="icon-grid"></div>
-    </section>
-
-    <!-- Recipe Engine -->
-    <section class="recipe-section">
-      <div class="recipe-header-row">
-        <h2>What Can I Make?</h2>
-        <div class="recipe-controls">
-          <select id="filter-liquor" class="filter-select">
-            <option value="">All Liquors</option>
-            <option value="Vodka">Vodka</option>
-            <option value="Gin">Gin</option>
-            <option value="Rum">Rum</option>
-            <option value="Tequila">Tequila</option>
-            <option value="Whiskey">Whiskey</option>
-          </select>
-
-          <select id="filter-mixer" class="filter-select">
-            <option value="">All Mixers</option>
-            <option value="Tonic Water">Tonic Water</option>
-            <option value="Ginger Beer">Ginger Beer</option>
-            <option value="Club Soda">Club Soda</option>
-            <option value="Cola">Cola</option>
-            <option value="Orange Juice">Orange Juice</option>
-          </select>
-
-          <button id="surprise-button" class="surprise-button">
-            <span class="surprise-icon"></span>
-            <span>Surprise Me</span>
-          </button>
-        </div>
-      </div>
-
-      <div class="recipe-columns">
-        <div class="recipe-column">
-          <h3>Ready Now</h3>
-          <ul id="recipes-ready" class="recipe-list"></ul>
-        </div>
-        <div class="recipe-column">
-          <h3>One Ingredient Away</h3>
-          <ul id="recipes-one-away" class="recipe-list"></ul>
-        </div>
-        <div class="recipe-column">
-          <h3>Favorites</h3>
-          <ul id="recipes-favorites" class="recipe-list"></ul>
-        </div>
-      </div>
-
-      <!-- Add Your Own Recipe -->
-      <div class="add-recipe-section">
-        <h3>Add Your Own Recipe</h3>
-        <div class="add-recipe-form">
-          <input id="new-recipe-name" type="text" placeholder="Recipe name" />
-          <input id="new-recipe-liquors" type="text" placeholder="Liquors (comma-separated)" />
-          <input id="new-recipe-mixers" type="text" placeholder="Mixers (comma-separated)" />
-          <input id="new-recipe-perishables" type="text" placeholder="Perishables (comma-separated)" />
-          <button id="add-recipe-button" class="primary-button">Save Recipe</button>
-        </div>
-      </div>
-    </section>
-  </main>
+  </div>
 
   <script src="icons.js"></script>
   <script src="recipes.js"></script>
