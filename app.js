@@ -1,348 +1,181 @@
-// INVENTORY ARRAYS
-const liquors = ["Vodka", "Gin", "Rum", "Tequila", "Whiskey"];
-const mixers = ["Tonic Water", "Ginger Beer", "Club Soda", "Cola", "Orange Juice"];
+const STORAGE_KEY = "bluebar_inventory_v31";
 
-const perishables = [
-  "Lime",
-  "Lemon",
-  "Orange",
-  "Pineapple",
-  "Cream",
-  "Coconut Milk",
-  "Cherry Juice",
-  "Pomegranate Juice",
-  "Basil",
-  "Cucumbers",
-  "Blueberries"
-];
+const inventory = {
+  liquors: [],
+  liqueurs: [],
+  fortified: [],
+  aromatized: [],
+  sparkling: [],
+  bitters: [],
+  mixers: [],
+  perishables: []
+};
 
-const activePerishables = new Set();
-
-// THEME TOGGLE
-const body = document.body;
-const themeToggle = document.getElementById("theme-toggle");
-
-themeToggle.addEventListener("click", () => {
-  if (body.classList.contains("theme-dark")) {
-    body.classList.remove("theme-dark");
-    body.classList.add("theme-light");
-    themeToggle.textContent = "Light";
-  } else {
-    body.classList.remove("theme-light");
-    body.classList.add("theme-dark");
-    themeToggle.textContent = "Dark";
-  }
-});
-
-// HEADER ICONS
-document.getElementById("liquor-header-icon").innerHTML = liquorBottleSVG("#007aff");
-document.getElementById("mixer-header-icon").innerHTML = mixerCanSVG("#c0c0c0");
-document.getElementById("perishable-header-icon").innerHTML = leafSVG("#32cd32");
-
-// INVENTORY RENDERING
-const liquorGrid = document.getElementById("liquor-grid");
-const mixerGrid = document.getElementById("mixer-grid");
-
-function renderLiquors(filter = "") {
-  liquorGrid.innerHTML = "";
-  liquors
-    .filter(item => item.toLowerCase().includes(filter.toLowerCase()))
-    .forEach(item => {
-      const div = document.createElement("div");
-      div.className = "icon-item";
-      div.innerHTML = liquorBottleSVG("#007aff") + `<div class="icon-label">${item}</div>`;
-      liquorGrid.appendChild(div);
-    });
-}
-
-function renderMixers(filter = "") {
-  mixerGrid.innerHTML = "";
-  mixers
-    .filter(item => item.toLowerCase().includes(filter.toLowerCase()))
-    .forEach(item => {
-      const div = document.createElement("div");
-      div.className = "icon-item";
-      div.innerHTML = mixerCanSVG("#c0c0c0") + `<div class="icon-label">${item}</div>`;
-      mixerGrid.appendChild(div);
-    });
-}
-
-renderLiquors();
-renderMixers();
-
-// PERISHABLE BUTTONS + ICONS
-const perishableGrid = document.getElementById("perishable-grid");
-const perishableContainer = document.getElementById("perishables-container");
-
-function renderPerishableButtons(filter = "") {
-  perishableContainer.innerHTML = "";
-  perishables
-    .filter(item => item.toLowerCase().includes(filter.toLowerCase()))
-    .forEach(item => {
-      const btn = document.createElement("button");
-      btn.className = "perishable-button";
-      btn.textContent = item;
-
-      if (activePerishables.has(item)) {
-        btn.classList.add("active");
-      }
-
-      btn.addEventListener("click", () => {
-        btn.classList.toggle("active");
-
-        if (btn.classList.contains("active")) {
-          activePerishables.add(item);
-          addPerishableIcon(item);
-        } else {
-          activePerishables.delete(item);
-          removePerishableIcon(item);
-        }
-        updateRecipes();
-      });
-
-      perishableContainer.appendChild(btn);
-    });
-}
-
-function addPerishableIcon(item) {
-  const meta = perishableIcons[item];
-  if (!meta) return;
-  const id = `perishable-${item.replace(/\s+/g, "")}`;
-  if (document.getElementById(id)) return;
-
-  const div = document.createElement("div");
-  div.className = "icon-item";
-  div.id = id;
-  div.innerHTML = meta.svg(meta.color) + `<div class="icon-label">${item}</div>`;
-  perishableGrid.appendChild(div);
-}
-
-function removePerishableIcon(item) {
-  const id = `perishable-${item.replace(/\s+/g, "")}`;
-  const el = document.getElementById(id);
-  if (el) el.remove();
-}
-
-renderPerishableButtons();
-
-// INVENTORY SEARCH
-const searchInput = document.getElementById("inventory-search");
-
-searchInput.addEventListener("input", () => {
-  const term = searchInput.value.trim();
-  renderLiquors(term);
-  renderMixers(term);
-  renderPerishableButtons(term);
-});
-
-// RECIPE ENGINE
-const recipesReadyList = document.getElementById("recipes-ready");
-const recipesOneAwayList = document.getElementById("recipes-one-away");
-const recipesFavoritesList = document.getElementById("recipes-favorites");
-
-const filterLiquorSelect = document.getElementById("filter-liquor");
-const filterMixerSelect = document.getElementById("filter-mixer");
-
-let selectedLiquorFilter = "";
-let selectedMixerFilter = "";
-
-// FAVORITES PERSISTENCE
-function loadFavorites() {
+function loadInventory() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (!raw) return;
   try {
-    const raw = localStorage.getItem("bluebar_favorites");
-    if (!raw) return [];
-    const parsed = JSON.parse(raw);
-    return Array.isArray(parsed) ? parsed : [];
-  } catch {
-    return [];
+    const data = JSON.parse(raw);
+    Object.keys(inventory).forEach(key => {
+      if (Array.isArray(data[key])) inventory[key] = data[key];
+    });
+  } catch (e) {
+    console.warn("Inventory parse error", e);
   }
 }
 
-function saveFavorites(favs) {
-  try {
-    localStorage.setItem("bluebar_favorites", JSON.stringify(favs));
-  } catch {
-    // ignore
-  }
+function saveInventory() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(inventory));
 }
 
-let favoriteNames = new Set(loadFavorites());
+function renderInventory() {
+  const map = {
+    liquors: "inventory-liquors",
+    liqueurs: "inventory-liqueurs",
+    fortified: "inventory-fortified",
+    aromatized: "inventory-aromatized",
+    sparkling: "inventory-sparkling",
+    bitters: "inventory-bitters",
+    mixers: "inventory-mixers",
+    perishables: "inventory-perishables"
+  };
 
-// FILTER HANDLERS
-filterLiquorSelect.addEventListener("change", () => {
-  selectedLiquorFilter = filterLiquorSelect.value;
-  updateRecipes();
-});
+  Object.entries(map).forEach(([key, id]) => {
+    const container = document.getElementById(id);
+    if (!container) return;
+    container.innerHTML = "";
+    inventory[key].forEach(item => {
+      const pill = document.createElement("div");
+      pill.className = "inventory-pill";
+      pill.textContent = item;
+      container.appendChild(pill);
+    });
+  });
+}
 
-filterMixerSelect.addEventListener("change", () => {
-  selectedMixerFilter = filterMixerSelect.value;
-  updateRecipes();
-});
+// Very simple classifier for now; we’ll expand with your full mapping logic.
+function classifyItem(name) {
+  const n = name.toLowerCase();
 
-// UPDATE RECIPES
-function updateRecipes() {
-  recipesReadyList.innerHTML = "";
-  recipesOneAwayList.innerHTML = "";
-  recipesFavoritesList.innerHTML = "";
+  if (n.includes("champagne") || n.includes("prosecco") || n.includes("cava")) {
+    return "sparkling";
+  }
+  if (n.includes("lillet") || n.includes("cocchi")) {
+    return "aromatized";
+  }
+  if (n.includes("vermouth") || n.includes("sherry") || n.includes("port")) {
+    return "fortified";
+  }
+  if (n.includes("campari") || n.includes("aperol") || n.includes("amaro")) {
+    return "liqueurs";
+  }
+  if (n.includes("bitters")) {
+    return "bitters";
+  }
+  if (n.includes("soda") || n.includes("tonic") || n.includes("ginger beer") || n.includes("juice")) {
+    return "mixers";
+  }
+  // default: liquors
+  return "liquors";
+}
 
-  const inventoryLiquors = new Set(liquors);
-  const inventoryMixers = new Set(mixers);
-  const inventoryPerishables = new Set(activePerishables);
+function addItem(name) {
+  const category = classifyItem(name);
+  inventory[category].push(name);
+  saveInventory();
+  renderInventory();
+}
 
-  const favoritesArray = [];
+function initAddItem() {
+  const input = document.getElementById("add-item-input");
+  const button = document.getElementById("add-item-button");
 
+  button.addEventListener("click", () => {
+    const value = input.value.trim();
+    if (!value) return;
+    addItem(value);
+    input.value = "";
+  });
+
+  input.addEventListener("keydown", e => {
+    if (e.key === "Enter") button.click();
+  });
+}
+
+function hasIngredient(ing) {
+  const list = inventory[ing.category] || [];
+  return list.some(x => x.toLowerCase().includes(ing.name.toLowerCase()));
+}
+
+function computeStatus(recipe) {
+  let missing = 0;
+  recipe.ingredients.forEach(ing => {
+    if (!hasIngredient(ing)) missing++;
+  });
+  if (missing === 0) return "Ready Now";
+  if (missing === 1) return "One Ingredient Away";
+  return `${missing} Ingredients Away`;
+}
+
+function renderRecipes() {
+  const list = document.getElementById("recipe-list");
+  list.innerHTML = "";
   RECIPES.forEach(recipe => {
-    // Filter by liquor/mixer
-    if (selectedLiquorFilter) {
-      if (!recipe.liquors.includes(selectedLiquorFilter)) return;
-    }
-    if (selectedMixerFilter) {
-      if (!recipe.mixers.includes(selectedMixerFilter)) return;
-    }
+    const card = document.createElement("div");
+    card.className = "recipe-card";
+    const main = document.createElement("div");
+    main.className = "recipe-main";
 
-    const missing = [];
+    const title = document.createElement("div");
+    title.className = "recipe-title";
+    title.textContent = recipe.name;
 
-    recipe.liquors.forEach(l => {
-      if (!inventoryLiquors.has(l)) missing.push(l);
-    });
+    const status = document.createElement("div");
+    status.className = "recipe-status";
+    status.textContent = computeStatus(recipe);
 
-    recipe.mixers.forEach(m => {
-      if (!inventoryMixers.has(m)) missing.push(m);
-    });
+    main.appendChild(title);
+    main.appendChild(status);
+    card.appendChild(main);
 
-    recipe.perishables.forEach(p => {
-      if (!inventoryPerishables.has(p)) missing.push(p);
-    });
+    card.addEventListener("click", () => openRecipeModal(recipe));
 
-    const isFavorite = favoriteNames.has(recipe.name);
+    list.appendChild(card);
+  });
+}
 
+function openRecipeModal(recipe) {
+  const modal = document.getElementById("recipe-modal");
+  document.getElementById("modal-title").textContent = recipe.name;
+  document.getElementById("modal-subtitle").textContent = computeStatus(recipe);
+
+  const ingList = document.getElementById("modal-ingredients");
+  ingList.innerHTML = "";
+  recipe.ingredients.forEach(ing => {
     const li = document.createElement("li");
-    li.classList.toggle("favorite", isFavorite);
-
-    let inner = `<span class="recipe-name">${recipe.name}</span>`;
-    if (missing.length === 1) {
-      inner += `<span class="recipe-missing">Missing: ${missing[0]}</span>`;
-    } else if (missing.length > 1) {
-      inner += `<span class="recipe-missing">Missing: ${missing.length} items</span>`;
-    }
-
-    const favBtn = document.createElement("button");
-    favBtn.className = "favorite-toggle";
-    favBtn.innerHTML = heartSVG(isFavorite ? "#ffcc00" : "#888888");
-    favBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      toggleFavorite(recipe.name);
-    });
-
-    li.innerHTML = inner;
-    li.appendChild(favBtn);
-
-    li.addEventListener("click", () => showRecipeDetails(recipe));
-
-    if (missing.length === 0) {
-      recipesReadyList.appendChild(li);
-    } else if (missing.length === 1) {
-      recipesOneAwayList.appendChild(li);
-    }
-
-    if (isFavorite) {
-      favoritesArray.push(recipe);
-    }
+    li.textContent = `${ing.name}`;
+    ingList.appendChild(li);
   });
 
-  // Render favorites list
-  favoritesArray.forEach(recipe => {
-    const li = document.createElement("li");
-    li.classList.add("favorite");
-    li.innerHTML = `<span class="recipe-name">${recipe.name}</span>`;
-    li.addEventListener("click", () => showRecipeDetails(recipe));
-    recipesFavoritesList.appendChild(li);
-  });
+  // substitution notes placeholder – we’ll wire your full logic here
+  document.getElementById("modal-substitutions").textContent =
+    "Substitution notes will appear here based on your inventory and preferences.";
+
+  document.getElementById("modal-instructions").textContent = recipe.instructions;
+
+  modal.classList.remove("hidden");
 }
 
-function toggleFavorite(name) {
-  if (favoriteNames.has(name)) {
-    favoriteNames.delete(name);
-  } else {
-    favoriteNames.add(name);
-  }
-  saveFavorites(Array.from(favoriteNames));
-  updateRecipes();
+function initModal() {
+  const modal = document.getElementById("recipe-modal");
+  const close = document.getElementById("modal-close");
+  close.addEventListener("click", () => modal.classList.add("hidden"));
 }
 
-// RECIPE DETAILS (simple alert for now)
-function showRecipeDetails(recipe) {
-  const text = `
-${recipe.name}
-
-Liquors: ${recipe.liquors.join(", ") || "None"}
-Mixers: ${recipe.mixers.join(", ") || "None"}
-Perishables: ${recipe.perishables.join(", ") || "None"}
-  `.trim();
-  alert(text);
-}
-
-// SURPRISE ME BUTTON
-const surpriseButton = document.getElementById("surprise-button");
-const surpriseIconSpan = document.querySelector(".surprise-icon");
-surpriseIconSpan.innerHTML = surpriseSVG("#ffcc00");
-
-surpriseButton.addEventListener("click", () => {
-  const filtered = RECIPES.filter(recipe => {
-    if (selectedLiquorFilter && !recipe.liquors.includes(selectedLiquorFilter)) return false;
-    if (selectedMixerFilter && !recipe.mixers.includes(selectedMixerFilter)) return false;
-    return true;
-  });
-
-  const pool = filtered.length ? filtered : RECIPES;
-  const random = pool[Math.floor(Math.random() * pool.length)];
-  showRecipeDetails(random);
+document.addEventListener("DOMContentLoaded", () => {
+  loadInventory();
+  renderInventory();
+  initAddItem();
+  renderRecipes();
+  initModal();
 });
-
-// ADD YOUR OWN RECIPE UI
-const newRecipeNameInput = document.getElementById("new-recipe-name");
-const newRecipeLiquorsInput = document.getElementById("new-recipe-liquors");
-const newRecipeMixersInput = document.getElementById("new-recipe-mixers");
-const newRecipePerishablesInput = document.getElementById("new-recipe-perishables");
-const addRecipeButton = document.getElementById("add-recipe-button");
-
-addRecipeButton.addEventListener("click", () => {
-  const name = newRecipeNameInput.value.trim();
-  if (!name) {
-    alert("Please enter a recipe name.");
-    return;
-  }
-
-  const liquorsList = newRecipeLiquorsInput.value
-    .split(",")
-    .map(s => s.trim())
-    .filter(Boolean);
-
-  const mixersList = newRecipeMixersInput.value
-    .split(",")
-    .map(s => s.trim())
-    .filter(Boolean);
-
-  const perishablesList = newRecipePerishablesInput.value
-    .split(",")
-    .map(s => s.trim())
-    .filter(Boolean);
-
-  addUserRecipe({
-    name,
-    liquors: liquorsList,
-    mixers: mixersList,
-    perishables: perishablesList
-  });
-
-  newRecipeNameInput.value = "";
-  newRecipeLiquorsInput.value = "";
-  newRecipeMixersInput.value = "";
-  newRecipePerishablesInput.value = "";
-
-  alert("Recipe saved!");
-  updateRecipes();
-});
-
-// INITIAL RECIPE RENDER
-updateRecipes();
