@@ -1,6 +1,4 @@
-// -----------------------------
 // INVENTORY ARRAYS
-// -----------------------------
 const liquors = ["Vodka", "Gin", "Rum", "Tequila", "Whiskey"];
 const mixers = ["Tonic Water", "Ginger Beer", "Club Soda", "Cola", "Orange Juice"];
 
@@ -18,12 +16,9 @@ const perishables = [
   "Blueberries"
 ];
 
-// Track active perishables
 const activePerishables = new Set();
 
-// -----------------------------
 // THEME TOGGLE
-// -----------------------------
 const body = document.body;
 const themeToggle = document.getElementById("theme-toggle");
 
@@ -39,16 +34,12 @@ themeToggle.addEventListener("click", () => {
   }
 });
 
-// -----------------------------
-// SECTION HEADER ICONS
-// -----------------------------
+// HEADER ICONS
 document.getElementById("liquor-header-icon").innerHTML = liquorBottleSVG("#007aff");
-document.getElementById("mixer-header-icon").innerHTML = mixerCanSVG("#C0C0C0");
-document.getElementById("perishable-header-icon").innerHTML = leafSVG("#32CD32");
+document.getElementById("mixer-header-icon").innerHTML = mixerCanSVG("#c0c0c0");
+document.getElementById("perishable-header-icon").innerHTML = leafSVG("#32cd32");
 
-// -----------------------------
-// RENDER LIQUORS & MIXERS
-// -----------------------------
+// INVENTORY RENDERING
 const liquorGrid = document.getElementById("liquor-grid");
 const mixerGrid = document.getElementById("mixer-grid");
 
@@ -71,18 +62,15 @@ function renderMixers(filter = "") {
     .forEach(item => {
       const div = document.createElement("div");
       div.className = "icon-item";
-      div.innerHTML = mixerCanSVG("#C0C0C0") + `<div class="icon-label">${item}</div>`;
+      div.innerHTML = mixerCanSVG("#c0c0c0") + `<div class="icon-label">${item}</div>`;
       mixerGrid.appendChild(div);
     });
 }
 
-// Initial render
 renderLiquors();
 renderMixers();
 
-// -----------------------------
 // PERISHABLE BUTTONS + ICONS
-// -----------------------------
 const perishableGrid = document.getElementById("perishable-grid");
 const perishableContainer = document.getElementById("perishables-container");
 
@@ -135,12 +123,9 @@ function removePerishableIcon(item) {
   if (el) el.remove();
 }
 
-// Initial render of perishable buttons
 renderPerishableButtons();
 
-// -----------------------------
 // INVENTORY SEARCH
-// -----------------------------
 const searchInput = document.getElementById("inventory-search");
 
 searchInput.addEventListener("input", () => {
@@ -150,21 +135,71 @@ searchInput.addEventListener("input", () => {
   renderPerishableButtons(term);
 });
 
-// -----------------------------
 // RECIPE ENGINE
-// -----------------------------
 const recipesReadyList = document.getElementById("recipes-ready");
 const recipesOneAwayList = document.getElementById("recipes-one-away");
+const recipesFavoritesList = document.getElementById("recipes-favorites");
 
+const filterLiquorSelect = document.getElementById("filter-liquor");
+const filterMixerSelect = document.getElementById("filter-mixer");
+
+let selectedLiquorFilter = "";
+let selectedMixerFilter = "";
+
+// FAVORITES PERSISTENCE
+function loadFavorites() {
+  try {
+    const raw = localStorage.getItem("bluebar_favorites");
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveFavorites(favs) {
+  try {
+    localStorage.setItem("bluebar_favorites", JSON.stringify(favs));
+  } catch {
+    // ignore
+  }
+}
+
+let favoriteNames = new Set(loadFavorites());
+
+// FILTER HANDLERS
+filterLiquorSelect.addEventListener("change", () => {
+  selectedLiquorFilter = filterLiquorSelect.value;
+  updateRecipes();
+});
+
+filterMixerSelect.addEventListener("change", () => {
+  selectedMixerFilter = filterMixerSelect.value;
+  updateRecipes();
+});
+
+// UPDATE RECIPES
 function updateRecipes() {
   recipesReadyList.innerHTML = "";
   recipesOneAwayList.innerHTML = "";
+  recipesFavoritesList.innerHTML = "";
 
   const inventoryLiquors = new Set(liquors);
   const inventoryMixers = new Set(mixers);
   const inventoryPerishables = new Set(activePerishables);
 
+  const favoritesArray = [];
+
   RECIPES.forEach(recipe => {
+    // Filter by liquor/mixer
+    if (selectedLiquorFilter) {
+      if (!recipe.liquors.includes(selectedLiquorFilter)) return;
+    }
+    if (selectedMixerFilter) {
+      if (!recipe.mixers.includes(selectedMixerFilter)) return;
+    }
+
     const missing = [];
 
     recipe.liquors.forEach(l => {
@@ -179,24 +214,63 @@ function updateRecipes() {
       if (!inventoryPerishables.has(p)) missing.push(p);
     });
 
+    const isFavorite = favoriteNames.has(recipe.name);
+
+    const li = document.createElement("li");
+    li.classList.toggle("favorite", isFavorite);
+
+    let inner = `<span class="recipe-name">${recipe.name}</span>`;
+    if (missing.length === 1) {
+      inner += `<span class="recipe-missing">Missing: ${missing[0]}</span>`;
+    } else if (missing.length > 1) {
+      inner += `<span class="recipe-missing">Missing: ${missing.length} items</span>`;
+    }
+
+    const favBtn = document.createElement("button");
+    favBtn.className = "favorite-toggle";
+    favBtn.innerHTML = heartSVG(isFavorite ? "#ffcc00" : "#888888");
+    favBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      toggleFavorite(recipe.name);
+    });
+
+    li.innerHTML = inner;
+    li.appendChild(favBtn);
+
+    li.addEventListener("click", () => showRecipeDetails(recipe));
+
     if (missing.length === 0) {
-      const li = document.createElement("li");
-      li.innerHTML = `<span class="recipe-name">${recipe.name}</span>`;
-      li.addEventListener("click", () => showRecipeDetails(recipe));
       recipesReadyList.appendChild(li);
     } else if (missing.length === 1) {
-      const li = document.createElement("li");
-      li.innerHTML = `
-        <span class="recipe-name">${recipe.name}</span>
-        <span class="recipe-missing">Missing: ${missing[0]}</span>
-      `;
-      li.addEventListener("click", () => showRecipeDetails(recipe));
       recipesOneAwayList.appendChild(li);
     }
+
+    if (isFavorite) {
+      favoritesArray.push(recipe);
+    }
+  });
+
+  // Render favorites list
+  favoritesArray.forEach(recipe => {
+    const li = document.createElement("li");
+    li.classList.add("favorite");
+    li.innerHTML = `<span class="recipe-name">${recipe.name}</span>`;
+    li.addEventListener("click", () => showRecipeDetails(recipe));
+    recipesFavoritesList.appendChild(li);
   });
 }
 
-// Simple detail display (alert for now)
+function toggleFavorite(name) {
+  if (favoriteNames.has(name)) {
+    favoriteNames.delete(name);
+  } else {
+    favoriteNames.add(name);
+  }
+  saveFavorites(Array.from(favoriteNames));
+  updateRecipes();
+}
+
+// RECIPE DETAILS (simple alert for now)
 function showRecipeDetails(recipe) {
   const text = `
 ${recipe.name}
@@ -208,5 +282,67 @@ Perishables: ${recipe.perishables.join(", ") || "None"}
   alert(text);
 }
 
-// Initial recipe calculation
+// SURPRISE ME BUTTON
+const surpriseButton = document.getElementById("surprise-button");
+const surpriseIconSpan = document.querySelector(".surprise-icon");
+surpriseIconSpan.innerHTML = surpriseSVG("#ffcc00");
+
+surpriseButton.addEventListener("click", () => {
+  const filtered = RECIPES.filter(recipe => {
+    if (selectedLiquorFilter && !recipe.liquors.includes(selectedLiquorFilter)) return false;
+    if (selectedMixerFilter && !recipe.mixers.includes(selectedMixerFilter)) return false;
+    return true;
+  });
+
+  const pool = filtered.length ? filtered : RECIPES;
+  const random = pool[Math.floor(Math.random() * pool.length)];
+  showRecipeDetails(random);
+});
+
+// ADD YOUR OWN RECIPE UI
+const newRecipeNameInput = document.getElementById("new-recipe-name");
+const newRecipeLiquorsInput = document.getElementById("new-recipe-liquors");
+const newRecipeMixersInput = document.getElementById("new-recipe-mixers");
+const newRecipePerishablesInput = document.getElementById("new-recipe-perishables");
+const addRecipeButton = document.getElementById("add-recipe-button");
+
+addRecipeButton.addEventListener("click", () => {
+  const name = newRecipeNameInput.value.trim();
+  if (!name) {
+    alert("Please enter a recipe name.");
+    return;
+  }
+
+  const liquorsList = newRecipeLiquorsInput.value
+    .split(",")
+    .map(s => s.trim())
+    .filter(Boolean);
+
+  const mixersList = newRecipeMixersInput.value
+    .split(",")
+    .map(s => s.trim())
+    .filter(Boolean);
+
+  const perishablesList = newRecipePerishablesInput.value
+    .split(",")
+    .map(s => s.trim())
+    .filter(Boolean);
+
+  addUserRecipe({
+    name,
+    liquors: liquorsList,
+    mixers: mixersList,
+    perishables: perishablesList
+  });
+
+  newRecipeNameInput.value = "";
+  newRecipeLiquorsInput.value = "";
+  newRecipeMixersInput.value = "";
+  newRecipePerishablesInput.value = "";
+
+  alert("Recipe saved!");
+  updateRecipes();
+});
+
+// INITIAL RECIPE RENDER
 updateRecipes();
