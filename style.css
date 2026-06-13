@@ -1,0 +1,377 @@
+:root {
+  --bg: #111111;
+  --bg-alt: #1a1a1a;
+  --card: #181818;
+  --text: #f2f2f2;
+  --text-muted: #b3b3b3;
+  --accent: #4a90e2;
+  --danger: #ff4b5c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+#app {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.app-header {
+  text-align: center;
+  padding: 8px 0 16px;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+main {
+  display: block;
+}
+
+.view {
+  display: none;
+}
+
+.view.active {
+  display: block;
+}
+
+.dashboard-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.dash-btn {
+  background: var(--card);
+  border: 1px solid #222;
+  color: var(--text);
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.1s;
+}
+
+.dash-btn:hover,
+.dash-btn:active {
+  background: #202020;
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.view-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.view-header h2 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.back-btn {
+  background: transparent;
+  border: none;
+  color: var(--accent);
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+/* Inventory */
+
+.inventory-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.inventory-form,
+.inventory-list {
+  background: var(--card);
+  padding: 12px;
+  border-radius: 12px;
+}
+
+.inventory-form h3,
+.inventory-list h3 {
+  margin-top: 0;
+}
+
+label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+input[type="text"],
+select,
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background: #121212;
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+input[type="text"]:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.primary-btn,
+.secondary-btn {
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.primary-btn {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.secondary-btn {
+  background: #262626;
+  color: var(--text-muted);
+}
+
+#inv-items {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+}
+
+.inv-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid #222;
+}
+
+.inv-item:last-child {
+  border-bottom: none;
+}
+
+.inv-meta {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.inv-delete {
+  background: transparent;
+  border: none;
+  color: var(--danger);
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+/* Perishables */
+
+.perishables {
+  margin-top: 16px;
+  background: var(--card);
+  padding: 12px;
+  border-radius: 12px;
+}
+
+.perishable-toggles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.perishable-chip {
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid #333;
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: var(--text-muted);
+}
+
+.perishable-chip.active {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Drinks */
+
+.drinks-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.drinks-list {
+  background: var(--card);
+  padding: 12px;
+  border-radius: 12px;
+}
+
+#drink-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.drink-card {
+  padding: 10px 0;
+  border-bottom: 1px solid #222;
+}
+
+.drink-card:last-child {
+  border-bottom: none;
+}
+
+.drink-name {
+  font-size: 1rem;
+  margin: 0 0 4px;
+}
+
+.drink-meta {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.drink-tags {
+  margin-top: 4px;
+  font-size: 0.8rem;
+  color: var(--accent);
+}
+
+/* What I Can Make */
+
+.make-controls {
+  margin-bottom: 12px;
+}
+
+.make-list {
+  background: var(--card);
+  padding: 12px;
+  border-radius: 12px;
+}
+
+#make-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.make-card {
+  padding: 10px 0;
+  border-bottom: 1px solid #222;
+}
+
+.make-card:last-child {
+  border-bottom: none;
+}
+
+.make-status {
+  font-size: 0.8rem;
+  color: var(--accent);
+}
+
+.make-missing {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* Modal */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: var(--bg-alt);
+  padding: 16px;
+  border-radius: 12px;
+  width: 95%;
+  max-width: 600px;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+}
+
+#recipe-text {
+  min-height: 120px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.recipe-preview {
+  margin-top: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  background: #151515;
+  font-size: 0.9rem;
+}
+
+/* Responsive */
+
+@media (min-width: 700px) {
+  .dashboard-buttons {
+    flex-direction: row;
+  }
+
+  .inventory-layout {
+    flex-direction: row;
+  }
+
+  .inventory-form,
+  .inventory-list {
+    flex: 1;
+  }
+}
