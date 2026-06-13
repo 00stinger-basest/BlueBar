@@ -4,7 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BlueBar</title>
+
   <link rel="stylesheet" href="style.css" />
+  <link rel="apple-touch-icon" href="icons/bluebar-icon.png">
 </head>
 
 <body class="theme-dark">
@@ -21,8 +23,8 @@
     </div>
   </header>
 
-  <!-- Inventory Sections -->
   <main>
+    <!-- Inventory Sections -->
     <section class="inventory-section">
       <div class="section-header">
         <span class="section-icon" id="liquor-header-icon"></span>
@@ -50,7 +52,34 @@
 
     <!-- Recipe Engine -->
     <section class="recipe-section">
-      <h2>What Can I Make?</h2>
+      <div class="recipe-header-row">
+        <h2>What Can I Make?</h2>
+        <div class="recipe-controls">
+          <select id="filter-liquor" class="filter-select">
+            <option value="">All Liquors</option>
+            <option value="Vodka">Vodka</option>
+            <option value="Gin">Gin</option>
+            <option value="Rum">Rum</option>
+            <option value="Tequila">Tequila</option>
+            <option value="Whiskey">Whiskey</option>
+          </select>
+
+          <select id="filter-mixer" class="filter-select">
+            <option value="">All Mixers</option>
+            <option value="Tonic Water">Tonic Water</option>
+            <option value="Ginger Beer">Ginger Beer</option>
+            <option value="Club Soda">Club Soda</option>
+            <option value="Cola">Cola</option>
+            <option value="Orange Juice">Orange Juice</option>
+          </select>
+
+          <button id="surprise-button" class="surprise-button">
+            <span class="surprise-icon"></span>
+            <span>Surprise Me</span>
+          </button>
+        </div>
+      </div>
+
       <div class="recipe-columns">
         <div class="recipe-column">
           <h3>Ready Now</h3>
@@ -59,6 +88,22 @@
         <div class="recipe-column">
           <h3>One Ingredient Away</h3>
           <ul id="recipes-one-away" class="recipe-list"></ul>
+        </div>
+        <div class="recipe-column">
+          <h3>Favorites</h3>
+          <ul id="recipes-favorites" class="recipe-list"></ul>
+        </div>
+      </div>
+
+      <!-- Add Your Own Recipe -->
+      <div class="add-recipe-section">
+        <h3>Add Your Own Recipe</h3>
+        <div class="add-recipe-form">
+          <input id="new-recipe-name" type="text" placeholder="Recipe name" />
+          <input id="new-recipe-liquors" type="text" placeholder="Liquors (comma-separated)" />
+          <input id="new-recipe-mixers" type="text" placeholder="Mixers (comma-separated)" />
+          <input id="new-recipe-perishables" type="text" placeholder="Perishables (comma-separated)" />
+          <button id="add-recipe-button" class="primary-button">Save Recipe</button>
         </div>
       </div>
     </section>
