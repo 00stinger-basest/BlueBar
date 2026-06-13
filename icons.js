@@ -1,78 +1,146 @@
-function createIcon(svg, colorVar) {
-  const span = document.createElement("span");
-  span.innerHTML = svg;
-  const svgEl = span.querySelector("svg");
-  svgEl.style.width = "22px";
-  svgEl.style.height = "22px";
-  svgEl.style.stroke = `var(${colorVar})`;
-  svgEl.style.fill = "none";
-  return span.firstChild;
+/* ============================================================
+   BlueBar 3.1 — Premium 64×64 Outline Icon Set
+   All icons use:
+   - stroke-width: 2.5
+   - stroke-linecap: round
+   - stroke-linejoin: round
+   - no fill
+   - centered inside 64×64 viewBox
+   ============================================================ */
+
+function createIcon(color, pathData) {
+  const svg = `
+    <svg viewBox="0 0 64 64" stroke="${color}" fill="none"
+         stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      ${pathData}
+    </svg>
+  `;
+  return svg;
 }
 
-function initIcons() {
-  const icons = {
-    "icon-liquors": createIcon(
-      `<svg viewBox="0 0 24 24">
-        <path d="M9 3h6v3l-1 2v11H10V8L9 6V3z" />
-      </svg>`,
-      "--color-liquors"
-    ),
-    "icon-liqueurs": createIcon(
-      `<svg viewBox="0 0 24 24">
-        <path d="M9 4h6l1 3-2 9H10L8 7l1-3z" />
-        <path d="M9 10h6" />
-      </svg>`,
-      "--color-liqueurs"
-    ),
-    "icon-fortified": createIcon(
-      `<svg viewBox="0 0 24 24">
-        <path d="M10 3h4l1 4v11h-6V7l1-4z" />
-        <path d="M12 9l2 2-2 2-2-2 2-2z" />
-      </svg>`,
-      "--color-fortified"
-    ),
-    "icon-aromatized": createIcon(
-      `<svg viewBox="0 0 24 24">
-        <path d="M10 4h4l1 3v10h-6V7l1-3z" />
-        <circle cx="6" cy="17" r="3" />
-        <path d="M4.5 15.5 7.5 18.5" />
-      </svg>`,
-      "--color-aromatized"
-    ),
-    "icon-sparkling": createIcon(
-      `<svg viewBox="0 0 24 24">
-        <path d="M10 4h4l-1 8v6h-2v-6l-1-8z" />
-        <path d="M16 5l1-1 1 1-1 1-1-1zM17 9l1-1 1 1-1 1-1-1z" />
-      </svg>`,
-      "--color-sparkling"
-    ),
-    "icon-bitters": createIcon(
-      `<svg viewBox="0 0 24 24">
-        <path d="M10 5h4l1 3v9h-6V8l1-3z" />
-        <path d="M12 3v2" />
-        <path d="M12 15v3" />
-      </svg>`,
-      "--color-bitters"
-    ),
-    "icon-mixers": createIcon(
-      `<svg viewBox="0 0 24 24">
-        <path d="M9 4h6l-1 14H10L9 4z" />
-        <path d="M10 7h4" />
-      </svg>`,
-      "--color-mixers"
-    ),
-    "icon-perishables": createIcon(
-      `<svg viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="4" />
-      </svg>`,
-      "--color-liquors"
-    )
+/* ============================================================
+   ICON DEFINITIONS
+   ============================================================ */
+
+/* ------------------------------
+   LIQUORS — Tall angular bottle
+   ------------------------------ */
+const ICON_LIQUORS = createIcon(
+  "var(--color-liquors)",
+  `
+    <path d="M28 10 h8 v10 l6 8 v24 h-20 v-24 l6-8 z" />
+    <path d="M28 10 v-4 h8 v4" />
+  `
+);
+
+/* ------------------------------
+   LIQUEURS — Fancy bottle w/ ribbon
+   ------------------------------ */
+const ICON_LIQUEURS = createIcon(
+  "var(--color-liqueurs)",
+  `
+    <path d="M30 8 h4 v10 l6 6 v26 h-16 v-26 l6-6 z" />
+    <path d="M22 30 h20" />
+  `
+);
+
+/* ------------------------------
+   FORTIFIED — Wine bottle + shield
+   ------------------------------ */
+const ICON_FORTIFIED = createIcon(
+  "var(--color-fortified)",
+  `
+    <path d="M30 8 h4 v12 l4 6 v26 h-12 v-26 l4-6 z" />
+    <path d="M24 34 h16" />
+    <path d="M32 40 l6 4 l-6 4 l-6-4 z" />
+  `
+);
+
+/* ------------------------------
+   AROMATIZED — Bottle + citrus slice
+   ------------------------------ */
+const ICON_AROMATIZED = createIcon(
+  "var(--color-aromatized)",
+  `
+    <path d="M30 10 h4 v12 l4 6 v22 h-12 v-22 l4-6 z" />
+    <circle cx="46" cy="46" r="6" />
+    <path d="M46 40 v12" />
+    <path d="M40 46 h12" />
+  `
+);
+
+/* ------------------------------
+   SPARKLING — Champagne flute + sparkles
+   ------------------------------ */
+const ICON_SPARKLING = createIcon(
+  "var(--color-sparkling)",
+  `
+    <path d="M28 8 h8 v20 h-8 z" />
+    <path d="M32 28 v20" />
+    <path d="M26 48 h12" />
+    <path d="M44 10 l3 3" />
+    <path d="M47 10 l-3 3" />
+    <path d="M42 16 h4" />
+  `
+);
+
+/* ------------------------------
+   BITTERS — Dropper bottle
+   ------------------------------ */
+const ICON_BITTERS = createIcon(
+  "var(--color-bitters)",
+  `
+    <path d="M28 8 h8 v8 h-8 z" />
+    <path d="M26 16 h12 v28 h-12 z" />
+    <path d="M32 44 v8" />
+  `
+);
+
+/* ------------------------------
+   MIXERS — Aluminum can
+   ------------------------------ */
+const ICON_MIXERS = createIcon(
+  "var(--color-mixers)",
+  `
+    <rect x="24" y="10" width="16" height="44" rx="3" />
+    <path d="M24 18 h16" />
+    <path d="M24 40 h16" />
+  `
+);
+
+/* ------------------------------
+   PERISHABLES — Lime wedge (simple)
+   ------------------------------ */
+const ICON_PERISHABLES = createIcon(
+  "var(--color-perishables)",
+  `
+    <path d="M16 48 l32 -16 l-16 -16 z" />
+    <path d="M16 48 l16 -16" />
+    <path d="M32 32 l16 0" />
+    <path d="M32 32 l8 -8" />
+  `
+);
+
+/* ============================================================
+   ICON INJECTION
+   ============================================================ */
+
+function injectIcons() {
+  const map = {
+    "icon-liquors": ICON_LIQUORS,
+    "icon-liqueurs": ICON_LIQUEURS,
+    "icon-fortified": ICON_FORTIFIED,
+    "icon-aromatized": ICON_AROMATIZED,
+    "icon-sparkling": ICON_SPARKLING,
+    "icon-bitters": ICON_BITTERS,
+    "icon-mixers": ICON_MIXERS,
+    "icon-perishables": ICON_PERISHABLES
   };
 
-  Object.entries(icons).forEach(([id, svg]) => {
+  Object.entries(map).forEach(([id, svg]) => {
     const el = document.getElementById(id);
-    if (el) el.appendChild(svg);
+    if (el) el.innerHTML = svg;
   });
 }
 
-document.addEventListener("DOMContentLoaded", initIcons);
+document.addEventListener("DOMContentLoaded", injectIcons);
