@@ -5,14 +5,19 @@
   <title>BlueBar 3.1</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <div id="app">
+
+    <!-- HEADER -->
     <header class="app-header">
       <h1>BlueBar</h1>
       <p class="subtitle">Your smart home bar</p>
     </header>
 
+    <!-- MAIN LAYOUT -->
     <main class="app-main">
+
       <!-- INVENTORY PANEL -->
       <section class="panel inventory-panel">
         <h2>Inventory</h2>
@@ -89,12 +94,12 @@
           <div class="section-body" id="inventory-perishables"></div>
         </div>
 
-        <!-- Add item input -->
+        <!-- Add Item -->
         <div class="inventory-add">
           <input
             type="text"
             id="add-item-input"
-            placeholder="Add bottle or ingredient (e.g., Campari, Lillet Blanc, Angostura)"
+            placeholder="Add bottle or ingredient (e.g., Campari, Lillet Blanc, Lemons)"
           />
           <button id="add-item-button">Add</button>
         </div>
@@ -113,9 +118,10 @@
 
         <div id="recipe-list"></div>
       </section>
+
     </main>
 
-    <!-- RECIPE DETAIL POPUP -->
+    <!-- RECIPE MODAL -->
     <div id="recipe-modal" class="modal hidden">
       <div class="modal-content">
         <button class="modal-close" id="modal-close">×</button>
@@ -138,10 +144,13 @@
         </div>
       </div>
     </div>
+
   </div>
 
+  <!-- JS FILES -->
   <script src="icons.js"></script>
   <script src="recipes.js"></script>
   <script src="app.js"></script>
+
 </body>
 </html>
