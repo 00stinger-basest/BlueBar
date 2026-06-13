@@ -1,6 +1,4 @@
-// -----------------------------
 // LIQUOR BOTTLE ICON
-// -----------------------------
 function liquorBottleSVG(color) {
   return `
     <svg viewBox="0 0 64 64" stroke="${color}" fill="none">
@@ -9,9 +7,7 @@ function liquorBottleSVG(color) {
   `;
 }
 
-// -----------------------------
 // MIXER CAN ICON
-// -----------------------------
 function mixerCanSVG(color) {
   return `
     <svg viewBox="0 0 64 64" stroke="${color}" fill="none">
@@ -21,9 +17,7 @@ function mixerCanSVG(color) {
   `;
 }
 
-// -----------------------------
-// SIMPLE LEAF ICON (HEADER)
-// -----------------------------
+// LEAF ICON (PERISHABLE HEADER)
 function leafSVG(color) {
   return `
     <svg viewBox="0 0 64 64" stroke="${color}" fill="none">
@@ -33,9 +27,30 @@ function leafSVG(color) {
   `;
 }
 
-// -----------------------------
+// HEART ICON (FAVORITES)
+function heartSVG(color) {
+  return `
+    <svg viewBox="0 0 64 64" stroke="${color}" fill="none">
+      <path d="M32 52s-12-8-18-16c-4-6-3-14 2-18 5-4 12-3 16 2 4-5 11-6 16-2 5 4 6 12 2 18-6 8-18 16-18 16z"/>
+    </svg>
+  `;
+}
+
+// DICE / FUN ICON (SURPRISE ME)
+function surpriseSVG(color) {
+  return `
+    <svg viewBox="0 0 64 64" stroke="${color}" fill="none">
+      <rect x="12" y="12" width="40" height="40" rx="8"/>
+      <circle cx="24" cy="24" r="3"/>
+      <circle cx="40" cy="24" r="3"/>
+      <circle cx="24" cy="40" r="3"/>
+      <circle cx="40" cy="40" r="3"/>
+      <circle cx="32" cy="32" r="3"/>
+    </svg>
+  `;
+}
+
 // PERISHABLE ICONS
-// -----------------------------
 const perishableIcons = {
   "Lime": {
     color: "#32CD32",
@@ -47,7 +62,6 @@ const perishableIcons = {
       </svg>
     `
   },
-
   "Lemon": {
     color: "#FFD700",
     svg: (c) => `
@@ -56,7 +70,6 @@ const perishableIcons = {
       </svg>
     `
   },
-
   "Orange": {
     color: "#FFA500",
     svg: (c) => `
@@ -65,7 +78,6 @@ const perishableIcons = {
       </svg>
     `
   },
-
   "Pineapple": {
     color: "#DAA520",
     svg: (c) => `
@@ -75,7 +87,6 @@ const perishableIcons = {
       </svg>
     `
   },
-
   "Cream": {
     color: "#FFFFFF",
     svg: (c) => `
@@ -84,7 +95,6 @@ const perishableIcons = {
       </svg>
     `
   },
-
   "Coconut Milk": {
     color: "#FFFFFF",
     svg: (c) => `
@@ -94,7 +104,6 @@ const perishableIcons = {
       </svg>
     `
   },
-
   "Cherry Juice": {
     color: "#B22222",
     svg: (c) => `
@@ -105,7 +114,6 @@ const perishableIcons = {
       </svg>
     `
   },
-
   "Pomegranate Juice": {
     color: "#8B0000",
     svg: (c) => `
@@ -115,7 +123,6 @@ const perishableIcons = {
       </svg>
     `
   },
-
   "Basil": {
     color: "#228B22",
     svg: (c) => `
@@ -125,7 +132,6 @@ const perishableIcons = {
       </svg>
     `
   },
-
   "Cucumbers": {
     color: "#2E8B57",
     svg: (c) => `
@@ -134,7 +140,6 @@ const perishableIcons = {
       </svg>
     `
   },
-
   "Blueberries": {
     color: "#4169E1",
     svg: (c) => `
