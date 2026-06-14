@@ -2244,12 +2244,15 @@ const copilotOriginals = [
 ]; // END COPILOT ORIGINALS
 
 // ==============================
-// EXPORT
+// EXPORT (GLOBAL)
 // ==============================
 
-export const recipes = [
+const allRecipes = [
   ...classicCocktails,
   ...modernCocktails,
   ...copilotOriginals
 ];
+
+// Make available to app.js
+window.recipes = allRecipes;
 
