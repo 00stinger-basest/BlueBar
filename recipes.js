@@ -1214,6 +1214,7 @@ const modernCocktails = [
   }
 
 ]; // END OF SECTION 4
+
 // ==============================
 // COPILOT ORIGINALS
 // ==============================
@@ -1663,4 +1664,592 @@ const copilotOriginals = [
       { name: "Lemon juice", amount: "0.75 oz" }
     ],
     instructions:
-      "Shake all ingredients with ice and strain into a chilled
+      "Shake all ingredients with ice and strain into a chilled coupe.",
+    substitutions:
+      "Use vodka for a softer floral profile.",
+    tags: ["Floral", "Citrusy", "Refreshing", "Sweet"]
+  },
+
+  // ------------------------------
+  // MAPLE EMBER OLD FASHIONED
+  // ------------------------------
+  {
+    name: "Maple Ember Old Fashioned",
+    base: "Bourbon",
+    glass: "Rocks",
+    ingredients: [
+      { name: "Bourbon", amount: "2 oz" },
+      { name: "Maple syrup", amount: "0.25 oz" },
+      { name: "Angostura bitters", amount: "2 dashes" },
+      { name: "Orange peel", amount: "1 peel" }
+    ],
+    instructions:
+      "Stir bourbon, maple syrup, and bitters with ice. Strain over a large cube and garnish with orange peel.",
+    substitutions:
+      "Use rye for a spicier version.",
+    tags: ["Rich", "Sweet", "Spirit-forward", "Dry"]
+  },
+
+  // ------------------------------
+  // TROPICAL STARLIGHT SPRITZ
+  // ------------------------------
+  {
+    name: "Tropical Starlight Spritz",
+    base: "Other Spirits",
+    glass: "Wine glass",
+    ingredients: [
+      { name: "Passionfruit syrup", amount: "1.5 oz" },
+      { name: "Pineapple juice", amount: "2 oz" },
+      { name: "Prosecco", amount: "3 oz" },
+      { name: "Club soda", amount: "1 oz" }
+    ],
+    instructions:
+      "Build all ingredients over ice in a wine glass and stir gently.",
+    substitutions:
+      "Use sparkling rosé for a fruitier version.",
+    tags: ["Tropical", "Refreshing", "Sweet", "Fruity"]
+  },
+
+  // ------------------------------
+  // FROSTED COCONUT SOUR
+  // ------------------------------
+  {
+    name: "Frosted Coconut Sour",
+    base: "Light Rum",
+    glass: "Coupe",
+    ingredients: [
+      { name: "Light rum", amount: "2 oz" },
+      { name: "Coconut cream", amount: "1 oz" },
+      { name: "Lime juice", amount: "1 oz" },
+      { name: "Simple syrup", amount: "0.5 oz" },
+      { name: "Egg white (optional)", amount: "1" }
+    ],
+    instructions:
+      "Dry shake all ingredients, then shake again with ice. Double strain into a coupe.",
+    substitutions:
+      "Use aquafaba instead of egg white.",
+    tags: ["Creamy", "Tropical", "Refreshing", "Sweet"]
+  },
+
+  // ------------------------------
+  // BLUE VELVET HIGHBALL
+  // ------------------------------
+  {
+    name: "Blue Velvet Highball",
+    base: "Vodka",
+    glass: "Highball",
+    ingredients: [
+      { name: "Vodka", amount: "2 oz" },
+      { name: "Blue curaçao", amount: "0.75 oz" },
+      { name: "Lemon juice", amount: "1 oz" },
+      { name: "Simple syrup", amount: "0.5 oz" },
+      { name: "Club soda", amount: "Top" }
+    ],
+    instructions:
+      "Shake vodka, curaçao, lemon, and syrup with ice. Strain into a highball and top with soda.",
+    substitutions:
+      "Use gin for a more botanical profile.",
+    tags: ["Citrusy", "Refreshing", "Sweet", "Tropical"]
+  },
+
+  // ------------------------------
+  // HONEY BLOSSOM GIMLET
+  // ------------------------------
+  {
+    name: "Honey Blossom Gimlet",
+    base: "Gin",
+    glass: "Coupe",
+    ingredients: [
+      { name: "Gin", amount: "2 oz" },
+      { name: "Honey syrup", amount: "0.75 oz" },
+      { name: "Lime juice", amount: "1 oz" },
+      { name: "Orange blossom water", amount: "2–3 drops" }
+    ],
+    instructions:
+      "Shake all ingredients with ice and strain into a chilled coupe.",
+    substitutions:
+      "Use vodka for a softer flavor.",
+    tags: ["Floral", "Citrusy", "Refreshing", "Sweet"]
+  },
+
+  // ------------------------------
+  // CRIMSON SMOKE SOUR
+  // ------------------------------
+  {
+    name: "Crimson Smoke Sour",
+    base: "Mezcal",
+    glass: "Coupe",
+    ingredients: [
+      { name: "Mezcal", amount: "2 oz" },
+      { name: "Pomegranate juice", amount: "1 oz" },
+      { name: "Lime juice", amount: "0.75 oz" },
+      { name: "Simple syrup", amount: "0.5 oz" },
+      { name: "Egg white (optional)", amount: "1" }
+    ],
+    instructions:
+      "Dry shake all ingredients, then shake again with ice. Double strain into a coupe.",
+    substitutions:
+      "Use tequila for a less smoky version.",
+    tags: ["Smoky", "Fruity", "Creamy", "Citrusy"]
+  },
+
+  // ------------------------------
+  // PEACH GARDEN SPRITZ
+  // ------------------------------
+  {
+    name: "Peach Garden Spritz",
+    base: "Other Spirits",
+    glass: "Wine glass",
+    ingredients: [
+      { name: "Peach nectar", amount: "2 oz" },
+      { name: "Elderflower liqueur", amount: "1 oz" },
+      { name: "Prosecco", amount: "3 oz" },
+      { name: "Club soda", amount: "1 oz" }
+    ],
+    instructions:
+      "Build all ingredients over ice and stir gently.",
+    substitutions:
+      "Use sparkling wine for a drier version.",
+    tags: ["Fruity", "Floral", "Refreshing", "Sweet"]
+  },
+
+  // ------------------------------
+  // WINTER SPICE HIGHBALL
+  // ------------------------------
+  {
+    name: "Winter Spice Highball",
+    base: "Rye",
+    glass: "Highball",
+    ingredients: [
+      { name: "Rye whiskey", amount: "2 oz" },
+      { name: "Spiced syrup", amount: "0.75 oz" },
+      { name: "Lemon juice", amount: "1 oz" },
+      { name: "Club soda", amount: "Top" }
+    ],
+    instructions:
+      "Shake rye, syrup, and lemon with ice. Strain into a highball and top with soda.",
+    substitutions:
+      "Use bourbon for a sweeter version.",
+    tags: ["Spicy", "Refreshing", "Citrusy", "Dry"]
+  },
+
+  // ------------------------------
+  // SOLAR FLARE DAIQUIRI
+  // ------------------------------
+  {
+    name: "Solar Flare Daiquiri",
+    base: "Light Rum",
+    glass: "Coupe",
+    ingredients: [
+      { name: "Light rum", amount: "2 oz" },
+      { name: "Passionfruit syrup", amount: "0.75 oz" },
+      { name: "Lime juice", amount: "1 oz" },
+      { name: "Simple syrup", amount: "0.25 oz" }
+    ],
+    instructions:
+      "Shake all ingredients with ice and strain into a chilled coupe.",
+    substitutions:
+      "Use aged rum for a deeper flavor.",
+    tags: ["Tropical", "Citrusy", "Refreshing", "Sweet"]
+  },
+
+  // ------------------------------
+  // EMERALD GARDEN COOLER
+  // ------------------------------
+  {
+    name: "Emerald Garden Cooler",
+    base: "Gin",
+    glass: "Highball",
+    ingredients: [
+      { name: "Gin", amount: "2 oz" },
+      { name: "Cucumber juice", amount: "2 oz" },
+      { name: "Lime juice", amount: "0.75 oz" },
+      { name: "Mint syrup", amount: "0.5 oz" },
+      { name: "Club soda", amount: "Top" }
+    ],
+    instructions:
+      "Shake gin, cucumber, lime, and syrup with ice. Strain into a highball and top with soda.",
+    substitutions:
+      "Use vodka for a cleaner profile.",
+    tags: ["Refreshing", "Herbal", "Dry", "Citrusy"]
+  },
+
+  // ------------------------------
+  // CRIMSON VELVET MARTINI
+  // ------------------------------
+  {
+    name: "Crimson Velvet Martini",
+    base: "Vodka",
+    glass: "Coupe",
+    ingredients: [
+      { name: "Vodka", amount: "2 oz" },
+      { name: "Raspberry syrup", amount: "0.75 oz" },
+      { name: "Vanilla syrup", amount: "0.25 oz" },
+      { name: "Lemon juice", amount: "0.75 oz" }
+    ],
+    instructions:
+      "Shake all ingredients with ice and strain into a chilled coupe.",
+    substitutions:
+      "Use gin for a more botanical variation.",
+    tags: ["Fruity", "Sweet", "Citrusy", "Refreshing"]
+  },
+
+  // ------------------------------
+  // HONEY FIRE OLD FASHIONED
+  // ------------------------------
+  {
+    name: "Honey Fire Old Fashioned",
+    base: "Rye",
+    glass: "Rocks",
+    ingredients: [
+      { name: "Rye whiskey", amount: "2 oz" },
+      { name: "Honey syrup", amount: "0.25 oz" },
+      { name: "Cinnamon bitters", amount: "2 dashes" },
+      { name: "Orange peel", amount: "1 peel" }
+    ],
+    instructions:
+      "Stir rye, honey syrup, and bitters with ice. Strain over a large cube and garnish with orange peel.",
+    substitutions:
+      "Use bourbon for a sweeter version.",
+    tags: ["Rich", "Spicy", "Sweet", "Spirit-forward"]
+  },
+
+  // ------------------------------
+  // BLUE LAGOON BREEZE
+  // ------------------------------
+  {
+    name: "Blue Lagoon Breeze",
+    base: "Vodka",
+    glass: "Highball",
+    ingredients: [
+      { name: "Vodka", amount: "2 oz" },
+      { name: "Blue curaçao", amount: "0.75 oz" },
+      { name: "Pineapple juice", amount: "2 oz" },
+      { name: "Lime juice", amount: "0.75 oz" },
+      { name: "Club soda", amount: "Top" }
+    ],
+    instructions:
+      "Shake vodka, curaçao, pineapple, and lime with ice. Strain into a highball and top with soda.",
+    substitutions:
+      "Use coconut water instead of soda for a tropical twist.",
+    tags: ["Tropical", "Refreshing", "Fruity", "Sweet"]
+  },
+
+  // ------------------------------
+  // ROSE GOLD SPRITZ
+  // ------------------------------
+  {
+    name: "Rose Gold Spritz",
+    base: "Other Spirits",
+    glass: "Wine glass",
+    ingredients: [
+      { name: "Elderflower liqueur", amount: "1.5 oz" },
+      { name: "Rose syrup", amount: "0.5 oz" },
+      { name: "Prosecco", amount: "3 oz" },
+      { name: "Club soda", amount: "1 oz" }
+    ],
+    instructions:
+      "Build all ingredients over ice and stir gently.",
+    substitutions:
+      "Use sparkling rosé for a fruitier version.",
+    tags: ["Floral", "Refreshing", "Sweet", "Citrusy"]
+  },
+
+  // ------------------------------
+  // COCOA MINT SOUR
+  // ------------------------------
+  {
+    name: "Cocoa Mint Sour",
+    base: "Gin",
+    glass: "Coupe",
+    ingredients: [
+      { name: "Gin", amount: "2 oz" },
+      { name: "Cocoa syrup", amount: "0.5 oz" },
+      { name: "Mint syrup", amount: "0.25 oz" },
+      { name: "Lemon juice", amount: "1 oz" },
+      { name: "Egg white (optional)", amount: "1" }
+    ],
+    instructions:
+      "Dry shake all ingredients, then shake again with ice. Double strain into a coupe.",
+    substitutions:
+      "Use vodka for a cleaner profile.",
+    tags: ["Chocolate", "Herbal", "Creamy", "Citrusy"]
+  },
+
+  // ------------------------------
+  // PINEAPPLE EMBER SMASH
+  // ------------------------------
+  {
+    name: "Pineapple Ember Smash",
+    base: "Mezcal",
+    glass: "Rocks",
+    ingredients: [
+      { name: "Mezcal", amount: "2 oz" },
+      { name: "Pineapple juice", amount: "1.5 oz" },
+      { name: "Lime juice", amount: "0.75 oz" },
+      { name: "Agave syrup", amount: "0.5 oz" },
+      { name: "Chili bitters", amount: "2 dashes" }
+    ],
+    instructions:
+      "Shake all ingredients with ice and strain over fresh ice.",
+    substitutions:
+      "Use tequila for a less smoky version.",
+    tags: ["Smoky", "Tropical", "Spicy", "Fruity"]
+  },
+
+  // ------------------------------
+  // LAVENDER MOON COLLINS
+  // ------------------------------
+  {
+    name: "Lavender Moon Collins",
+    base: "Vodka",
+    glass: "Highball",
+    ingredients: [
+      { name: "Vodka", amount: "2 oz" },
+      { name: "Lavender syrup", amount: "0.5 oz" },
+      { name: "Lemon juice", amount: "1 oz" },
+      { name: "Club soda", amount: "Top" }
+    ],
+    instructions:
+      "Shake vodka, lavender, and lemon with ice. Strain into a highball and top with soda.",
+    substitutions:
+      "Use gin for a floral-herbal twist.",
+    tags: ["Floral", "Refreshing", "Citrusy", "Dry"]
+  },
+
+  // ------------------------------
+  // AUTUMN ORCHARD FIZZ
+  // ------------------------------
+  {
+    name: "Autumn Orchard Fizz",
+    base: "Bourbon",
+    glass: "Highball",
+    ingredients: [
+      { name: "Bourbon", amount: "2 oz" },
+      { name: "Apple cider", amount: "2 oz" },
+      { name: "Lemon juice", amount: "0.75 oz" },
+      { name: "Maple syrup", amount: "0.5 oz" },
+      { name: "Club soda", amount: "Top" }
+    ],
+    instructions:
+      "Shake bourbon, cider, lemon, and maple with ice. Strain into a highball and top with soda.",
+    substitutions:
+      "Use rye for a spicier version.",
+    tags: ["Fruity", "Rich", "Refreshing", "Citrusy"]
+  },
+
+  // ------------------------------
+  // STARFALL GIN SPARKLER
+  // ------------------------------
+  {
+    name: "Starfall Gin Sparkler",
+    base: "Gin",
+    glass: "Flute",
+    ingredients: [
+      { name: "Gin", amount: "1.5 oz" },
+      { name: "Lemon juice", amount: "0.75 oz" },
+      { name: "Elderflower syrup", amount: "0.5 oz" },
+      { name: "Champagne", amount: "Top" }
+    ],
+    instructions:
+      "Shake gin, lemon, and syrup with ice. Strain into a flute and top with champagne.",
+    substitutions:
+      "Use prosecco for a sweeter finish.",
+    tags: ["Floral", "Citrusy", "Refreshing", "Dry"]
+  },
+
+  // ------------------------------
+  // COCOA CHERRY SOUR
+  // ------------------------------
+  {
+    name: "Cocoa Cherry Sour",
+    base: "Bourbon",
+    glass: "Coupe",
+    ingredients: [
+      { name: "Bourbon", amount: "2 oz" },
+      { name: "Cherry syrup", amount: "0.75 oz" },
+      { name: "Cocoa syrup", amount: "0.5 oz" },
+      { name: "Lemon juice", amount: "1 oz" },
+      { name: "Egg white (optional)", amount: "1" }
+    ],
+    instructions:
+      "Dry shake all ingredients, then shake again with ice. Double strain into a coupe.",
+    substitutions:
+      "Use rye for a spicier version.",
+    tags: ["Chocolate", "Fruity", "Creamy", "Rich"]
+  },
+
+  // ------------------------------
+  // TANGERINE DREAM HIGHBALL
+  // ------------------------------
+  {
+    name: "Tangerine Dream Highball",
+    base: "Vodka",
+    glass: "Highball",
+    ingredients: [
+      { name: "Vodka", amount: "2 oz" },
+      { name: "Tangerine juice", amount: "2 oz" },
+      { name: "Lime juice", amount: "0.75 oz" },
+      { name: "Simple syrup", amount: "0.5 oz" },
+      { name: "Club soda", amount: "Top" }
+    ],
+    instructions:
+      "Shake vodka, juices, and syrup with ice. Strain into a highball and top with soda.",
+    substitutions:
+      "Use gin for a more botanical twist.",
+    tags: ["Citrusy", "Refreshing", "Fruity", "Sweet"]
+  },
+
+  // ------------------------------
+  // MAPLE ORCHID OLD FASHIONED
+  // ------------------------------
+  {
+    name: "Maple Orchid Old Fashioned",
+    base: "Rye",
+    glass: "Rocks",
+    ingredients: [
+      { name: "Rye whiskey", amount: "2 oz" },
+      { name: "Maple syrup", amount: "0.25 oz" },
+      { name: "Orange bitters", amount: "2 dashes" },
+      { name: "Orange peel", amount: "1 peel" }
+    ],
+    instructions:
+      "Stir rye, maple, and bitters with ice. Strain over a large cube and garnish with orange peel.",
+    substitutions:
+      "Use bourbon for a sweeter version.",
+    tags: ["Rich", "Sweet", "Spirit-forward", "Dry"]
+  },
+
+  // ------------------------------
+  // BLUE EMBER MARGARITA
+  // ------------------------------
+  {
+    name: "Blue Ember Margarita",
+    base: "Tequila Reposado",
+    glass: "Rocks",
+    ingredients: [
+      { name: "Tequila reposado", amount: "2 oz" },
+      { name: "Blue curaçao", amount: "0.75 oz" },
+      { name: "Lime juice", amount: "1 oz" },
+      { name: "Agave syrup", amount: "0.5 oz" },
+      { name: "Smoked salt rim", amount: "1 garnish" }
+    ],
+    instructions:
+      "Shake tequila, curaçao, lime, and agave with ice. Strain over fresh ice in a smoked-salt-rimmed glass.",
+    substitutions:
+      "Use mezcal for a smoky version.",
+    tags: ["Citrusy", "Smoky", "Tropical", "Refreshing"]
+  },
+
+  // ------------------------------
+  // FROSTED BERRY FIZZ
+  // ------------------------------
+  {
+    name: "Frosted Berry Fizz",
+    base: "Vodka",
+    glass: "Highball",
+    ingredients: [
+      { name: "Vodka", amount: "2 oz" },
+      { name: "Mixed berry syrup", amount: "1 oz" },
+      { name: "Lemon juice", amount: "1 oz" },
+      { name: "Club soda", amount: "Top" }
+    ],
+    instructions:
+      "Shake vodka, syrup, and lemon with ice. Strain into a highball and top with soda.",
+    substitutions:
+      "Use gin for a more herbal variation.",
+    tags: ["Fruity", "Refreshing", "Sweet", "Citrusy"]
+  },
+
+  // ------------------------------
+  // GOLDEN SPICE SOUR
+  // ------------------------------
+  {
+    name: "Golden Spice Sour",
+    base: "Bourbon",
+    glass: "Coupe",
+    ingredients: [
+      { name: "Bourbon", amount: "2 oz" },
+      { name: "Turmeric syrup", amount: "0.75 oz" },
+      { name: "Lemon juice", amount: "1 oz" },
+      { name: "Egg white (optional)", amount: "1" }
+    ],
+    instructions:
+      "Dry shake all ingredients, then shake again with ice. Double strain into a coupe.",
+    substitutions:
+      "Use ginger syrup for a sharper spice profile.",
+    tags: ["Spicy", "Creamy", "Citrusy", "Rich"]
+  },
+
+  // ------------------------------
+  // COCONUT STARLIGHT COOLER
+  // ------------------------------
+  {
+    name: "Coconut Starlight Cooler",
+    base: "Light Rum",
+    glass: "Highball",
+    ingredients: [
+      { name: "Light rum", amount: "2 oz" },
+      { name: "Coconut water", amount: "2 oz" },
+      { name: "Pineapple juice", amount: "2 oz" },
+      { name: "Lime juice", amount: "0.75 oz" }
+    ],
+    instructions:
+      "Build all ingredients in a highball with ice and stir gently.",
+    substitutions:
+      "Use aged rum for a deeper flavor.",
+    tags: ["Tropical", "Refreshing", "Fruity", "Sweet"]
+  },
+
+  // ------------------------------
+  // LAVENDER EMBER SOUR
+  // ------------------------------
+  {
+    name: "Lavender Ember Sour",
+    base: "Gin",
+    glass: "Coupe",
+    ingredients: [
+      { name: "Gin", amount: "2 oz" },
+      { name: "Lavender syrup", amount: "0.75 oz" },
+      { name: "Lemon juice", amount: "1 oz" },
+      { name: "Egg white (optional)", amount: "1" }
+    ],
+    instructions:
+      "Dry shake all ingredients, then shake again with ice. Double strain into a coupe.",
+    substitutions:
+      "Use vodka for a cleaner profile.",
+    tags: ["Floral", "Creamy", "Citrusy", "Refreshing"]
+  },
+
+  // ------------------------------
+  // CRIMSON HORIZON SPRITZ
+  // ------------------------------
+  {
+    name: "Crimson Horizon Spritz",
+    base: "Other Spirits",
+    glass: "Wine glass",
+    ingredients: [
+      { name: "Aperitivo liqueur", amount: "2 oz" },
+      { name: "Blood orange juice", amount: "2 oz" },
+      { name: "Prosecco", amount: "3 oz" },
+      { name: "Club soda", amount: "1 oz" }
+    ],
+    instructions:
+      "Build all ingredients over ice and stir gently.",
+    substitutions:
+      "Use sparkling rosé for a fruitier version.",
+    tags: ["Citrusy", "Refreshing", "Sweet", "Fruity"]
+  }
+
+]; // END COPILOT ORIGINALS
+
+// ==============================
+// EXPORT
+// ==============================
+
+export const recipes = [
+  ...classicCocktails,
+  ...modernCocktails,
+  ...copilotOriginals
+];
+
