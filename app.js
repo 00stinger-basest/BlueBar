@@ -142,6 +142,7 @@ function renderInventory() {
         inventory[key].splice(index, 1);
         saveInventory();
         renderInventory();
+        renderRecipes(); // update recipe availability
       });
 
       container.appendChild(pill);
@@ -163,6 +164,7 @@ function addItem() {
 
   saveInventory();
   renderInventory();
+  renderRecipes();
 
   input.value = "";
 }
@@ -173,7 +175,7 @@ document.getElementById("add-item-input").addEventListener("keypress", e => {
 });
 
 /* ============================================================
-   RECIPE FILTERING
+   RECIPE FILTERING HELPERS
    ============================================================ */
 
 function hasAllIngredients(recipe) {
@@ -191,20 +193,44 @@ function isOneAway(recipe) {
 }
 
 /* ============================================================
-   RENDER RECIPES
+   FILTER STATE
    ============================================================ */
 
-function renderRecipes(filter = "all") {
+let currentMode = "all"; // all | ready | one
+
+/* ============================================================
+   RENDER RECIPES (FULL FILTER PIPELINE)
+   ============================================================ */
+
+function renderRecipes() {
   const list = document.getElementById("recipe-list");
   list.innerHTML = "";
+
+  const search = document.getElementById("recipe-search").value.toLowerCase();
+  const base = document.getElementById("filter-base").value;
+  const flavor = document.getElementById("filter-flavor").value;
 
   recipes.forEach(recipe => {
     const ready = hasAllIngredients(recipe);
     const oneAway = isOneAway(recipe);
 
-    if (filter === "ready" && !ready) return;
-    if (filter === "one" && !oneAway) return;
+    // MODE FILTER
+    if (currentMode === "ready" && !ready) return;
+    if (currentMode === "one" && !oneAway) return;
 
+    // SEARCH FILTER
+    const matchesSearch =
+      recipe.name.toLowerCase().includes(search) ||
+      recipe.ingredients.some(i => i.toLowerCase().includes(search));
+    if (!matchesSearch) return;
+
+    // BASE FILTER
+    if (base && recipe.base !== base) return;
+
+    // FLAVOR FILTER
+    if (flavor && !recipe.tags.includes(flavor)) return;
+
+    // CARD
     const card = document.createElement("div");
     card.className = "recipe-card";
 
@@ -225,7 +251,6 @@ function renderRecipes(filter = "all") {
 
     main.appendChild(title);
     main.appendChild(status);
-
     card.appendChild(main);
 
     card.addEventListener("click", () => openRecipeModal(recipe));
@@ -234,16 +259,34 @@ function renderRecipes(filter = "all") {
   });
 }
 
+/* ============================================================
+   BUTTONS & FILTER EVENTS
+   ============================================================ */
+
+document.getElementById("filter-all").addEventListener("click", () => {
+  currentMode = "all";
+  renderRecipes();
+});
+
 document.getElementById("filter-ready").addEventListener("click", () => {
-  renderRecipes("ready");
+  currentMode = "ready";
+  renderRecipes();
 });
+
 document.getElementById("filter-one-away").addEventListener("click", () => {
-  renderRecipes("one");
+  currentMode = "one";
+  renderRecipes();
 });
+
 document.getElementById("surprise-me").addEventListener("click", () => {
   const r = recipes[Math.floor(Math.random() * recipes.length)];
   openRecipeModal(r);
 });
+
+// SEARCH + DROPDOWNS
+document.getElementById("recipe-search").addEventListener("input", renderRecipes);
+document.getElementById("filter-base").addEventListener("change", renderRecipes);
+document.getElementById("filter-flavor").addEventListener("change", renderRecipes);
 
 /* ============================================================
    MODAL
