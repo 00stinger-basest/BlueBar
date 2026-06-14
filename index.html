@@ -110,7 +110,56 @@
       <section class="panel recipes-panel">
         <div class="recipes-header">
           <h2>Recipes</h2>
+
+          <!-- SEARCH + FILTERS -->
+          <div class="recipes-filters">
+            <input
+              type="text"
+              id="recipe-search"
+              placeholder="Search by name or ingredient..."
+            />
+
+            <select id="filter-base">
+              <option value="">All bases</option>
+              <option value="Gin">Gin</option>
+              <option value="Vodka">Vodka</option>
+              <option value="Tequila Blanco">Tequila Blanco</option>
+              <option value="Tequila Reposado">Tequila Reposado</option>
+              <option value="Light Rum">Light Rum</option>
+              <option value="Dark Rum">Dark Rum</option>
+              <option value="Aged Rum">Aged Rum</option>
+              <option value="Bourbon">Bourbon</option>
+              <option value="Rye">Rye</option>
+              <option value="Scotch">Scotch</option>
+              <option value="Mezcal">Mezcal</option>
+              <option value="Brandy">Brandy</option>
+              <option value="Other Spirits">Other Spirits</option>
+            </select>
+
+            <select id="filter-flavor">
+              <option value="">All flavors</option>
+              <option value="Refreshing">Refreshing</option>
+              <option value="Citrusy">Citrusy</option>
+              <option value="Fruity">Fruity</option>
+              <option value="Sweet">Sweet</option>
+              <option value="Dry">Dry</option>
+              <option value="Bitter">Bitter</option>
+              <option value="Herbal">Herbal</option>
+              <option value="Smoky">Smoky</option>
+              <option value="Rich">Rich</option>
+              <option value="Creamy">Creamy</option>
+              <option value="Tropical">Tropical</option>
+              <option value="Nutty">Nutty</option>
+              <option value="Chocolate">Chocolate</option>
+              <option value="Dessert">Dessert</option>
+              <option value="Spicy">Spicy</option>
+              <option value="Floral">Floral</option>
+            </select>
+          </div>
+
+          <!-- MODE BUTTONS -->
           <div class="recipes-controls">
+            <button id="filter-all">All Recipes</button>
             <button id="filter-ready">Ready Now</button>
             <button id="filter-one-away">One Away</button>
             <button id="surprise-me">Surprise Me</button>
