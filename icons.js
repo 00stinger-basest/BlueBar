@@ -30,3 +30,12 @@ const baseIcons = {
 // Expose globally for app.js
 window.sectionIcons = sectionIcons;
 window.baseIcons = baseIcons;
+
+// Recipe favorite icons
+const icons = {
+  heart: "❤️",
+  heartOutline: "🤍"
+};
+
+// Expose globally
+window.icons = icons;
