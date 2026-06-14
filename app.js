@@ -1,326 +1,305 @@
-/* ============================================================
-   BlueBar 3.1 — Application Logic
-   Inventory, classification, rendering, recipes, modal
-   ============================================================ */
+// app.js
 
-/* ============================================================
-   INVENTORY STORAGE
-   ============================================================ */
+import { recipes } from "./recipes.js";
+import { icons } from "./icons.js";
 
-let inventory = {
-  liquors: [],
-  liqueurs: [],
-  fortified: [],
-  aromatized: [],
-  sparkling: [],
-  bitters: [],
-  mixers: [],
-  perishables: []
+// ------------------------------
+// STATE
+// ------------------------------
+
+const state = {
+  inventory: [], // { name, category, type }
+  favorites: new Set(), // recipe names
+  showFavoritesOnly: false
 };
 
-function saveInventory() {
-  localStorage.setItem("bluebar_inventory", JSON.stringify(inventory));
+// ------------------------------
+// INVENTORY CLASSIFICATION
+// ------------------------------
+
+const typeMap = [
+  { keywords: ["maker's mark", "bourbon"], type: "Bourbon" },
+  { keywords: ["rye"], type: "Rye" },
+  { keywords: ["gin"], type: "Gin" },
+  { keywords: ["vodka"], type: "Vodka" },
+  { keywords: ["rum"], type: "Rum" },
+  { keywords: ["tequila"], type: "Tequila" },
+  { keywords: ["mezcal"], type: "Mezcal" },
+  { keywords: ["scotch"], type: "Scotch" },
+  { keywords: ["cognac", "brandy"], type: "Brandy/Cognac" }
+];
+
+function classifyInventoryItem(name) {
+  const lower = name.toLowerCase();
+  for (const entry of typeMap) {
+    if (entry.keywords.some(k => lower.includes(k))) {
+      return entry.type;
+    }
+  }
+  return "Other";
 }
 
-function loadInventory() {
-  const data = localStorage.getItem("bluebar_inventory");
-  if (data) inventory = JSON.parse(data);
+function addInventoryItem(name, category = "Liquors & Spirits") {
+  const type = classifyInventoryItem(name);
+  state.inventory.push({ name, category, type });
+  renderInventory();
+  renderRecipes();
 }
 
-/* ============================================================
-   CLASSIFICATION LOGIC
-   ============================================================ */
+// ------------------------------
+// INVENTORY RENDERING
+// ------------------------------
 
-function classifyItem(name) {
-  const n = name.toLowerCase().trim();
-
-  // PERISHABLES
-  const perishables = [
-    "lemon", "lemons",
-    "lime", "limes",
-    "orange", "oranges",
-    "grapefruit", "grapefruits",
-    "pineapple", "pineapples",
-    "mint", "basil", "rosemary",
-    "cucumber", "cucumbers",
-    "strawberry", "strawberries",
-    "blueberry", "blueberries",
-    "cream", "half and half",
-    "egg", "eggs"
-  ];
-  if (perishables.some(p => n.includes(p))) return "perishables";
-
-  // BITTERS
-  if (n.includes("bitters")) return "bitters";
-
-  // SPARKLING
-  if (
-    n.includes("champagne") ||
-    n.includes("prosecco") ||
-    n.includes("cava") ||
-    n.includes("sparkling")
-  ) {
-    return "sparkling";
+function groupInventoryByType() {
+  const byType = {};
+  for (const item of state.inventory) {
+    if (!byType[item.type]) byType[item.type] = [];
+    byType[item.type].push(item);
   }
-
-  // AROMATIZED WINES
-  if (
-    n.includes("lillet") ||
-    n.includes("cocchi") ||
-    n.includes("dubon") ||
-    n.includes("kina")
-  ) {
-    return "aromatized";
-  }
-
-  // FORTIFIED WINES
-  if (
-    n.includes("vermouth") ||
-    n.includes("sherry") ||
-    n.includes("port") ||
-    n.includes("madeira")
-  ) {
-    return "fortified";
-  }
-
-  // MIXERS
-  const mixers = [
-    "soda", "club soda", "tonic",
-    "ginger beer", "cola", "juice",
-    "orange juice", "cranberry juice",
-    "pineapple juice", "grapefruit juice",
-    "tomato juice", "coffee", "espresso",
-    "simple syrup", "honey syrup",
-    "agave", "grenadine", "orgeat",
-    "falernum", "syrup"
-  ];
-  if (mixers.some(m => n.includes(m))) return "mixers";
-
-  // LIQUEURS
-  const liqueurKeywords = [
-    "liqueur", "cointreau", "triple sec", "curaçao", "curacao",
-    "campari", "aperol", "amaro", "montenegro", "fernet",
-    "chartreuse", "st-germain", "elderflower",
-    "crème de cacao", "creme de cacao",
-    "crème de menthe", "creme de menthe",
-    "cassis", "maraschino", "drambuie", "galliano",
-    "baileys", "coffee liqueur", "cream liqueur"
-  ];
-  if (liqueurKeywords.some(k => n.includes(k))) return "liqueurs";
-
-  // DEFAULT → LIQUORS
-  return "liquors";
+  return byType;
 }
-
-/* ============================================================
-   RENDER INVENTORY
-   ============================================================ */
 
 function renderInventory() {
-  const map = {
-    liquors: "inventory-liquors",
-    liqueurs: "inventory-liqueurs",
-    fortified: "inventory-fortified",
-    aromatized: "inventory-aromatized",
-    sparkling: "inventory-sparkling",
-    bitters: "inventory-bitters",
-    mixers: "inventory-mixers",
-    perishables: "inventory-perishables"
-  };
+  const container = document.getElementById("inventory");
+  if (!container) return;
 
-  Object.entries(map).forEach(([key, id]) => {
-    const container = document.getElementById(id);
-    container.innerHTML = "";
+  const byType = groupInventoryByType();
 
-    inventory[key].forEach((item, index) => {
-      const pill = document.createElement("div");
-      pill.className = "inventory-pill";
-      pill.textContent = item;
+  container.innerHTML = `
+    <h2>Inventory</h2>
+    <div class="inventory-sections">
+      ${Object.keys(byType)
+        .map(
+          type => `
+        <div class="inventory-section" data-type="${type}">
+          <h3>${type}</h3>
+          <p class="inventory-section-hint">Click to view items</p>
+        </div>
+      `
+        )
+        .join("")}
+    </div>
+    <div id="inventory-detail"></div>
+  `;
 
-      // CLICK TO REMOVE
-      pill.addEventListener("click", () => {
-        inventory[key].splice(index, 1);
-        saveInventory();
-        renderInventory();
-        renderRecipes(); // update recipe availability
-      });
-
-      container.appendChild(pill);
+  // Clickable sections
+  container.querySelectorAll(".inventory-section").forEach(section => {
+    section.addEventListener("click", () => {
+      const type = section.getAttribute("data-type");
+      renderInventoryDetail(type);
     });
   });
 }
 
-/* ============================================================
-   ADD ITEM
-   ============================================================ */
+function renderInventoryDetail(type) {
+  const detail = document.getElementById("inventory-detail");
+  if (!detail) return;
 
-function addItem() {
-  const input = document.getElementById("add-item-input");
-  const value = input.value.trim();
-  if (!value) return;
+  const items = state.inventory.filter(i => i.type === type);
 
-  const category = classifyItem(value);
-  inventory[category].push(value);
+  detail.innerHTML = `
+    <h3>${type}</h3>
+    <ul class="inventory-list">
+      ${items.map(i => `<li>${i.name}</li>`).join("")}
+    </ul>
+  `;
+}
 
-  saveInventory();
+// ------------------------------
+// FAVORITES
+// ------------------------------
+
+function toggleFavorite(recipeName) {
+  if (state.favorites.has(recipeName)) {
+    state.favorites.delete(recipeName);
+  } else {
+    state.favorites.add(recipeName);
+  }
+  renderRecipes();
+}
+
+function setupFavoritesToggle() {
+  const toggle = document.getElementById("favoritesToggle");
+  if (!toggle) return;
+
+  toggle.addEventListener("click", () => {
+    state.showFavoritesOnly = !state.showFavoritesOnly;
+    toggle.classList.toggle("active", state.showFavoritesOnly);
+    renderRecipes();
+  });
+}
+
+// ------------------------------
+// INVENTORY MATCHING FOR RECIPES
+// ------------------------------
+
+function findInventoryMatchesForIngredient(ingredientName) {
+  const lower = ingredientName.toLowerCase();
+
+  // Map ingredient to type
+  let type = "Other";
+  if (lower.includes("bourbon")) type = "Bourbon";
+  else if (lower.includes("rye")) type = "Rye";
+  else if (lower.includes("gin")) type = "Gin";
+  else if (lower.includes("vodka")) type = "Vodka";
+  else if (lower.includes("rum")) type = "Rum";
+  else if (lower.includes("tequila")) type = "Tequila";
+  else if (lower.includes("mezcal")) type = "Mezcal";
+  else if (lower.includes("scotch")) type = "Scotch";
+  else if (lower.includes("cognac") || lower.includes("brandy")) type = "Brandy/Cognac";
+
+  return state.inventory.filter(item => item.type === type);
+}
+
+function getMissingIngredients(recipe) {
+  const missing = [];
+  for (const ing of recipe.ingredients) {
+    const matches = findInventoryMatchesForIngredient(ing.name);
+    if (matches.length === 0) {
+      missing.push(ing);
+    }
+  }
+  return missing;
+}
+
+// ------------------------------
+// RECIPE RENDERING
+// ------------------------------
+
+function renderRecipes() {
+  const container = document.getElementById("recipes");
+  if (!container) return;
+
+  let list = recipes;
+
+  if (state.showFavoritesOnly) {
+    list = list.filter(r => state.favorites.has(r.name));
+  }
+
+  container.innerHTML = `
+    <h2>Recipes</h2>
+    <div class="recipe-grid">
+      ${list.map(renderRecipeCardHTML).join("")}
+    </div>
+  `;
+
+  // Attach events (favorites, hover animations)
+  container.querySelectorAll(".recipe-card").forEach(card => {
+    const name = card.getAttribute("data-name");
+
+    // Hover effect (CSS handles visuals)
+    card.addEventListener("mouseenter", () => {
+      card.classList.add("card-hover");
+    });
+    card.addEventListener("mouseleave", () => {
+      card.classList.remove("card-hover");
+    });
+
+    // Favorite toggle
+    const favBtn = card.querySelector(".favorite-toggle");
+    if (favBtn) {
+      favBtn.addEventListener("click", e => {
+        e.stopPropagation();
+        toggleFavorite(name);
+      });
+    }
+
+    // Simple entry animation
+    requestAnimationFrame(() => {
+      card.classList.add("card-animate");
+    });
+  });
+}
+
+function renderRecipeCardHTML(recipe) {
+  const isFavorite = state.favorites.has(recipe.name);
+  const missing = getMissingIngredients(recipe);
+
+  return `
+    <div class="recipe-card" data-name="${recipe.name}">
+      <div class="recipe-header">
+        <h3>${recipe.name}</h3>
+        <button class="favorite-toggle" aria-label="Toggle favorite">
+          <span class="favorite-icon">
+            ${isFavorite ? icons.heart : icons.heartOutline}
+          </span>
+        </button>
+      </div>
+      <p class="recipe-meta">
+        Base: ${recipe.base} · Glass: ${recipe.glass}
+      </p>
+      <div class="recipe-body">
+        <h4>Ingredients</h4>
+        <ul class="ingredient-list">
+          ${recipe.ingredients
+            .map(
+              ing => `
+            <li>
+              <span class="ingredient-amount">${ing.amount}</span>
+              <span class="ingredient-name">${ing.name}</span>
+            </li>
+          `
+            )
+            .join("")}
+        </ul>
+
+        <h4>On hand (optional)</h4>
+        <ul class="onhand-list">
+          ${recipe.ingredients
+            .map(ing => {
+              const matches = findInventoryMatchesForIngredient(ing.name);
+              if (matches.length === 0) {
+                return `<li>${ing.name}: <span class="onhand-none">None</span></li>`;
+              }
+              return `<li>${ing.name}: ${matches
+                .map(m => `<span class="onhand-item">${m.name}</span>`)
+                .join(", ")}</li>`;
+            })
+            .join("")}
+        </ul>
+
+        <h4>Missing ingredients</h4>
+        ${
+          missing.length === 0
+            ? `<p class="missing-none">You have everything for this recipe.</p>`
+            : `
+          <ul class="missing-list">
+            ${missing
+              .map(
+                ing => `
+              <li>${ing.amount} ${ing.name}</li>
+            `
+              )
+              .join("")}
+          </ul>
+        `
+        }
+
+        <h4>Instructions</h4>
+        <p class="recipe-instructions">${recipe.instructions}</p>
+
+        <h4>Substitutions</h4>
+        <p class="recipe-substitutions">${recipe.substitutions}</p>
+
+        <div class="recipe-tags">
+          ${recipe.tags.map(t => `<span class="tag">${t}</span>`).join("")}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// ------------------------------
+// INIT
+// ------------------------------
+
+function init() {
+  setupFavoritesToggle();
   renderInventory();
   renderRecipes();
 
-  input.value = "";
+  // Example: pre-load one inventory item so you can see mapping
+  addInventoryItem("Maker's Mark 47", "Liquors & Spirits");
 }
 
-document.getElementById("add-item-button").addEventListener("click", addItem);
-document.getElementById("add-item-input").addEventListener("keypress", e => {
-  if (e.key === "Enter") addItem();
-});
-
-/* ============================================================
-   RECIPE FILTERING HELPERS
-   ============================================================ */
-
-function hasAllIngredients(recipe) {
-  return recipe.ingredients.every(i => isInInventory(i));
-}
-
-function isInInventory(ingredient) {
-  const all = Object.values(inventory).flat();
-  return all.some(item => item.toLowerCase() === ingredient.toLowerCase());
-}
-
-function isOneAway(recipe) {
-  const missing = recipe.ingredients.filter(i => !isInInventory(i));
-  return missing.length === 1;
-}
-
-/* ============================================================
-   FILTER STATE
-   ============================================================ */
-
-let currentMode = "all"; // all | ready | one
-
-/* ============================================================
-   RENDER RECIPES (FULL FILTER PIPELINE)
-   ============================================================ */
-
-function renderRecipes() {
-  const list = document.getElementById("recipe-list");
-  list.innerHTML = "";
-
-  const search = document.getElementById("recipe-search").value.toLowerCase();
-  const base = document.getElementById("filter-base").value;
-  const flavor = document.getElementById("filter-flavor").value;
-
-  recipes.forEach(recipe => {
-    const ready = hasAllIngredients(recipe);
-    const oneAway = isOneAway(recipe);
-
-    // MODE FILTER
-    if (currentMode === "ready" && !ready) return;
-    if (currentMode === "one" && !oneAway) return;
-
-    // SEARCH FILTER
-    const matchesSearch =
-      recipe.name.toLowerCase().includes(search) ||
-      recipe.ingredients.some(i => i.toLowerCase().includes(search));
-    if (!matchesSearch) return;
-
-    // BASE FILTER
-    if (base && recipe.base !== base) return;
-
-    // FLAVOR FILTER
-    if (flavor && !recipe.tags.includes(flavor)) return;
-
-    // CARD
-    const card = document.createElement("div");
-    card.className = "recipe-card";
-
-    const main = document.createElement("div");
-    main.className = "recipe-main";
-
-    const title = document.createElement("div");
-    title.className = "recipe-title";
-    title.textContent = recipe.name;
-
-    const status = document.createElement("div");
-    status.className = "recipe-status";
-    status.textContent = ready
-      ? "Ready to make"
-      : oneAway
-      ? "One ingredient away"
-      : "Missing ingredients";
-
-    main.appendChild(title);
-    main.appendChild(status);
-    card.appendChild(main);
-
-    card.addEventListener("click", () => openRecipeModal(recipe));
-
-    list.appendChild(card);
-  });
-}
-
-/* ============================================================
-   BUTTONS & FILTER EVENTS
-   ============================================================ */
-
-document.getElementById("filter-all").addEventListener("click", () => {
-  currentMode = "all";
-  renderRecipes();
-});
-
-document.getElementById("filter-ready").addEventListener("click", () => {
-  currentMode = "ready";
-  renderRecipes();
-});
-
-document.getElementById("filter-one-away").addEventListener("click", () => {
-  currentMode = "one";
-  renderRecipes();
-});
-
-document.getElementById("surprise-me").addEventListener("click", () => {
-  const r = recipes[Math.floor(Math.random() * recipes.length)];
-  openRecipeModal(r);
-});
-
-// SEARCH + DROPDOWNS
-document.getElementById("recipe-search").addEventListener("input", renderRecipes);
-document.getElementById("filter-base").addEventListener("change", renderRecipes);
-document.getElementById("filter-flavor").addEventListener("change", renderRecipes);
-
-/* ============================================================
-   MODAL
-   ============================================================ */
-
-function openRecipeModal(recipe) {
-  document.getElementById("modal-title").textContent = recipe.name;
-  document.getElementById("modal-subtitle").textContent = recipe.glass || "";
-
-  const ingList = document.getElementById("modal-ingredients");
-  ingList.innerHTML = "";
-  recipe.ingredients.forEach(i => {
-    const li = document.createElement("li");
-    li.textContent = i;
-    ingList.appendChild(li);
-  });
-
-  document.getElementById("modal-substitutions").textContent =
-    recipe.substitutions || "No substitution notes.";
-
-  document.getElementById("modal-instructions").textContent =
-    recipe.instructions || "";
-
-  document.getElementById("recipe-modal").classList.remove("hidden");
-}
-
-document.getElementById("modal-close").addEventListener("click", () => {
-  document.getElementById("recipe-modal").classList.add("hidden");
-});
-
-/* ============================================================
-   INIT
-   ============================================================ */
-
-loadInventory();
-renderInventory();
-renderRecipes();
+document.addEventListener("DOMContentLoaded", init);
