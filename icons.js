@@ -1,22 +1,40 @@
-// icons.js
+// ==============================
+// ICONS.JS — BlueBar Icon Library
+// ==============================
+//
+// All icons are clean, consistent SVGs designed for 64×64 containers.
+// Each icon uses currentColor so it inherits CSS color automatically.
+// ==============================
 
 export const icons = {
+
+  // ------------------------------
+  // Cocktail Shaker
+  // ------------------------------
   shaker: `
     <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M9 2h6l1 4H8l1-4z" fill="currentColor" />
-      <path d="M8 6h8l-1 14H9L8 6z" fill="currentColor" />
+      <path d="M9 2h6l1 4H8l1-4z" fill="currentColor"/>
+      <path d="M8 6h8l-1 14H9L8 6z" fill="currentColor"/>
     </svg>
   `,
+
+  // ------------------------------
+  // Coupe Glass
+  // ------------------------------
   coupeGlass: `
     <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M4 5h16c0 4-3.5 7-8 7S4 9 4 5z" fill="currentColor" />
-      <path d="M11 12h2v4h-2z" fill="currentColor" />
-      <path d="M9 20h6v1H9z" fill="currentColor" />
+      <path d="M4 5h16c0 4-3.5 7-8 7S4 9 4 5z" fill="currentColor"/>
+      <path d="M11 12h2v4h-2z" fill="currentColor"/>
+      <path d="M9 20h6v1H9z" fill="currentColor"/>
     </svg>
   `,
+
+  // ------------------------------
+  // Lime Wedge (NEW — literal citrus slice)
+  // ------------------------------
   limeWedge: `
     <svg viewBox="0 0 24 24" aria-hidden="true">
-      <!-- Outer rind arc -->
+      <!-- Outer rind -->
       <path
         d="M4 18a8 8 0 0 1 16 0"
         fill="none"
@@ -33,11 +51,18 @@ export const icons = {
         stroke-linecap="round"
       />
       <!-- Radial segments -->
-      <line x1="12" y1="12" x2="12" y2="18" stroke="currentColor" stroke-width="1.5" />
-      <line x1="9" y1="13" x2="12" y2="18" stroke="currentColor" stroke-width="1.5" />
-      <line x1="15" y1="13" x2="12" y2="18" stroke="currentColor" stroke-width="1.5" />
+      <line x1="12" y1="12" x2="12" y2="18"
+        stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="9" y1="13" x2="12" y2="18"
+        stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="15" y1="13" x2="12" y2="18"
+        stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
     </svg>
   `,
+
+  // ------------------------------
+  // Heart (Favorite — filled)
+  // ------------------------------
   heart: `
     <svg viewBox="0 0 24 24" aria-hidden="true">
       <path
@@ -46,6 +71,10 @@ export const icons = {
       />
     </svg>
   `,
+
+  // ------------------------------
+  // Heart Outline (Favorite — off)
+  // ------------------------------
   heartOutline: `
     <svg viewBox="0 0 24 24" aria-hidden="true">
       <path
