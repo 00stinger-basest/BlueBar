@@ -109,15 +109,21 @@ const ICON_MIXERS = createIcon(
 );
 
 /* ------------------------------
-   PERISHABLES — Lime wedge (simple)
+   PERISHABLES — Lime wedge (curved + segmented)
    ------------------------------ */
 const ICON_PERISHABLES = createIcon(
   "var(--color-perishables)",
   `
-    <path d="M16 48 l32 -16 l-16 -16 z" />
-    <path d="M16 48 l16 -16" />
-    <path d="M32 32 l16 0" />
-    <path d="M32 32 l8 -8" />
+    <!-- Outer curved rind -->
+    <path d="M16 48
+             A24 24 0 0 1 48 48
+             L32 32
+             Z" />
+
+    <!-- Segment lines -->
+    <path d="M32 32 L16 48" />
+    <path d="M32 32 L48 48" />
+    <path d="M32 32 L32 48" />
   `
 );
 
