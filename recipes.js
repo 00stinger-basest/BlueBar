@@ -3,14 +3,18 @@
 // ==============================
 
 const classicCocktails = [
+
+  // ------------------------------
+  // MARTINI
+  // ------------------------------
   {
     name: "Martini",
     base: "Gin",
     glass: "Coupe",
     ingredients: [
-      "Gin",
-      "Dry vermouth",
-      "Lemon twist or olive"
+      { name: "Gin", amount: "2.5 oz" },
+      { name: "Dry vermouth", amount: "0.5 oz" },
+      { name: "Lemon twist or olive", amount: "1 garnish" }
     ],
     instructions:
       "Stir gin and dry vermouth with ice until very cold. Strain into a chilled coupe. Garnish with a lemon twist or olive.",
@@ -18,15 +22,19 @@ const classicCocktails = [
       "Use vodka instead of gin for a Vodka Martini. Adjust vermouth ratio to taste.",
     tags: ["Dry", "Spirit-forward", "Herbal", "Refreshing"]
   },
+
+  // ------------------------------
+  // OLD FASHIONED
+  // ------------------------------
   {
     name: "Old Fashioned",
     base: "Bourbon",
     glass: "Rocks",
     ingredients: [
-      "Bourbon",
-      "Simple syrup",
-      "Angostura bitters",
-      "Orange peel"
+      { name: "Bourbon", amount: "2 oz" },
+      { name: "Simple syrup", amount: "0.25 oz" },
+      { name: "Angostura bitters", amount: "2 dashes" },
+      { name: "Orange peel", amount: "1 peel" }
     ],
     instructions:
       "Build in a rocks glass: bourbon, simple syrup, and bitters. Add ice and stir until chilled. Garnish with an expressed orange peel.",
@@ -34,15 +42,19 @@ const classicCocktails = [
       "Rye can replace bourbon for a spicier profile. Demerara syrup adds richer sweetness.",
     tags: ["Sweet", "Bitter", "Spirit-forward", "Rich"]
   },
+
+  // ------------------------------
+  // NEGRONI
+  // ------------------------------
   {
     name: "Negroni",
     base: "Gin",
     glass: "Rocks",
     ingredients: [
-      "Gin",
-      "Sweet vermouth",
-      "Campari",
-      "Orange peel"
+      { name: "Gin", amount: "1 oz" },
+      { name: "Sweet vermouth", amount: "1 oz" },
+      { name: "Campari", amount: "1 oz" },
+      { name: "Orange peel", amount: "1 peel" }
     ],
     instructions:
       "Combine gin, sweet vermouth, and Campari over ice. Stir until chilled. Garnish with an orange peel.",
@@ -50,14 +62,18 @@ const classicCocktails = [
       "Swap gin for bourbon to make a Boulevardier. Use different amari for subtle variations.",
     tags: ["Bitter", "Herbal", "Spirit-forward", "Rich"]
   },
+
+  // ------------------------------
+  // DAIQUIRI
+  // ------------------------------
   {
     name: "Daiquiri",
     base: "Light Rum",
     glass: "Coupe",
     ingredients: [
-      "Light rum",
-      "Lime juice",
-      "Simple syrup"
+      { name: "Light rum", amount: "2 oz" },
+      { name: "Lime juice", amount: "1 oz" },
+      { name: "Simple syrup", amount: "0.75 oz" }
     ],
     instructions:
       "Shake all ingredients with ice until well chilled. Strain into a chilled coupe.",
@@ -65,32 +81,39 @@ const classicCocktails = [
       "Use aged rum for a more complex flavor. Adjust lime and syrup for sweeter or more sour balance.",
     tags: ["Citrusy", "Refreshing", "Sour", "Fruity"]
   },
+
+  // ------------------------------
+  // MARGARITA
+  // ------------------------------
   {
     name: "Margarita",
     base: "Tequila Blanco",
     glass: "Coupe",
     ingredients: [
-      "Tequila blanco",
-      "Triple sec or Cointreau",
-      "Lime juice",
-      "Salt (rim, optional)"
+      { name: "Tequila blanco", amount: "2 oz" },
+      { name: "Cointreau or triple sec", amount: "1 oz" },
+      { name: "Lime juice", amount: "1 oz" },
+      { name: "Salt (rim, optional)", amount: "1 pinch" }
     ],
     instructions:
       "Shake tequila, orange liqueur, and lime juice with ice. Strain into a salt-rimmed coupe or rocks glass.",
     substitutions:
-      "Mezcal can replace tequila for a smoky twist. Agave syrup can be added for extra sweetness.",
+      "Mezcal can replace tequila for a smoky twist. Add agave syrup for extra sweetness.",
     tags: ["Citrusy", "Sour", "Refreshing", "Fruity"]
-  }
-];
+  },
+
+  // ------------------------------
+  // MANHATTAN
+  // ------------------------------
   {
     name: "Manhattan",
     base: "Rye",
     glass: "Coupe",
     ingredients: [
-      "Rye whiskey",
-      "Sweet vermouth",
-      "Angostura bitters",
-      "Cherry"
+      { name: "Rye whiskey", amount: "2 oz" },
+      { name: "Sweet vermouth", amount: "1 oz" },
+      { name: "Angostura bitters", amount: "2 dashes" },
+      { name: "Cherry", amount: "1 garnish" }
     ],
     instructions:
       "Stir rye, sweet vermouth, and bitters with ice until chilled. Strain into a chilled coupe and garnish with a cherry.",
@@ -98,15 +121,19 @@ const classicCocktails = [
       "Bourbon can replace rye for a sweeter profile. Add orange bitters for complexity.",
     tags: ["Spirit-forward", "Rich", "Bitter", "Herbal"]
   },
+
+  // ------------------------------
+  // WHISKEY SOUR
+  // ------------------------------
   {
     name: "Whiskey Sour",
     base: "Bourbon",
     glass: "Coupe",
     ingredients: [
-      "Bourbon",
-      "Lemon juice",
-      "Simple syrup",
-      "Egg white (optional)"
+      { name: "Bourbon", amount: "2 oz" },
+      { name: "Lemon juice", amount: "0.75 oz" },
+      { name: "Simple syrup", amount: "0.75 oz" },
+      { name: "Egg white (optional)", amount: "1" }
     ],
     instructions:
       "Shake all ingredients without ice, then shake again with ice. Strain into a chilled coupe or rocks glass.",
@@ -114,15 +141,19 @@ const classicCocktails = [
       "Use rye for a spicier version. Aquafaba can replace egg white.",
     tags: ["Sour", "Refreshing", "Citrusy", "Creamy"]
   },
+
+  // ------------------------------
+  // SIDECAR
+  // ------------------------------
   {
     name: "Sidecar",
     base: "Cognac",
     glass: "Coupe",
     ingredients: [
-      "Cognac",
-      "Triple sec",
-      "Lemon juice",
-      "Sugar rim (optional)"
+      { name: "Cognac", amount: "2 oz" },
+      { name: "Triple sec", amount: "1 oz" },
+      { name: "Lemon juice", amount: "0.75 oz" },
+      { name: "Sugar rim (optional)", amount: "1 garnish" }
     ],
     instructions:
       "Shake cognac, triple sec, and lemon juice with ice. Strain into a chilled coupe, optionally with a sugar rim.",
@@ -130,15 +161,19 @@ const classicCocktails = [
       "Brandy can replace cognac. Adjust lemon for more or less tartness.",
     tags: ["Citrusy", "Sour", "Spirit-forward", "Dry"]
   },
+
+  // ------------------------------
+  // TOM COLLINS
+  // ------------------------------
   {
     name: "Tom Collins",
     base: "Gin",
     glass: "Highball",
     ingredients: [
-      "Gin",
-      "Lemon juice",
-      "Simple syrup",
-      "Club soda"
+      { name: "Gin", amount: "2 oz" },
+      { name: "Lemon juice", amount: "1 oz" },
+      { name: "Simple syrup", amount: "0.5 oz" },
+      { name: "Club soda", amount: "Top" }
     ],
     instructions:
       "Build gin, lemon, and syrup in a highball with ice. Top with club soda and gently stir.",
@@ -146,16 +181,20 @@ const classicCocktails = [
       "Use lime instead of lemon for a different citrus profile.",
     tags: ["Refreshing", "Citrusy", "Fruity", "Dry"]
   },
+
+  // ------------------------------
+  // MOJITO
+  // ------------------------------
   {
     name: "Mojito",
     base: "Light Rum",
     glass: "Highball",
     ingredients: [
-      "Light rum",
-      "Lime juice",
-      "Mint",
-      "Simple syrup",
-      "Club soda"
+      { name: "Light rum", amount: "2 oz" },
+      { name: "Lime juice", amount: "1 oz" },
+      { name: "Mint", amount: "8–10 leaves" },
+      { name: "Simple syrup", amount: "0.75 oz" },
+      { name: "Club soda", amount: "Top" }
     ],
     instructions:
       "Muddle mint with syrup and lime. Add rum and ice, then top with club soda.",
@@ -163,16 +202,20 @@ const classicCocktails = [
       "Use aged rum for a deeper flavor. Add bitters for complexity.",
     tags: ["Refreshing", "Herbal", "Citrusy", "Fruity"]
   },
+
+  // ------------------------------
+  // MAI TAI
+  // ------------------------------
   {
     name: "Mai Tai",
     base: "Aged Rum",
     glass: "Rocks",
     ingredients: [
-      "Aged rum",
-      "Dark rum (float)",
-      "Lime juice",
-      "Orange curaçao",
-      "Orgeat"
+      { name: "Aged rum", amount: "1.5 oz" },
+      { name: "Dark rum (float)", amount: "0.5 oz" },
+      { name: "Lime juice", amount: "1 oz" },
+      { name: "Orange curaçao", amount: "0.5 oz" },
+      { name: "Orgeat", amount: "0.5 oz" }
     ],
     instructions:
       "Shake all ingredients except dark rum. Strain over crushed ice and float dark rum on top.",
@@ -180,16 +223,20 @@ const classicCocktails = [
       "Use light rum for a brighter version. Add pineapple for a tropical twist.",
     tags: ["Tropical", "Nutty", "Fruity", "Rich"]
   },
+
+  // ------------------------------
+  // SAZERAC
+  // ------------------------------
   {
     name: "Sazerac",
     base: "Rye",
     glass: "Rocks",
     ingredients: [
-      "Rye whiskey",
-      "Absinthe (rinse)",
-      "Sugar cube",
-      "Peychaud’s bitters",
-      "Lemon peel"
+      { name: "Rye whiskey", amount: "2 oz" },
+      { name: "Absinthe (rinse)", amount: "Rinse" },
+      { name: "Sugar cube", amount: "1" },
+      { name: "Peychaud’s bitters", amount: "3 dashes" },
+      { name: "Lemon peel", amount: "1 peel" }
     ],
     instructions:
       "Rinse a chilled rocks glass with absinthe. Stir rye, sugar, and bitters with ice. Strain into the prepared glass and garnish with lemon peel.",
@@ -197,15 +244,19 @@ const classicCocktails = [
       "Cognac can replace rye for a classic variation.",
     tags: ["Spirit-forward", "Herbal", "Dry", "Rich"]
   },
+
+  // ------------------------------
+  // BOULEVARDIER
+  // ------------------------------
   {
     name: "Boulevardier",
     base: "Bourbon",
     glass: "Rocks",
     ingredients: [
-      "Bourbon",
-      "Sweet vermouth",
-      "Campari",
-      "Orange peel"
+      { name: "Bourbon", amount: "1 oz" },
+      { name: "Sweet vermouth", amount: "1 oz" },
+      { name: "Campari", amount: "1 oz" },
+      { name: "Orange peel", amount: "1 peel" }
     ],
     instructions:
       "Stir bourbon, sweet vermouth, and Campari with ice. Strain over a large cube and garnish with orange peel.",
@@ -213,48 +264,64 @@ const classicCocktails = [
       "Rye can replace bourbon for a spicier profile.",
     tags: ["Bitter", "Rich", "Spirit-forward", "Herbal"]
   },
+
+  // ------------------------------
+  // FRENCH 75
+  // ------------------------------
   {
     name: "French 75",
     base: "Gin",
     glass: "Flute",
     ingredients: [
-      "Gin",
-      "Lemon juice",
-      "Simple syrup",
-      "Champagne"
+      { name: "Gin", amount: "1 oz" },
+      { name: "Lemon juice", amount: "0.5 oz" },
+      { name: "Simple syrup", amount: "0.5 oz" },
+      { name: "Champagne", amount: "Top" }
     ],
     instructions:
       "Shake gin, lemon, and syrup with ice. Strain into a flute and top with champagne.",
     substitutions:
       "Use cognac instead of gin for a classic variation.",
     tags: ["Refreshing", "Citrusy", "Fruity", "Dry"]
-  },
+  }
+
+]; // END OF SECTION 1
+// ==============================
+// CLASSIC COCKTAILS (continued)
+// ==============================
+
+  // ------------------------------
+  // AVIATION
+  // ------------------------------
   {
     name: "Aviation",
     base: "Gin",
     glass: "Coupe",
     ingredients: [
-      "Gin",
-      "Maraschino liqueur",
-      "Crème de violette",
-      "Lemon juice"
+      { name: "Gin", amount: "2 oz" },
+      { name: "Maraschino liqueur", amount: "0.5 oz" },
+      { name: "Crème de violette", amount: "0.25 oz" },
+      { name: "Lemon juice", amount: "0.75 oz" }
     ],
     instructions:
       "Shake all ingredients with ice and strain into a chilled coupe.",
     substitutions:
       "Skip crème de violette for a more traditional version.",
     tags: ["Floral", "Citrusy", "Refreshing", "Sweet"]
-  }
-];
+  },
+
+  // ------------------------------
+  // MINT JULEP
+  // ------------------------------
   {
     name: "Mint Julep",
     base: "Bourbon",
     glass: "Julep cup",
     ingredients: [
-      "Bourbon",
-      "Mint",
-      "Simple syrup",
-      "Crushed ice"
+      { name: "Bourbon", amount: "2.5 oz" },
+      { name: "Mint", amount: "8–10 leaves" },
+      { name: "Simple syrup", amount: "0.5 oz" },
+      { name: "Crushed ice", amount: "Fill" }
     ],
     instructions:
       "Muddle mint and syrup gently in a julep cup. Add bourbon and crushed ice. Stir until the cup frosts.",
@@ -262,16 +329,20 @@ const classicCocktails = [
       "Use aged rum for a rum julep variation.",
     tags: ["Refreshing", "Herbal", "Sweet", "Dry"]
   },
+
+  // ------------------------------
+  // PISCO SOUR
+  // ------------------------------
   {
     name: "Pisco Sour",
     base: "Pisco",
     glass: "Coupe",
     ingredients: [
-      "Pisco",
-      "Lemon juice",
-      "Simple syrup",
-      "Egg white",
-      "Angostura bitters"
+      { name: "Pisco", amount: "2 oz" },
+      { name: "Lemon juice", amount: "1 oz" },
+      { name: "Simple syrup", amount: "0.75 oz" },
+      { name: "Egg white (optional)", amount: "1" },
+      { name: "Angostura bitters", amount: "3 drops" }
     ],
     instructions:
       "Dry shake all ingredients except bitters, then shake again with ice. Strain into a coupe and add bitters drops.",
@@ -279,15 +350,19 @@ const classicCocktails = [
       "Aquafaba can replace egg white.",
     tags: ["Sour", "Citrusy", "Creamy", "Refreshing"]
   },
+
+  // ------------------------------
+  // COSMOPOLITAN
+  // ------------------------------
   {
     name: "Cosmopolitan",
     base: "Vodka",
     glass: "Coupe",
     ingredients: [
-      "Vodka",
-      "Triple sec",
-      "Cranberry juice",
-      "Lime juice"
+      { name: "Vodka", amount: "1.5 oz" },
+      { name: "Triple sec", amount: "1 oz" },
+      { name: "Cranberry juice", amount: "0.5 oz" },
+      { name: "Lime juice", amount: "0.75 oz" }
     ],
     instructions:
       "Shake all ingredients with ice and strain into a chilled coupe.",
@@ -295,14 +370,18 @@ const classicCocktails = [
       "Use raspberry liqueur for a fruitier variation.",
     tags: ["Fruity", "Citrusy", "Refreshing", "Sweet"]
   },
+
+  // ------------------------------
+  // MOSCOW MULE
+  // ------------------------------
   {
     name: "Moscow Mule",
     base: "Vodka",
     glass: "Copper mug",
     ingredients: [
-      "Vodka",
-      "Lime juice",
-      "Ginger beer"
+      { name: "Vodka", amount: "2 oz" },
+      { name: "Lime juice", amount: "0.5 oz" },
+      { name: "Ginger beer", amount: "Top" }
     ],
     instructions:
       "Build vodka and lime in a copper mug with ice. Top with ginger beer.",
@@ -310,14 +389,18 @@ const classicCocktails = [
       "Use bourbon for a Kentucky Mule or tequila for a Mexican Mule.",
     tags: ["Spicy", "Refreshing", "Citrusy", "Fruity"]
   },
+
+  // ------------------------------
+  // CAIPIRINHA
+  // ------------------------------
   {
     name: "Caipirinha",
     base: "Other Spirits",
     glass: "Rocks",
     ingredients: [
-      "Cachaça",
-      "Lime",
-      "Sugar"
+      { name: "Cachaça", amount: "2 oz" },
+      { name: "Lime", amount: "4 wedges" },
+      { name: "Sugar", amount: "2 tsp" }
     ],
     instructions:
       "Muddle lime and sugar. Add cachaça and crushed ice. Stir well.",
@@ -325,14 +408,18 @@ const classicCocktails = [
       "Use vodka for a Caipiroska.",
     tags: ["Citrusy", "Refreshing", "Sour", "Fruity"]
   },
+
+  // ------------------------------
+  // AMERICANO
+  // ------------------------------
   {
     name: "Americano",
     base: "Other Spirits",
     glass: "Highball",
     ingredients: [
-      "Campari",
-      "Sweet vermouth",
-      "Club soda"
+      { name: "Campari", amount: "1 oz" },
+      { name: "Sweet vermouth", amount: "1 oz" },
+      { name: "Club soda", amount: "Top" }
     ],
     instructions:
       "Build Campari and vermouth over ice. Top with soda.",
@@ -340,15 +427,19 @@ const classicCocktails = [
       "Add gin to make a Negroni.",
     tags: ["Bitter", "Refreshing", "Dry", "Herbal"]
   },
+
+  // ------------------------------
+  // VESPER
+  // ------------------------------
   {
     name: "Vesper",
     base: "Gin",
     glass: "Coupe",
     ingredients: [
-      "Gin",
-      "Vodka",
-      "Lillet Blanc",
-      "Lemon twist"
+      { name: "Gin", amount: "3 oz" },
+      { name: "Vodka", amount: "1 oz" },
+      { name: "Lillet Blanc", amount: "0.5 oz" },
+      { name: "Lemon twist", amount: "1 garnish" }
     ],
     instructions:
       "Shake gin, vodka, and Lillet with ice. Strain into a chilled coupe and garnish with a lemon twist.",
@@ -356,15 +447,19 @@ const classicCocktails = [
       "Cocchi Americano can replace Lillet.",
     tags: ["Spirit-forward", "Dry", "Herbal", "Refreshing"]
   },
+
+  // ------------------------------
+  // ROB ROY
+  // ------------------------------
   {
     name: "Rob Roy",
     base: "Scotch",
     glass: "Coupe",
     ingredients: [
-      "Scotch",
-      "Sweet vermouth",
-      "Angostura bitters",
-      "Cherry"
+      { name: "Scotch", amount: "2 oz" },
+      { name: "Sweet vermouth", amount: "1 oz" },
+      { name: "Angostura bitters", amount: "2 dashes" },
+      { name: "Cherry", amount: "1 garnish" }
     ],
     instructions:
       "Stir Scotch, vermouth, and bitters with ice. Strain into a coupe and garnish with a cherry.",
@@ -372,14 +467,18 @@ const classicCocktails = [
       "Use dry vermouth for a Dry Rob Roy.",
     tags: ["Spirit-forward", "Rich", "Herbal", "Dry"]
   },
+
+  // ------------------------------
+  // GIMLET
+  // ------------------------------
   {
     name: "Gimlet",
     base: "Gin",
     glass: "Coupe",
     ingredients: [
-      "Gin",
-      "Lime juice",
-      "Simple syrup"
+      { name: "Gin", amount: "2 oz" },
+      { name: "Lime juice", amount: "0.75 oz" },
+      { name: "Simple syrup", amount: "0.75 oz" }
     ],
     instructions:
       "Shake all ingredients with ice and strain into a chilled coupe.",
@@ -387,31 +486,38 @@ const classicCocktails = [
       "Use vodka for a Vodka Gimlet.",
     tags: ["Citrusy", "Refreshing", "Sour", "Dry"]
   },
+
+  // ------------------------------
+  // BEE’S KNEES
+  // ------------------------------
   {
     name: "Bee’s Knees",
     base: "Gin",
     glass: "Coupe",
     ingredients: [
-      "Gin",
-      "Lemon juice",
-      "Honey syrup"
+      { name: "Gin", amount: "2 oz" },
+      { name: "Lemon juice", amount: "0.75 oz" },
+      { name: "Honey syrup", amount: "0.75 oz" }
     ],
     instructions:
       "Shake all ingredients with ice and strain into a chilled coupe.",
     substitutions:
       "Add lavender bitters for a floral variation.",
     tags: ["Sweet", "Citrusy", "Refreshing", "Floral"]
-  }
-];
+  },
+
+  // ------------------------------
+  // CLOVER CLUB
+  // ------------------------------
   {
     name: "Clover Club",
     base: "Gin",
     glass: "Coupe",
     ingredients: [
-      "Gin",
-      "Lemon juice",
-      "Raspberry syrup",
-      "Egg white"
+      { name: "Gin", amount: "1.5 oz" },
+      { name: "Lemon juice", amount: "0.75 oz" },
+      { name: "Raspberry syrup", amount: "0.5 oz" },
+      { name: "Egg white (optional)", amount: "1" }
     ],
     instructions:
       "Dry shake all ingredients, then shake again with ice. Double strain into a chilled coupe.",
@@ -419,15 +525,19 @@ const classicCocktails = [
       "Grenadine can replace raspberry syrup in a pinch.",
     tags: ["Fruity", "Creamy", "Citrusy", "Refreshing"]
   },
+
+  // ------------------------------
+  // LAST WORD
+  // ------------------------------
   {
     name: "Last Word",
     base: "Gin",
     glass: "Coupe",
     ingredients: [
-      "Gin",
-      "Green Chartreuse",
-      "Maraschino liqueur",
-      "Lime juice"
+      { name: "Gin", amount: "0.75 oz" },
+      { name: "Green Chartreuse", amount: "0.75 oz" },
+      { name: "Maraschino liqueur", amount: "0.75 oz" },
+      { name: "Lime juice", amount: "0.75 oz" }
     ],
     instructions:
       "Shake all ingredients with ice and strain into a chilled coupe.",
@@ -435,16 +545,20 @@ const classicCocktails = [
       "Yellow Chartreuse creates a softer variation.",
     tags: ["Herbal", "Citrusy", "Refreshing", "Dry"]
   },
+
+  // ------------------------------
+  // CORPSE REVIVER #2
+  // ------------------------------
   {
     name: "Corpse Reviver #2",
     base: "Gin",
     glass: "Coupe",
     ingredients: [
-      "Gin",
-      "Cointreau",
-      "Lillet Blanc",
-      "Lemon juice",
-      "Absinthe (rinse)"
+      { name: "Gin", amount: "0.75 oz" },
+      { name: "Cointreau", amount: "0.75 oz" },
+      { name: "Lillet Blanc", amount: "0.75 oz" },
+      { name: "Lemon juice", amount: "0.75 oz" },
+      { name: "Absinthe (rinse)", amount: "Rinse" }
     ],
     instructions:
       "Rinse a coupe with absinthe. Shake remaining ingredients with ice and strain into the glass.",
@@ -452,297 +566,48 @@ const classicCocktails = [
       "Cocchi Americano can replace Lillet.",
     tags: ["Citrusy", "Herbal", "Refreshing", "Dry"]
   },
+
+  // ------------------------------
+  // VIEUX CARRÉ
+  // ------------------------------
   {
     name: "Vieux Carré",
     base: "Rye",
     glass: "Rocks",
     ingredients: [
-      "Rye whiskey",
-      "Cognac",
-      "Sweet vermouth",
-      "Bénédictine",
-      "Angostura bitters",
-      "Peychaud’s bitters"
+      { name: "Rye whiskey", amount: "1 oz" },
+      { name: "Cognac", amount: "1 oz" },
+      { name: "Sweet vermouth", amount: "1 oz" },
+      { name: "Bénédictine", amount: "0.25 oz" },
+      { name: "Angostura bitters", amount: "2 dashes" },
+      { name: "Peychaud’s bitters", amount: "2 dashes" }
     ],
     instructions:
       "Stir all ingredients with ice and strain over a large cube.",
     substitutions:
       "Increase cognac for a richer version.",
     tags: ["Rich", "Herbal", "Spirit-forward", "Bitter"]
-  },
-  {
-    name: "Ramos Gin Fizz",
-    base: "Gin",
-    glass: "Fizz glass",
-    ingredients: [
-      "Gin",
-      "Lemon juice",
-      "Lime juice",
-      "Cream",
-      "Egg white",
-      "Orange flower water",
-      "Simple syrup",
-      "Club soda"
-    ],
-    instructions:
-      "Shake all ingredients except soda for at least 30 seconds. Add ice and shake again. Strain into a tall glass and top with soda.",
-    substitutions:
-      "Skip cream for a lighter fizz.",
-    tags: ["Creamy", "Citrusy", "Floral", "Refreshing"]
-  },
-  {
-    name: "Planter’s Punch",
-    base: "Dark Rum",
-    glass: "Highball",
-    ingredients: [
-      "Dark rum",
-      "Lime juice",
-      "Grenadine",
-      "Simple syrup",
-      "Angostura bitters"
-    ],
-    instructions:
-      "Shake all ingredients with ice and strain into a highball over fresh ice.",
-    substitutions:
-      "Add pineapple juice for a tropical twist.",
-    tags: ["Tropical", "Fruity", "Sweet", "Spicy"]
-  },
-  {
-    name: "Hemingway Daiquiri",
-    base: "Light Rum",
-    glass: "Coupe",
-    ingredients: [
-      "Light rum",
-      "Grapefruit juice",
-      "Lime juice",
-      "Maraschino liqueur"
-    ],
-    instructions:
-      "Shake all ingredients with ice and strain into a chilled coupe.",
-    substitutions:
-      "Add simple syrup if you prefer it sweeter.",
-    tags: ["Citrusy", "Dry", "Refreshing", "Fruity"]
-  },
-  {
-    name: "Singapore Sling",
-    base: "Gin",
-    glass: "Highball",
-    ingredients: [
-      "Gin",
-      "Cherry liqueur",
-      "Benedictine",
-      "Cointreau",
-      "Pineapple juice",
-      "Lime juice",
-      "Grenadine",
-      "Angostura bitters"
-    ],
-    instructions:
-      "Shake all ingredients with ice and strain into a highball over fresh ice.",
-    substitutions:
-      "Use soda water to lighten the drink.",
-    tags: ["Fruity", "Tropical", "Sweet", "Refreshing"]
-  },
-  {
-    name: "Harvey Wallbanger",
-    base: "Vodka",
-    glass: "Highball",
-    ingredients: [
-      "Vodka",
-      "Orange juice",
-      "Galliano"
-    ],
-    instructions:
-      "Build vodka and orange juice over ice. Float Galliano on top.",
-    substitutions:
-      "Use vanilla syrup for a non-alcoholic Galliano substitute.",
-    tags: ["Fruity", "Sweet", "Refreshing", "Citrusy"]
-  },
-  {
-    name: "Rusty Nail",
-    base: "Scotch",
-    glass: "Rocks",
-    ingredients: [
-      "Scotch",
-      "Drambuie"
-    ],
-    instructions:
-      "Stir Scotch and Drambuie with ice and strain over a large cube.",
-    substitutions:
-      "Use blended Scotch for a milder version.",
-    tags: ["Sweet", "Rich", "Spirit-forward", "Herbal"]
   }
-];
-  {
-    name: "Blood and Sand",
-    base: "Scotch",
-    glass: "Coupe",
-    ingredients: [
-      "Scotch",
-      "Sweet vermouth",
-      "Cherry liqueur",
-      "Orange juice"
-    ],
-    instructions:
-      "Shake all ingredients with ice and strain into a chilled coupe.",
-    substitutions:
-      "Use blended Scotch for a softer profile.",
-    tags: ["Fruity", "Sweet", "Rich", "Spirit-forward"]
-  },
-  {
-    name: "Bramble",
-    base: "Gin",
-    glass: "Rocks",
-    ingredients: [
-      "Gin",
-      "Lemon juice",
-      "Simple syrup",
-      "Blackberry liqueur"
-    ],
-    instructions:
-      "Shake gin, lemon, and syrup with ice. Strain over crushed ice and drizzle blackberry liqueur on top.",
-    substitutions:
-      "Use raspberry liqueur for a twist.",
-    tags: ["Fruity", "Citrusy", "Refreshing", "Sweet"]
-  },
-  {
-    name: "Caipiroska",
-    base: "Vodka",
-    glass: "Rocks",
-    ingredients: [
-      "Vodka",
-      "Lime",
-      "Sugar"
-    ],
-    instructions:
-      "Muddle lime and sugar. Add vodka and crushed ice. Stir well.",
-    substitutions:
-      "Use brown sugar for a richer flavor.",
-    tags: ["Citrusy", "Refreshing", "Sour", "Dry"]
-  },
-  {
-    name: "Jack Rose",
-    base: "Brandy",
-    glass: "Coupe",
-    ingredients: [
-      "Apple brandy",
-      "Grenadine",
-      "Lemon juice"
-    ],
-    instructions:
-      "Shake all ingredients with ice and strain into a chilled coupe.",
-    substitutions:
-      "Use pomegranate syrup instead of grenadine.",
-    tags: ["Fruity", "Citrusy", "Sour", "Refreshing"]
-  },
-  {
-    name: "Hanky Panky",
-    base: "Gin",
-    glass: "Coupe",
-    ingredients: [
-      "Gin",
-      "Sweet vermouth",
-      "Fernet-Branca"
-    ],
-    instructions:
-      "Stir all ingredients with ice and strain into a chilled coupe.",
-    substitutions:
-      "Add orange bitters for brightness.",
-    tags: ["Herbal", "Bitter", "Dry", "Spirit-forward"]
-  },
-  {
-    name: "Paper Plane",
-    base: "Bourbon",
-    glass: "Coupe",
-    ingredients: [
-      "Bourbon",
-      "Aperol",
-      "Amaro Nonino",
-      "Lemon juice"
-    ],
-    instructions:
-      "Shake all ingredients with ice and strain into a chilled coupe.",
-    substitutions:
-      "Use Montenegro if Nonino is unavailable.",
-    tags: ["Bitter", "Citrusy", "Refreshing", "Dry"]
-  },
-  {
-    name: "Gin Fizz",
-    base: "Gin",
-    glass: "Highball",
-    ingredients: [
-      "Gin",
-      "Lemon juice",
-      "Simple syrup",
-      "Club soda"
-    ],
-    instructions:
-      "Shake gin, lemon, and syrup with ice. Strain into a highball and top with soda.",
-    substitutions:
-      "Add egg white for a Silver Fizz.",
-    tags: ["Refreshing", "Citrusy", "Dry", "Fruity"]
-  },
-  {
-    name: "Cuba Libre",
-    base: "Light Rum",
-    glass: "Highball",
-    ingredients: [
-      "Light rum",
-      "Cola",
-      "Lime juice"
-    ],
-    instructions:
-      "Build rum and lime over ice. Top with cola.",
-    substitutions:
-      "Use aged rum for more depth.",
-    tags: ["Sweet", "Refreshing", "Fruity", "Citrusy"]
-  },
-  {
-    name: "Tequila Sunrise",
-    base: "Tequila Blanco",
-    glass: "Highball",
-    ingredients: [
-      "Tequila blanco",
-      "Orange juice",
-      "Grenadine"
-    ],
-    instructions:
-      "Build tequila and orange juice over ice. Slowly pour grenadine to create a sunrise effect.",
-    substitutions:
-      "Use blood orange juice for a richer color.",
-    tags: ["Fruity", "Sweet", "Citrusy", "Refreshing"]
-  },
-  {
-    name: "Amaretto Sour",
-    base: "Other Spirits",
-    glass: "Rocks",
-    ingredients: [
-      "Amaretto",
-      "Lemon juice",
-      "Simple syrup",
-      "Egg white (optional)"
-    ],
-    instructions:
-      "Shake all ingredients with ice and strain over fresh ice.",
-    substitutions:
-      "Add bourbon for a more balanced modern version.",
-    tags: ["Nutty", "Sweet", "Citrusy", "Creamy"]
-  }
-];
+
+]; // END OF SECTION 2
 // ==============================
 // MODERN COCKTAILS
 // ==============================
 
 const modernCocktails = [
+
+  // ------------------------------
+  // ESPRESSO MARTINI
+  // ------------------------------
   {
     name: "Espresso Martini",
     base: "Vodka",
     glass: "Coupe",
     ingredients: [
-      "Vodka",
-      "Coffee liqueur",
-      "Fresh espresso",
-      "Simple syrup"
+      { name: "Vodka", amount: "2 oz" },
+      { name: "Coffee liqueur", amount: "0.5 oz" },
+      { name: "Fresh espresso", amount: "1 oz" },
+      { name: "Simple syrup", amount: "0.25–0.5 oz" }
     ],
     instructions:
       "Shake all ingredients hard with ice to create a foamy texture. Strain into a chilled coupe.",
@@ -750,15 +615,19 @@ const modernCocktails = [
       "Cold brew concentrate can replace espresso. Adjust syrup for sweetness.",
     tags: ["Coffee", "Dessert", "Rich", "Sweet"]
   },
+
+  // ------------------------------
+  // PENICILLIN
+  // ------------------------------
   {
     name: "Penicillin",
     base: "Scotch",
     glass: "Rocks",
     ingredients: [
-      "Blended Scotch",
-      "Honey-ginger syrup",
-      "Lemon juice",
-      "Islay Scotch (float)"
+      { name: "Blended Scotch", amount: "2 oz" },
+      { name: "Honey-ginger syrup", amount: "0.75 oz" },
+      { name: "Lemon juice", amount: "0.75 oz" },
+      { name: "Islay Scotch (float)", amount: "0.25 oz" }
     ],
     instructions:
       "Shake blended Scotch, honey-ginger syrup, and lemon with ice. Strain over fresh ice in a rocks glass. Float a small amount of Islay Scotch on top.",
@@ -766,15 +635,19 @@ const modernCocktails = [
       "Use bourbon if Scotch is unavailable. Ginger syrup can be simplified with ginger and sugar.",
     tags: ["Smoky", "Spicy", "Rich", "Herbal"]
   },
+
+  // ------------------------------
+  // PAPER PLANE
+  // ------------------------------
   {
     name: "Paper Plane",
     base: "Bourbon",
     glass: "Coupe",
     ingredients: [
-      "Bourbon",
-      "Aperol",
-      "Amaro Nonino",
-      "Lemon juice"
+      { name: "Bourbon", amount: "0.75 oz" },
+      { name: "Aperol", amount: "0.75 oz" },
+      { name: "Amaro Nonino", amount: "0.75 oz" },
+      { name: "Lemon juice", amount: "0.75 oz" }
     ],
     instructions:
       "Shake all ingredients with ice and strain into a chilled coupe.",
@@ -782,16 +655,20 @@ const modernCocktails = [
       "Use Montenegro if Nonino is unavailable.",
     tags: ["Bitter", "Citrusy", "Refreshing", "Dry"]
   },
+
+  // ------------------------------
+  // OAXACA OLD FASHIONED
+  // ------------------------------
   {
     name: "Oaxaca Old Fashioned",
     base: "Mezcal",
     glass: "Rocks",
     ingredients: [
-      "Mezcal",
-      "Tequila reposado",
-      "Agave syrup",
-      "Angostura bitters",
-      "Orange peel"
+      { name: "Mezcal", amount: "1.5 oz" },
+      { name: "Tequila reposado", amount: "0.5 oz" },
+      { name: "Agave syrup", amount: "0.25 oz" },
+      { name: "Angostura bitters", amount: "2 dashes" },
+      { name: "Orange peel", amount: "1 peel" }
     ],
     instructions:
       "Stir mezcal, tequila, agave, and bitters with ice. Strain over a large cube and garnish with orange peel.",
@@ -799,15 +676,19 @@ const modernCocktails = [
       "Use only tequila for a less smoky version.",
     tags: ["Smoky", "Spirit-forward", "Rich", "Dry"]
   },
+
+  // ------------------------------
+  // BASIL SMASH
+  // ------------------------------
   {
     name: "Basil Smash",
     base: "Gin",
     glass: "Rocks",
     ingredients: [
-      "Gin",
-      "Lemon juice",
-      "Simple syrup",
-      "Fresh basil"
+      { name: "Gin", amount: "2 oz" },
+      { name: "Lemon juice", amount: "1 oz" },
+      { name: "Simple syrup", amount: "0.75 oz" },
+      { name: "Fresh basil", amount: "8–12 leaves" }
     ],
     instructions:
       "Muddle basil with syrup and lemon. Add gin and ice, shake hard, and double strain over fresh ice.",
@@ -815,15 +696,19 @@ const modernCocktails = [
       "Use mint instead of basil for a different herbal profile.",
     tags: ["Herbal", "Refreshing", "Citrusy", "Dry"]
   },
+
+  // ------------------------------
+  // NAKED AND FAMOUS
+  // ------------------------------
   {
     name: "Naked and Famous",
     base: "Mezcal",
     glass: "Coupe",
     ingredients: [
-      "Mezcal",
-      "Aperol",
-      "Yellow Chartreuse",
-      "Lime juice"
+      { name: "Mezcal", amount: "0.75 oz" },
+      { name: "Aperol", amount: "0.75 oz" },
+      { name: "Yellow Chartreuse", amount: "0.75 oz" },
+      { name: "Lime juice", amount: "0.75 oz" }
     ],
     instructions:
       "Shake all ingredients with ice and strain into a chilled coupe.",
@@ -831,16 +716,20 @@ const modernCocktails = [
       "Use green Chartreuse for a sharper herbal note.",
     tags: ["Smoky", "Herbal", "Citrusy", "Refreshing"]
   },
+
+  // ------------------------------
+  // JUNGLE BIRD
+  // ------------------------------
   {
     name: "Jungle Bird",
     base: "Dark Rum",
     glass: "Rocks",
     ingredients: [
-      "Dark rum",
-      "Campari",
-      "Pineapple juice",
-      "Lime juice",
-      "Simple syrup"
+      { name: "Dark rum", amount: "1.5 oz" },
+      { name: "Campari", amount: "0.75 oz" },
+      { name: "Pineapple juice", amount: "1.5 oz" },
+      { name: "Lime juice", amount: "0.5 oz" },
+      { name: "Simple syrup", amount: "0.5 oz" }
     ],
     instructions:
       "Shake all ingredients with ice and strain over fresh ice.",
@@ -848,15 +737,19 @@ const modernCocktails = [
       "Use aged rum for more depth.",
     tags: ["Tropical", "Bitter", "Fruity", "Refreshing"]
   },
+
+  // ------------------------------
+  // APEROL SPRITZ
+  // ------------------------------
   {
     name: "Aperol Spritz",
     base: "Other Spirits",
     glass: "Wine glass",
     ingredients: [
-      "Aperol",
-      "Prosecco",
-      "Club soda",
-      "Orange slice"
+      { name: "Aperol", amount: "3 oz" },
+      { name: "Prosecco", amount: "3 oz" },
+      { name: "Club soda", amount: "1 oz" },
+      { name: "Orange slice", amount: "1 garnish" }
     ],
     instructions:
       "Build Aperol and prosecco over ice. Add a splash of soda and garnish with an orange slice.",
@@ -864,14 +757,18 @@ const modernCocktails = [
       "Use Campari for a more bitter spritz.",
     tags: ["Refreshing", "Bitter", "Citrusy", "Dry"]
   },
+
+  // ------------------------------
+  // MEZCAL MULE
+  // ------------------------------
   {
     name: "Mezcal Mule",
     base: "Mezcal",
     glass: "Copper mug",
     ingredients: [
-      "Mezcal",
-      "Lime juice",
-      "Ginger beer"
+      { name: "Mezcal", amount: "2 oz" },
+      { name: "Lime juice", amount: "0.5 oz" },
+      { name: "Ginger beer", amount: "Top" }
     ],
     instructions:
       "Build mezcal and lime over ice. Top with ginger beer.",
@@ -879,31 +776,38 @@ const modernCocktails = [
       "Use tequila for a less smoky version.",
     tags: ["Smoky", "Spicy", "Refreshing", "Citrusy"]
   },
+
+  // ------------------------------
+  // FRENCH MARTINI
+  // ------------------------------
   {
     name: "French Martini",
     base: "Vodka",
     glass: "Coupe",
     ingredients: [
-      "Vodka",
-      "Raspberry liqueur",
-      "Pineapple juice"
+      { name: "Vodka", amount: "2 oz" },
+      { name: "Raspberry liqueur", amount: "0.5 oz" },
+      { name: "Pineapple juice", amount: "1.5 oz" }
     ],
     instructions:
       "Shake all ingredients with ice and strain into a chilled coupe.",
     substitutions:
       "Use blackberry liqueur for a darker fruit profile.",
     tags: ["Fruity", "Sweet", "Tropical", "Refreshing"]
-  }
-];
+  },
+
+  // ------------------------------
+  // GIN BASIL SMASH (REVIVAL)
+  // ------------------------------
   {
     name: "Gin Basil Smash",
     base: "Gin",
     glass: "Rocks",
     ingredients: [
-      "Gin",
-      "Lemon juice",
-      "Simple syrup",
-      "Fresh basil"
+      { name: "Gin", amount: "2 oz" },
+      { name: "Lemon juice", amount: "1 oz" },
+      { name: "Simple syrup", amount: "0.75 oz" },
+      { name: "Fresh basil", amount: "8–12 leaves" }
     ],
     instructions:
       "Muddle basil with syrup and lemon juice. Add gin and ice, shake hard, and double strain over fresh ice.",
@@ -911,15 +815,19 @@ const modernCocktails = [
       "Swap basil for mint for a different herbal profile.",
     tags: ["Herbal", "Refreshing", "Citrusy", "Dry"]
   },
+
+  // ------------------------------
+  // CLOVER CLUB REVIVAL
+  // ------------------------------
   {
     name: "Clover Club Revival",
     base: "Gin",
     glass: "Coupe",
     ingredients: [
-      "Gin",
-      "Raspberry syrup",
-      "Lemon juice",
-      "Egg white"
+      { name: "Gin", amount: "1.5 oz" },
+      { name: "Raspberry syrup", amount: "0.5 oz" },
+      { name: "Lemon juice", amount: "0.75 oz" },
+      { name: "Egg white (optional)", amount: "1" }
     ],
     instructions:
       "Dry shake all ingredients, then shake again with ice. Double strain into a chilled coupe.",
@@ -927,16 +835,20 @@ const modernCocktails = [
       "Use grenadine if raspberry syrup is unavailable.",
     tags: ["Fruity", "Creamy", "Citrusy", "Refreshing"]
   },
+
+  // ------------------------------
+  // MEZCAL PALOMA
+  // ------------------------------
   {
     name: "Mezcal Paloma",
     base: "Mezcal",
     glass: "Highball",
     ingredients: [
-      "Mezcal",
-      "Grapefruit juice",
-      "Lime juice",
-      "Simple syrup",
-      "Club soda"
+      { name: "Mezcal", amount: "2 oz" },
+      { name: "Grapefruit juice", amount: "2 oz" },
+      { name: "Lime juice", amount: "0.5 oz" },
+      { name: "Simple syrup", amount: "0.25 oz" },
+      { name: "Club soda", amount: "Top" }
     ],
     instructions:
       "Build mezcal, juices, and syrup in a highball with ice. Top with soda and stir gently.",
@@ -944,15 +856,19 @@ const modernCocktails = [
       "Use tequila for a less smoky version.",
     tags: ["Smoky", "Citrusy", "Refreshing", "Dry"]
   },
+
+  // ------------------------------
+  // ELDERFLOWER SPRITZ
+  // ------------------------------
   {
     name: "Elderflower Spritz",
     base: "Other Spirits",
     glass: "Wine glass",
     ingredients: [
-      "Elderflower liqueur",
-      "Prosecco",
-      "Club soda",
-      "Lemon wheel"
+      { name: "Elderflower liqueur", amount: "2 oz" },
+      { name: "Prosecco", amount: "3 oz" },
+      { name: "Club soda", amount: "1 oz" },
+      { name: "Lemon wheel", amount: "1 garnish" }
     ],
     instructions:
       "Build elderflower liqueur and prosecco over ice. Add a splash of soda and garnish with a lemon wheel.",
@@ -960,16 +876,20 @@ const modernCocktails = [
       "Use tonic water for a more bitter profile.",
     tags: ["Floral", "Refreshing", "Sweet", "Citrusy"]
   },
+
+  // ------------------------------
+  // CHARTREUSE SWIZZLE
+  // ------------------------------
   {
     name: "Chartreuse Swizzle",
     base: "Other Spirits",
     glass: "Highball",
     ingredients: [
-      "Green Chartreuse",
-      "Pineapple juice",
-      "Lime juice",
-      "Falernum",
-      "Crushed ice"
+      { name: "Green Chartreuse", amount: "1.5 oz" },
+      { name: "Pineapple juice", amount: "1.5 oz" },
+      { name: "Lime juice", amount: "0.75 oz" },
+      { name: "Falernum", amount: "0.5 oz" },
+      { name: "Crushed ice", amount: "Fill" }
     ],
     instructions:
       "Build all ingredients in a highball with crushed ice. Swizzle until frosty.",
@@ -977,16 +897,20 @@ const modernCocktails = [
       "Use yellow Chartreuse for a softer herbal note.",
     tags: ["Herbal", "Tropical", "Fruity", "Refreshing"]
   },
+
+  // ------------------------------
+  // MODERN MAI TAI
+  // ------------------------------
   {
     name: "Modern Mai Tai",
     base: "Aged Rum",
     glass: "Rocks",
     ingredients: [
-      "Aged rum",
-      "Lime juice",
-      "Orgeat",
-      "Orange curaçao",
-      "Simple syrup"
+      { name: "Aged rum", amount: "1.5 oz" },
+      { name: "Lime juice", amount: "1 oz" },
+      { name: "Orgeat", amount: "0.5 oz" },
+      { name: "Orange curaçao", amount: "0.5 oz" },
+      { name: "Simple syrup", amount: "0.25 oz" }
     ],
     instructions:
       "Shake all ingredients with ice and strain over crushed ice.",
@@ -994,14 +918,18 @@ const modernCocktails = [
       "Add a dark rum float for extra richness.",
     tags: ["Tropical", "Nutty", "Fruity", "Sweet"]
   },
+
+  // ------------------------------
+  // LAVENDER BEE’S KNEES
+  // ------------------------------
   {
     name: "Lavender Bee’s Knees",
     base: "Gin",
     glass: "Coupe",
     ingredients: [
-      "Gin",
-      "Lemon juice",
-      "Lavender honey syrup"
+      { name: "Gin", amount: "2 oz" },
+      { name: "Lemon juice", amount: "0.75 oz" },
+      { name: "Lavender honey syrup", amount: "0.75 oz" }
     ],
     instructions:
       "Shake all ingredients with ice and strain into a chilled coupe.",
@@ -1009,15 +937,19 @@ const modernCocktails = [
       "Use regular honey syrup if lavender is unavailable.",
     tags: ["Floral", "Citrusy", "Refreshing", "Sweet"]
   },
+
+  // ------------------------------
+  // SMOKED MAPLE OLD FASHIONED
+  // ------------------------------
   {
     name: "Smoked Maple Old Fashioned",
     base: "Rye",
     glass: "Rocks",
     ingredients: [
-      "Rye whiskey",
-      "Maple syrup",
-      "Angostura bitters",
-      "Orange peel"
+      { name: "Rye whiskey", amount: "2 oz" },
+      { name: "Maple syrup", amount: "0.25 oz" },
+      { name: "Angostura bitters", amount: "2 dashes" },
+      { name: "Orange peel", amount: "1 peel" }
     ],
     instructions:
       "Stir rye, maple syrup, and bitters with ice. Strain over a large cube and garnish with orange peel.",
@@ -1025,16 +957,20 @@ const modernCocktails = [
       "Use bourbon for a sweeter version.",
     tags: ["Rich", "Sweet", "Spirit-forward", "Smoky"]
   },
+
+  // ------------------------------
+  // GRAPEFRUIT COLLINS
+  // ------------------------------
   {
     name: "Grapefruit Collins",
     base: "Vodka",
     glass: "Highball",
     ingredients: [
-      "Vodka",
-      "Grapefruit juice",
-      "Lemon juice",
-      "Simple syrup",
-      "Club soda"
+      { name: "Vodka", amount: "2 oz" },
+      { name: "Grapefruit juice", amount: "2 oz" },
+      { name: "Lemon juice", amount: "0.5 oz" },
+      { name: "Simple syrup", amount: "0.5 oz" },
+      { name: "Club soda", amount: "Top" }
     ],
     instructions:
       "Shake vodka, juices, and syrup with ice. Strain into a highball and top with soda.",
@@ -1042,16 +978,20 @@ const modernCocktails = [
       "Use gin for a more herbal version.",
     tags: ["Citrusy", "Refreshing", "Dry", "Fruity"]
   },
+
+  // ------------------------------
+  // PINEAPPLE MEZCAL SOUR
+  // ------------------------------
   {
     name: "Pineapple Mezcal Sour",
     base: "Mezcal",
     glass: "Coupe",
     ingredients: [
-      "Mezcal",
-      "Pineapple juice",
-      "Lime juice",
-      "Simple syrup",
-      "Egg white"
+      { name: "Mezcal", amount: "2 oz" },
+      { name: "Pineapple juice", amount: "1 oz" },
+      { name: "Lime juice", amount: "0.75 oz" },
+      { name: "Simple syrup", amount: "0.5 oz" },
+      { name: "Egg white (optional)", amount: "1" }
     ],
     instructions:
       "Dry shake all ingredients, then shake again with ice. Double strain into a chilled coupe.",
@@ -1059,17 +999,25 @@ const modernCocktails = [
       "Use aquafaba instead of egg white.",
     tags: ["Smoky", "Tropical", "Creamy", "Refreshing"]
   }
-];
+
+]; // END OF SECTION 3
+// ==============================
+// MODERN COCKTAILS (continued)
+// ==============================
+
+  // ------------------------------
+  // BLACKBERRY BOURBON SMASH
+  // ------------------------------
   {
     name: "Blackberry Bourbon Smash",
     base: "Bourbon",
     glass: "Rocks",
     ingredients: [
-      "Bourbon",
-      "Blackberries",
-      "Lemon juice",
-      "Simple syrup",
-      "Mint"
+      { name: "Bourbon", amount: "2 oz" },
+      { name: "Blackberries", amount: "4–5 berries" },
+      { name: "Lemon juice", amount: "0.75 oz" },
+      { name: "Simple syrup", amount: "0.5 oz" },
+      { name: "Mint", amount: "6–8 leaves" }
     ],
     instructions:
       "Muddle blackberries and mint with syrup. Add bourbon and lemon, shake with ice, and strain over fresh ice.",
@@ -1077,15 +1025,19 @@ const modernCocktails = [
       "Use raspberries for a brighter fruit profile.",
     tags: ["Fruity", "Refreshing", "Sweet", "Herbal"]
   },
+
+  // ------------------------------
+  // COCONUT RUM DAIQUIRI
+  // ------------------------------
   {
     name: "Coconut Rum Daiquiri",
     base: "Light Rum",
     glass: "Coupe",
     ingredients: [
-      "Light rum",
-      "Coconut cream",
-      "Lime juice",
-      "Simple syrup"
+      { name: "Light rum", amount: "2 oz" },
+      { name: "Coconut cream", amount: "1 oz" },
+      { name: "Lime juice", amount: "1 oz" },
+      { name: "Simple syrup", amount: "0.5 oz" }
     ],
     instructions:
       "Shake all ingredients with ice and strain into a chilled coupe.",
@@ -1093,15 +1045,19 @@ const modernCocktails = [
       "Use aged rum for a deeper flavor.",
     tags: ["Tropical", "Creamy", "Sweet", "Refreshing"]
   },
+
+  // ------------------------------
+  // GINGER PEAR MULE
+  // ------------------------------
   {
     name: "Ginger Pear Mule",
     base: "Vodka",
     glass: "Copper mug",
     ingredients: [
-      "Vodka",
-      "Pear nectar",
-      "Lime juice",
-      "Ginger beer"
+      { name: "Vodka", amount: "2 oz" },
+      { name: "Pear nectar", amount: "2 oz" },
+      { name: "Lime juice", amount: "0.5 oz" },
+      { name: "Ginger beer", amount: "Top" }
     ],
     instructions:
       "Build vodka, pear, and lime over ice. Top with ginger beer.",
@@ -1109,15 +1065,19 @@ const modernCocktails = [
       "Use gin for a more herbal version.",
     tags: ["Fruity", "Spicy", "Refreshing", "Sweet"]
   },
+
+  // ------------------------------
+  // ROSEMARY GIN RICKEY
+  // ------------------------------
   {
     name: "Rosemary Gin Rickey",
     base: "Gin",
     glass: "Highball",
     ingredients: [
-      "Gin",
-      "Lime juice",
-      "Rosemary syrup",
-      "Club soda"
+      { name: "Gin", amount: "2 oz" },
+      { name: "Lime juice", amount: "0.75 oz" },
+      { name: "Rosemary syrup", amount: "0.5 oz" },
+      { name: "Club soda", amount: "Top" }
     ],
     instructions:
       "Build gin, lime, and syrup in a highball with ice. Top with soda and stir gently.",
@@ -1125,16 +1085,20 @@ const modernCocktails = [
       "Use thyme syrup for a different herbal twist.",
     tags: ["Herbal", "Refreshing", "Dry", "Citrusy"]
   },
+
+  // ------------------------------
+  // SPICY MANGO MARGARITA
+  // ------------------------------
   {
     name: "Spicy Mango Margarita",
     base: "Tequila Blanco",
     glass: "Rocks",
     ingredients: [
-      "Tequila blanco",
-      "Mango puree",
-      "Lime juice",
-      "Simple syrup",
-      "Jalapeño slices"
+      { name: "Tequila blanco", amount: "2 oz" },
+      { name: "Mango puree", amount: "1.5 oz" },
+      { name: "Lime juice", amount: "1 oz" },
+      { name: "Simple syrup", amount: "0.5 oz" },
+      { name: "Jalapeño slices", amount: "2–3 slices" }
     ],
     instructions:
       "Shake all ingredients with ice and strain over fresh ice. Garnish with jalapeño.",
@@ -1142,16 +1106,20 @@ const modernCocktails = [
       "Use mezcal for a smoky version.",
     tags: ["Spicy", "Tropical", "Fruity", "Sweet"]
   },
+
+  // ------------------------------
+  // BLUEBERRY LAVENDER COLLINS
+  // ------------------------------
   {
     name: "Blueberry Lavender Collins",
     base: "Vodka",
     glass: "Highball",
     ingredients: [
-      "Vodka",
-      "Blueberry syrup",
-      "Lavender syrup",
-      "Lemon juice",
-      "Club soda"
+      { name: "Vodka", amount: "2 oz" },
+      { name: "Blueberry syrup", amount: "0.75 oz" },
+      { name: "Lavender syrup", amount: "0.25 oz" },
+      { name: "Lemon juice", amount: "1 oz" },
+      { name: "Club soda", amount: "Top" }
     ],
     instructions:
       "Shake vodka, syrups, and lemon with ice. Strain into a highball and top with soda.",
@@ -1159,16 +1127,20 @@ const modernCocktails = [
       "Use gin for a floral-herbal variation.",
     tags: ["Floral", "Fruity", "Refreshing", "Sweet"]
   },
+
+  // ------------------------------
+  // SMOKED PINEAPPLE SOUR
+  // ------------------------------
   {
     name: "Smoked Pineapple Sour",
     base: "Mezcal",
     glass: "Coupe",
     ingredients: [
-      "Mezcal",
-      "Pineapple juice",
-      "Lime juice",
-      "Simple syrup",
-      "Egg white"
+      { name: "Mezcal", amount: "2 oz" },
+      { name: "Pineapple juice", amount: "1 oz" },
+      { name: "Lime juice", amount: "0.75 oz" },
+      { name: "Simple syrup", amount: "0.5 oz" },
+      { name: "Egg white (optional)", amount: "1" }
     ],
     instructions:
       "Dry shake all ingredients, then shake again with ice. Double strain into a coupe.",
@@ -1176,17 +1148,21 @@ const modernCocktails = [
       "Use aquafaba instead of egg white.",
     tags: ["Smoky", "Tropical", "Creamy", "Refreshing"]
   },
+
+  // ------------------------------
+  // CUCUMBER MINT COOLER
+  // ------------------------------
   {
     name: "Cucumber Mint Cooler",
     base: "Gin",
     glass: "Highball",
     ingredients: [
-      "Gin",
-      "Cucumber slices",
-      "Mint",
-      "Lime juice",
-      "Simple syrup",
-      "Club soda"
+      { name: "Gin", amount: "2 oz" },
+      { name: "Cucumber slices", amount: "4–5 slices" },
+      { name: "Mint", amount: "6–8 leaves" },
+      { name: "Lime juice", amount: "0.75 oz" },
+      { name: "Simple syrup", amount: "0.5 oz" },
+      { name: "Club soda", amount: "Top" }
     ],
     instructions:
       "Muddle cucumber and mint with syrup. Add gin and lime, shake lightly, strain into a highball, and top with soda.",
@@ -1194,16 +1170,20 @@ const modernCocktails = [
       "Use vodka for a cleaner profile.",
     tags: ["Refreshing", "Herbal", "Dry", "Citrusy"]
   },
+
+  // ------------------------------
+  // RASPBERRY VANILLA SOUR
+  // ------------------------------
   {
     name: "Raspberry Vanilla Sour",
     base: "Vodka",
     glass: "Coupe",
     ingredients: [
-      "Vodka",
-      "Raspberry syrup",
-      "Vanilla syrup",
-      "Lemon juice",
-      "Egg white"
+      { name: "Vodka", amount: "2 oz" },
+      { name: "Raspberry syrup", amount: "0.75 oz" },
+      { name: "Vanilla syrup", amount: "0.25 oz" },
+      { name: "Lemon juice", amount: "1 oz" },
+      { name: "Egg white (optional)", amount: "1" }
     ],
     instructions:
       "Dry shake all ingredients, then shake again with ice. Double strain into a coupe.",
@@ -1211,16 +1191,20 @@ const modernCocktails = [
       "Use bourbon for a richer version.",
     tags: ["Fruity", "Sweet", "Creamy", "Citrusy"]
   },
+
+  // ------------------------------
+  // POMEGRANATE GIN FIZZ
+  // ------------------------------
   {
     name: "Pomegranate Gin Fizz",
     base: "Gin",
     glass: "Highball",
     ingredients: [
-      "Gin",
-      "Pomegranate juice",
-      "Lemon juice",
-      "Simple syrup",
-      "Club soda"
+      { name: "Gin", amount: "2 oz" },
+      { name: "Pomegranate juice", amount: "1.5 oz" },
+      { name: "Lemon juice", amount: "0.75 oz" },
+      { name: "Simple syrup", amount: "0.5 oz" },
+      { name: "Club soda", amount: "Top" }
     ],
     instructions:
       "Shake gin, pomegranate, lemon, and syrup with ice. Strain into a highball and top with soda.",
@@ -1228,354 +1212,27 @@ const modernCocktails = [
       "Use tonic water for a more bitter finish.",
     tags: ["Fruity", "Refreshing", "Citrusy", "Dry"]
   }
-];
-  {
-    name: "Fig & Bourbon Sour",
-    base: "Bourbon",
-    glass: "Coupe",
-    ingredients: [
-      "Bourbon",
-      "Fig syrup",
-      "Lemon juice",
-      "Egg white"
-    ],
-    instructions:
-      "Dry shake all ingredients, then shake again with ice. Double strain into a coupe.",
-    substitutions:
-      "Use maple syrup instead of fig syrup for a different richness.",
-    tags: ["Rich", "Fruity", "Creamy", "Citrusy"]
-  },
-  {
-    name: "Hibiscus Margarita",
-    base: "Tequila Blanco",
-    glass: "Rocks",
-    ingredients: [
-      "Tequila blanco",
-      "Hibiscus syrup",
-      "Lime juice",
-      "Triple sec"
-    ],
-    instructions:
-      "Shake all ingredients with ice and strain over fresh ice.",
-    substitutions:
-      "Use mezcal for a smoky hibiscus variation.",
-    tags: ["Floral", "Citrusy", "Refreshing", "Sweet"]
-  },
-  {
-    name: "Charred Grapefruit Paloma",
-    base: "Tequila Reposado",
-    glass: "Highball",
-    ingredients: [
-      "Tequila reposado",
-      "Charred grapefruit juice",
-      "Lime juice",
-      "Simple syrup",
-      "Club soda"
-    ],
-    instructions:
-      "Shake tequila, juices, and syrup with ice. Strain into a highball and top with soda.",
-    substitutions:
-      "Use regular grapefruit juice if charred is unavailable.",
-    tags: ["Citrusy", "Smoky", "Refreshing", "Dry"]
-  },
-  {
-    name: "Matcha Highball",
-    base: "Vodka",
-    glass: "Highball",
-    ingredients: [
-      "Vodka",
-      "Matcha syrup",
-      "Lemon juice",
-      "Club soda"
-    ],
-    instructions:
-      "Build vodka, matcha syrup, and lemon in a highball with ice. Top with soda.",
-    substitutions:
-      "Use gin for a more herbal version.",
-    tags: ["Herbal", "Refreshing", "Dry", "Citrusy"]
-  },
-  {
-    name: "Salted Caramel White Russian",
-    base: "Vodka",
-    glass: "Rocks",
-    ingredients: [
-      "Vodka",
-      "Coffee liqueur",
-      "Salted caramel syrup",
-      "Cream"
-    ],
-    instructions:
-      "Build all ingredients over ice and stir gently.",
-    substitutions:
-      "Use coconut cream for a dairy-free version.",
-    tags: ["Dessert", "Sweet", "Creamy", "Rich"]
-  },
-  {
-    name: "Grapefruit Rosemary Spritz",
-    base: "Other Spirits",
-    glass: "Wine glass",
-    ingredients: [
-      "Aperitivo liqueur",
-      "Grapefruit juice",
-      "Rosemary syrup",
-      "Prosecco",
-      "Club soda"
-    ],
-    instructions:
-      "Build all ingredients over ice in a wine glass and stir gently.",
-    substitutions:
-      "Use tonic water for a more bitter finish.",
-    tags: ["Refreshing", "Citrusy", "Herbal", "Dry"]
-  },
-  {
-    name: "Spiced Pear Sour",
-    base: "Gin",
-    glass: "Coupe",
-    ingredients: [
-      "Gin",
-      "Pear nectar",
-      "Lemon juice",
-      "Spiced syrup",
-      "Egg white"
-    ],
-    instructions:
-      "Dry shake all ingredients, then shake again with ice. Double strain into a coupe.",
-    substitutions:
-      "Use vodka for a cleaner profile.",
-    tags: ["Fruity", "Spicy", "Creamy", "Citrusy"]
-  },
-  {
-    name: "Pineapple Coconut Highball",
-    base: "Light Rum",
-    glass: "Highball",
-    ingredients: [
-      "Light rum",
-      "Pineapple juice",
-      "Coconut water",
-      "Lime juice"
-    ],
-    instructions:
-      "Build all ingredients in a highball with ice and stir gently.",
-    substitutions:
-      "Use aged rum for more depth.",
-    tags: ["Tropical", "Refreshing", "Fruity", "Sweet"]
-  },
-  {
-    name: "Black Tea Collins",
-    base: "Gin",
-    glass: "Highball",
-    ingredients: [
-      "Gin",
-      "Black tea syrup",
-      "Lemon juice",
-      "Club soda"
-    ],
-    instructions:
-      "Shake gin, tea syrup, and lemon with ice. Strain into a highball and top with soda.",
-    substitutions:
-      "Use Earl Grey syrup for a floral twist.",
-    tags: ["Dry", "Refreshing", "Herbal", "Citrusy"]
-  },
-  {
-    name: "Cinnamon Maple Sour",
-    base: "Rye",
-    glass: "Coupe",
-    ingredients: [
-      "Rye whiskey",
-      "Maple syrup",
-      "Lemon juice",
-      "Cinnamon"
-    ],
-    instructions:
-      "Shake all ingredients with ice and strain into a coupe.",
-    substitutions:
-      "Use bourbon for a sweeter version.",
-    tags: ["Rich", "Spicy", "Citrusy", "Sweet"]
-  }
-];
-  {
-    name: "Vanilla Chai White Russian",
-    base: "Vodka",
-    glass: "Rocks",
-    ingredients: [
-      "Vodka",
-      "Coffee liqueur",
-      "Chai syrup",
-      "Cream",
-      "Vanilla extract"
-    ],
-    instructions:
-      "Build all ingredients over ice and stir gently.",
-    substitutions:
-      "Use coconut cream for a dairy-free version.",
-    tags: ["Dessert", "Creamy", "Sweet", "Rich"]
-  },
-  {
-    name: "Ginger Lemongrass Highball",
-    base: "Gin",
-    glass: "Highball",
-    ingredients: [
-      "Gin",
-      "Lemongrass syrup",
-      "Lime juice",
-      "Ginger beer"
-    ],
-    instructions:
-      "Build gin, syrup, and lime over ice. Top with ginger beer.",
-    substitutions:
-      "Use vodka for a cleaner profile.",
-    tags: ["Herbal", "Spicy", "Refreshing", "Citrusy"]
-  },
-  {
-    name: "Blackberry Sage Smash",
-    base: "Bourbon",
-    glass: "Rocks",
-    ingredients: [
-      "Bourbon",
-      "Blackberries",
-      "Sage leaves",
-      "Lemon juice",
-      "Simple syrup"
-    ],
-    instructions:
-      "Muddle blackberries and sage with syrup. Add bourbon and lemon, shake with ice, and strain over fresh ice.",
-    substitutions:
-      "Use rosemary instead of sage for a piney twist.",
-    tags: ["Fruity", "Herbal", "Refreshing", "Sweet"]
-  },
-  {
-    name: "Coconut Matcha Sour",
-    base: "Vodka",
-    glass: "Coupe",
-    ingredients: [
-      "Vodka",
-      "Matcha syrup",
-      "Coconut cream",
-      "Lime juice",
-      "Egg white"
-    ],
-    instructions:
-      "Dry shake all ingredients, then shake again with ice. Double strain into a coupe.",
-    substitutions:
-      "Use aquafaba instead of egg white.",
-    tags: ["Creamy", "Herbal", "Tropical", "Refreshing"]
-  },
-  {
-    name: "Spiced Cranberry Mule",
-    base: "Vodka",
-    glass: "Copper mug",
-    ingredients: [
-      "Vodka",
-      "Cranberry juice",
-      "Lime juice",
-      "Spiced syrup",
-      "Ginger beer"
-    ],
-    instructions:
-      "Build vodka, cranberry, lime, and syrup over ice. Top with ginger beer.",
-    substitutions:
-      "Use bourbon for a warmer winter profile.",
-    tags: ["Fruity", "Spicy", "Refreshing", "Sweet"]
-  },
-  {
-    name: "Honeydew Cooler",
-    base: "Gin",
-    glass: "Highball",
-    ingredients: [
-      "Gin",
-      "Honeydew juice",
-      "Lime juice",
-      "Simple syrup",
-      "Mint"
-    ],
-    instructions:
-      "Shake all ingredients except mint with ice. Strain into a highball over fresh ice and garnish with mint.",
-    substitutions:
-      "Use vodka for a softer flavor.",
-    tags: ["Fruity", "Refreshing", "Sweet", "Citrusy"]
-  },
-  {
-    name: "Smoked Cherry Old Fashioned",
-    base: "Rye",
-    glass: "Rocks",
-    ingredients: [
-      "Rye whiskey",
-      "Cherry syrup",
-      "Angostura bitters",
-      "Smoked cherry wood"
-    ],
-    instructions:
-      "Stir rye, syrup, and bitters with ice. Strain over a large cube and smoke with cherry wood.",
-    substitutions:
-      "Use bourbon for a sweeter version.",
-    tags: ["Rich", "Smoky", "Sweet", "Spirit-forward"]
-  },
-  {
-    name: "Lychee Martini",
-    base: "Vodka",
-    glass: "Coupe",
-    ingredients: [
-      "Vodka",
-      "Lychee liqueur",
-      "Lychee juice",
-      "Lime juice"
-    ],
-    instructions:
-      "Shake all ingredients with ice and strain into a chilled coupe.",
-    substitutions:
-      "Use gin for a floral-herbal variation.",
-    tags: ["Fruity", "Sweet", "Refreshing", "Floral"]
-  },
-  {
-    name: "Coconut Water Mojito",
-    base: "Light Rum",
-    glass: "Highball",
-    ingredients: [
-      "Light rum",
-      "Coconut water",
-      "Mint",
-      "Lime juice",
-      "Simple syrup"
-    ],
-    instructions:
-      "Muddle mint with syrup and lime. Add rum and coconut water, stir with ice.",
-    substitutions:
-      "Use aged rum for a deeper flavor.",
-    tags: ["Refreshing", "Herbal", "Tropical", "Citrusy"]
-  },
-  {
-    name: "Blueberry Ginger Sour",
-    base: "Gin",
-    glass: "Coupe",
-    ingredients: [
-      "Gin",
-      "Blueberry syrup",
-      "Ginger syrup",
-      "Lemon juice",
-      "Egg white"
-    ],
-    instructions:
-      "Dry shake all ingredients, then shake again with ice. Double strain into a coupe.",
-    substitutions:
-      "Use vodka for a cleaner profile.",
-    tags: ["Fruity", "Spicy", "Creamy", "Citrusy"]
-  }
-];
+
+]; // END OF SECTION 4
 // ==============================
 // COPILOT ORIGINALS
 // ==============================
 
 const copilotOriginals = [
+
+  // ------------------------------
+  // BLUEBAR SIGNATURE COUPE
+  // ------------------------------
   {
     name: "BlueBar Signature Coupe",
     base: "Gin",
     glass: "Coupe",
     ingredients: [
-      "Gin",
-      "Elderflower liqueur",
-      "Dry vermouth",
-      "Lemon juice",
-      "Simple syrup"
+      { name: "Gin", amount: "2 oz" },
+      { name: "Elderflower liqueur", amount: "0.5 oz" },
+      { name: "Dry vermouth", amount: "0.5 oz" },
+      { name: "Lemon juice", amount: "0.75 oz" },
+      { name: "Simple syrup", amount: "0.25 oz" }
     ],
     instructions:
       "Shake all ingredients with ice until well chilled. Double strain into a chilled coupe and garnish with a lemon twist.",
@@ -1583,16 +1240,20 @@ const copilotOriginals = [
       "Use vodka instead of gin for a softer profile.",
     tags: ["Floral", "Citrusy", "Refreshing", "Sweet"]
   },
+
+  // ------------------------------
+  // MIDNIGHT CITRUS HIGHBALL
+  // ------------------------------
   {
     name: "Midnight Citrus Highball",
     base: "Vodka",
     glass: "Highball",
     ingredients: [
-      "Vodka",
-      "Grapefruit juice",
-      "Lime juice",
-      "Simple syrup",
-      "Club soda"
+      { name: "Vodka", amount: "2 oz" },
+      { name: "Grapefruit juice", amount: "2 oz" },
+      { name: "Lime juice", amount: "0.5 oz" },
+      { name: "Simple syrup", amount: "0.5 oz" },
+      { name: "Club soda", amount: "Top" }
     ],
     instructions:
       "Build vodka, juices, and syrup in a highball with ice. Top with club soda and stir gently.",
@@ -1600,16 +1261,20 @@ const copilotOriginals = [
       "Use gin for a more herbal variation.",
     tags: ["Citrusy", "Refreshing", "Dry", "Fruity"]
   },
+
+  // ------------------------------
+  // ELECTRIC OCEAN SOUR
+  // ------------------------------
   {
     name: "Electric Ocean Sour",
     base: "Tequila Blanco",
     glass: "Coupe",
     ingredients: [
-      "Tequila blanco",
-      "Blue curaçao",
-      "Lime juice",
-      "Agave syrup",
-      "Egg white"
+      { name: "Tequila blanco", amount: "2 oz" },
+      { name: "Blue curaçao", amount: "0.5 oz" },
+      { name: "Lime juice", amount: "1 oz" },
+      { name: "Agave syrup", amount: "0.5 oz" },
+      { name: "Egg white (optional)", amount: "1" }
     ],
     instructions:
       "Dry shake all ingredients, then shake again with ice. Double strain into a coupe.",
@@ -1617,15 +1282,19 @@ const copilotOriginals = [
       "Use aquafaba instead of egg white.",
     tags: ["Citrusy", "Tropical", "Creamy", "Refreshing"]
   },
+
+  // ------------------------------
+  // SMOKED HONEY EMBER
+  // ------------------------------
   {
     name: "Smoked Honey Ember",
     base: "Mezcal",
     glass: "Rocks",
     ingredients: [
-      "Mezcal",
-      "Honey syrup",
-      "Lemon juice",
-      "Angostura bitters"
+      { name: "Mezcal", amount: "2 oz" },
+      { name: "Honey syrup", amount: "0.75 oz" },
+      { name: "Lemon juice", amount: "0.75 oz" },
+      { name: "Angostura bitters", amount: "2 dashes" }
     ],
     instructions:
       "Shake all ingredients with ice and strain over a large cube.",
@@ -1633,16 +1302,20 @@ const copilotOriginals = [
       "Use tequila for a less smoky version.",
     tags: ["Smoky", "Sweet", "Citrusy", "Rich"]
   },
+
+  // ------------------------------
+  // LAVENDER SKY SPRITZ
+  // ------------------------------
   {
     name: "Lavender Sky Spritz",
     base: "Other Spirits",
     glass: "Wine glass",
     ingredients: [
-      "Elderflower liqueur",
-      "Lavender syrup",
-      "Prosecco",
-      "Club soda",
-      "Lemon wheel"
+      { name: "Elderflower liqueur", amount: "1.5 oz" },
+      { name: "Lavender syrup", amount: "0.5 oz" },
+      { name: "Prosecco", amount: "3 oz" },
+      { name: "Club soda", amount: "1 oz" },
+      { name: "Lemon wheel", amount: "1 garnish" }
     ],
     instructions:
       "Build all ingredients over ice in a wine glass and stir gently.",
@@ -1650,16 +1323,20 @@ const copilotOriginals = [
       "Use tonic water for a more bitter finish.",
     tags: ["Floral", "Refreshing", "Sweet", "Citrusy"]
   },
+
+  // ------------------------------
+  // GOLDEN ORCHARD SMASH
+  // ------------------------------
   {
     name: "Golden Orchard Smash",
     base: "Bourbon",
     glass: "Rocks",
     ingredients: [
-      "Bourbon",
-      "Apple cider",
-      "Lemon juice",
-      "Cinnamon syrup",
-      "Apple slices"
+      { name: "Bourbon", amount: "2 oz" },
+      { name: "Apple cider", amount: "1.5 oz" },
+      { name: "Lemon juice", amount: "0.75 oz" },
+      { name: "Cinnamon syrup", amount: "0.5 oz" },
+      { name: "Apple slices", amount: "2–3 slices" }
     ],
     instructions:
       "Shake all ingredients with ice and strain over fresh ice. Garnish with apple slices.",
@@ -1667,16 +1344,20 @@ const copilotOriginals = [
       "Use rye for a spicier version.",
     tags: ["Fruity", "Spicy", "Rich", "Sweet"]
   },
+
+  // ------------------------------
+  // NEON DRAGON FIZZ
+  // ------------------------------
   {
     name: "Neon Dragon Fizz",
     base: "Vodka",
     glass: "Highball",
     ingredients: [
-      "Vodka",
-      "Dragonfruit puree",
-      "Lime juice",
-      "Simple syrup",
-      "Club soda"
+      { name: "Vodka", amount: "2 oz" },
+      { name: "Dragonfruit puree", amount: "1.5 oz" },
+      { name: "Lime juice", amount: "0.75 oz" },
+      { name: "Simple syrup", amount: "0.5 oz" },
+      { name: "Club soda", amount: "Top" }
     ],
     instructions:
       "Shake vodka, puree, lime, and syrup with ice. Strain into a highball and top with soda.",
@@ -1684,15 +1365,19 @@ const copilotOriginals = [
       "Use gin for a more botanical version.",
     tags: ["Tropical", "Refreshing", "Fruity", "Sweet"]
   },
+
+  // ------------------------------
+  // COCOA SMOKE OLD FASHIONED
+  // ------------------------------
   {
     name: "Cocoa Smoke Old Fashioned",
     base: "Mezcal",
     glass: "Rocks",
     ingredients: [
-      "Mezcal",
-      "Cocoa nib syrup",
-      "Angostura bitters",
-      "Orange peel"
+      { name: "Mezcal", amount: "2 oz" },
+      { name: "Cocoa nib syrup", amount: "0.5 oz" },
+      { name: "Angostura bitters", amount: "2 dashes" },
+      { name: "Orange peel", amount: "1 peel" }
     ],
     instructions:
       "Stir mezcal, cocoa syrup, and bitters with ice. Strain over a large cube and garnish with orange peel.",
@@ -1700,15 +1385,19 @@ const copilotOriginals = [
       "Use bourbon for a sweeter, less smoky version.",
     tags: ["Smoky", "Chocolate", "Rich", "Spirit-forward"]
   },
+
+  // ------------------------------
+  // SUNSET ORCHARD SPRITZ
+  // ------------------------------
   {
     name: "Sunset Orchard Spritz",
     base: "Other Spirits",
     glass: "Wine glass",
     ingredients: [
-      "Aperitivo liqueur",
-      "Peach nectar",
-      "Prosecco",
-      "Club soda"
+      { name: "Aperitivo liqueur", amount: "2 oz" },
+      { name: "Peach nectar", amount: "2 oz" },
+      { name: "Prosecco", amount: "3 oz" },
+      { name: "Club soda", amount: "1 oz" }
     ],
     instructions:
       "Build all ingredients over ice and stir gently.",
@@ -1716,32 +1405,39 @@ const copilotOriginals = [
       "Use sparkling rosé for a fruitier profile.",
     tags: ["Fruity", "Refreshing", "Sweet", "Citrusy"]
   },
+
+  // ------------------------------
+  // FROSTED MINT GIMLET
+  // ------------------------------
   {
     name: "Frosted Mint Gimlet",
     base: "Gin",
     glass: "Coupe",
     ingredients: [
-      "Gin",
-      "Lime juice",
-      "Mint syrup"
+      { name: "Gin", amount: "2 oz" },
+      { name: "Lime juice", amount: "1 oz" },
+      { name: "Mint syrup", amount: "0.5 oz" }
     ],
     instructions:
       "Shake all ingredients with ice and strain into a chilled coupe.",
     substitutions:
       "Use vodka for a cleaner profile.",
     tags: ["Refreshing", "Herbal", "Citrusy", "Dry"]
-  }
-];
+  },
+
+  // ------------------------------
+  // CRIMSON ORCHARD FIZZ
+  // ------------------------------
   {
     name: "Crimson Orchard Fizz",
     base: "Vodka",
     glass: "Highball",
     ingredients: [
-      "Vodka",
-      "Cranberry juice",
-      "Apple cider",
-      "Lime juice",
-      "Club soda"
+      { name: "Vodka", amount: "2 oz" },
+      { name: "Cranberry juice", amount: "1.5 oz" },
+      { name: "Apple cider", amount: "1 oz" },
+      { name: "Lime juice", amount: "0.5 oz" },
+      { name: "Club soda", amount: "Top" }
     ],
     instructions:
       "Shake vodka, cranberry, cider, and lime with ice. Strain into a highball and top with soda.",
@@ -1749,16 +1445,20 @@ const copilotOriginals = [
       "Use gin for a more herbal profile.",
     tags: ["Fruity", "Refreshing", "Citrusy", "Sweet"]
   },
+
+  // ------------------------------
+  // HONEYDEW SKY COOLER
+  // ------------------------------
   {
     name: "Honeydew Sky Cooler",
     base: "Gin",
     glass: "Highball",
     ingredients: [
-      "Gin",
-      "Honeydew juice",
-      "Lime juice",
-      "Simple syrup",
-      "Mint"
+      { name: "Gin", amount: "2 oz" },
+      { name: "Honeydew juice", amount: "2 oz" },
+      { name: "Lime juice", amount: "0.75 oz" },
+      { name: "Simple syrup", amount: "0.5 oz" },
+      { name: "Mint", amount: "6–8 leaves" }
     ],
     instructions:
       "Shake all ingredients except mint with ice. Strain into a highball over fresh ice and garnish with mint.",
@@ -1766,15 +1466,19 @@ const copilotOriginals = [
       "Use vodka for a softer flavor.",
     tags: ["Fruity", "Refreshing", "Sweet", "Citrusy"]
   },
+
+  // ------------------------------
+  // GOLDEN CHAI SOUR
+  // ------------------------------
   {
     name: "Golden Chai Sour",
     base: "Bourbon",
     glass: "Coupe",
     ingredients: [
-      "Bourbon",
-      "Chai syrup",
-      "Lemon juice",
-      "Egg white"
+      { name: "Bourbon", amount: "2 oz" },
+      { name: "Chai syrup", amount: "0.75 oz" },
+      { name: "Lemon juice", amount: "1 oz" },
+      { name: "Egg white (optional)", amount: "1" }
     ],
     instructions:
       "Dry shake all ingredients, then shake again with ice. Double strain into a coupe.",
@@ -1782,16 +1486,20 @@ const copilotOriginals = [
       "Use maple syrup instead of chai syrup for a richer profile.",
     tags: ["Spicy", "Creamy", "Rich", "Citrusy"]
   },
+
+  // ------------------------------
+  // TROPICAL EMBER HIGHBALL
+  // ------------------------------
   {
     name: "Tropical Ember Highball",
     base: "Mezcal",
     glass: "Highball",
     ingredients: [
-      "Mezcal",
-      "Pineapple juice",
-      "Lime juice",
-      "Agave syrup",
-      "Club soda"
+      { name: "Mezcal", amount: "2 oz" },
+      { name: "Pineapple juice", amount: "2 oz" },
+      { name: "Lime juice", amount: "0.75 oz" },
+      { name: "Agave syrup", amount: "0.5 oz" },
+      { name: "Club soda", amount: "Top" }
     ],
     instructions:
       "Shake mezcal, pineapple, lime, and agave with ice. Strain into a highball and top with soda.",
@@ -1799,15 +1507,19 @@ const copilotOriginals = [
       "Use tequila for a less smoky version.",
     tags: ["Smoky", "Tropical", "Refreshing", "Fruity"]
   },
+
+  // ------------------------------
+  // VELVET ROSE MARTINI
+  // ------------------------------
   {
     name: "Velvet Rose Martini",
     base: "Vodka",
     glass: "Coupe",
     ingredients: [
-      "Vodka",
-      "Rose syrup",
-      "Lychee juice",
-      "Lemon juice"
+      { name: "Vodka", amount: "2 oz" },
+      { name: "Rose syrup", amount: "0.5 oz" },
+      { name: "Lychee juice", amount: "1 oz" },
+      { name: "Lemon juice", amount: "0.5 oz" }
     ],
     instructions:
       "Shake all ingredients with ice and strain into a chilled coupe.",
@@ -1815,15 +1527,19 @@ const copilotOriginals = [
       "Use gin for a floral-herbal variation.",
     tags: ["Floral", "Fruity", "Sweet", "Refreshing"]
   },
+
+  // ------------------------------
+  // CITRUS GROVE OLD FASHIONED
+  // ------------------------------
   {
     name: "Citrus Grove Old Fashioned",
     base: "Rye",
     glass: "Rocks",
     ingredients: [
-      "Rye whiskey",
-      "Orange blossom honey syrup",
-      "Angostura bitters",
-      "Orange peel"
+      { name: "Rye whiskey", amount: "2 oz" },
+      { name: "Orange blossom honey syrup", amount: "0.25 oz" },
+      { name: "Angostura bitters", amount: "2 dashes" },
+      { name: "Orange peel", amount: "1 peel" }
     ],
     instructions:
       "Stir rye, honey syrup, and bitters with ice. Strain over a large cube and garnish with orange peel.",
@@ -1831,15 +1547,19 @@ const copilotOriginals = [
       "Use bourbon for a sweeter version.",
     tags: ["Rich", "Citrusy", "Spirit-forward", "Sweet"]
   },
+
+  // ------------------------------
+  // BLUEBERRY CLOUD SOUR
+  // ------------------------------
   {
     name: "Blueberry Cloud Sour",
     base: "Gin",
     glass: "Coupe",
     ingredients: [
-      "Gin",
-      "Blueberry syrup",
-      "Lemon juice",
-      "Egg white"
+      { name: "Gin", amount: "2 oz" },
+      { name: "Blueberry syrup", amount: "0.75 oz" },
+      { name: "Lemon juice", amount: "1 oz" },
+      { name: "Egg white (optional)", amount: "1" }
     ],
     instructions:
       "Dry shake all ingredients, then shake again with ice. Double strain into a coupe.",
@@ -1847,15 +1567,19 @@ const copilotOriginals = [
       "Use vodka for a cleaner profile.",
     tags: ["Fruity", "Creamy", "Citrusy", "Refreshing"]
   },
+
+  // ------------------------------
+  // COCONUT ORCHID SPRITZ
+  // ------------------------------
   {
     name: "Coconut Orchid Spritz",
     base: "Other Spirits",
     glass: "Wine glass",
     ingredients: [
-      "Coconut liqueur",
-      "Pineapple juice",
-      "Prosecco",
-      "Club soda"
+      { name: "Coconut liqueur", amount: "2 oz" },
+      { name: "Pineapple juice", amount: "2 oz" },
+      { name: "Prosecco", amount: "3 oz" },
+      { name: "Club soda", amount: "1 oz" }
     ],
     instructions:
       "Build all ingredients over ice in a wine glass and stir gently.",
@@ -1863,15 +1587,19 @@ const copilotOriginals = [
       "Use sparkling rosé for a fruitier profile.",
     tags: ["Tropical", "Refreshing", "Sweet", "Fruity"]
   },
+
+  // ------------------------------
+  // AMBER MAPLE SMASH
+  // ------------------------------
   {
     name: "Amber Maple Smash",
     base: "Bourbon",
     glass: "Rocks",
     ingredients: [
-      "Bourbon",
-      "Maple syrup",
-      "Lemon juice",
-      "Orange bitters"
+      { name: "Bourbon", amount: "2 oz" },
+      { name: "Maple syrup", amount: "0.5 oz" },
+      { name: "Lemon juice", amount: "1 oz" },
+      { name: "Orange bitters", amount: "2 dashes" }
     ],
     instructions:
       "Shake all ingredients with ice and strain over fresh ice.",
@@ -1879,33 +1607,40 @@ const copilotOriginals = [
       "Use rye for a spicier version.",
     tags: ["Rich", "Sweet", "Citrusy", "Dry"]
   },
+
+  // ------------------------------
+  // STARLIGHT GIN FIZZ
+  // ------------------------------
   {
     name: "Starlight Gin Fizz",
     base: "Gin",
     glass: "Highball",
     ingredients: [
-      "Gin",
-      "Lemon juice",
-      "Lavender syrup",
-      "Club soda"
+      { name: "Gin", amount: "2 oz" },
+      { name: "Lemon juice", amount: "1 oz" },
+      { name: "Lavender syrup", amount: "0.5 oz" },
+      { name: "Club soda", amount: "Top" }
     ],
     instructions:
       "Shake gin, lemon, and syrup with ice. Strain into a highball and top with soda.",
     substitutions:
       "Use elderflower syrup for a floral twist.",
     tags: ["Floral", "Refreshing", "Citrusy", "Dry"]
-  }
-];
+  },
+
+  // ------------------------------
+  // CITRUS STARLIGHT COOLER
+  // ------------------------------
   {
     name: "Citrus Starlight Cooler",
     base: "Vodka",
     glass: "Highball",
     ingredients: [
-      "Vodka",
-      "Lemon juice",
-      "Grapefruit juice",
-      "Simple syrup",
-      "Club soda"
+      { name: "Vodka", amount: "2 oz" },
+      { name: "Lemon juice", amount: "1 oz" },
+      { name: "Grapefruit juice", amount: "1 oz" },
+      { name: "Simple syrup", amount: "0.5 oz" },
+      { name: "Club soda", amount: "Top" }
     ],
     instructions:
       "Shake vodka, juices, and syrup with ice. Strain into a highball and top with soda.",
@@ -1913,490 +1648,19 @@ const copilotOriginals = [
       "Use gin for a more herbal variation.",
     tags: ["Citrusy", "Refreshing", "Dry", "Fruity"]
   },
+
+  // ------------------------------
+  // ORCHID MIST MARTINI
+  // ------------------------------
   {
     name: "Orchid Mist Martini",
     base: "Gin",
     glass: "Coupe",
     ingredients: [
-      "Gin",
-      "Elderflower liqueur",
-      "Lavender syrup",
-      "Lemon juice"
+      { name: "Gin", amount: "2 oz" },
+      { name: "Elderflower liqueur", amount: "0.5 oz" },
+      { name: "Lavender syrup", amount: "0.25 oz" },
+      { name: "Lemon juice", amount: "0.75 oz" }
     ],
     instructions:
-      "Shake all ingredients with ice and strain into a chilled coupe.",
-    substitutions:
-      "Use vodka for a softer floral profile.",
-    tags: ["Floral", "Citrusy", "Refreshing", "Sweet"]
-  },
-  {
-    name: "Maple Ember Old Fashioned",
-    base: "Bourbon",
-    glass: "Rocks",
-    ingredients: [
-      "Bourbon",
-      "Maple syrup",
-      "Angostura bitters",
-      "Orange peel"
-    ],
-    instructions:
-      "Stir bourbon, maple syrup, and bitters with ice. Strain over a large cube and garnish with orange peel.",
-    substitutions:
-      "Use rye for a spicier version.",
-    tags: ["Rich", "Sweet", "Spirit-forward", "Dry"]
-  },
-  {
-    name: "Tropical Starlight Spritz",
-    base: "Other Spirits",
-    glass: "Wine glass",
-    ingredients: [
-      "Passionfruit syrup",
-      "Pineapple juice",
-      "Prosecco",
-      "Club soda"
-    ],
-    instructions:
-      "Build all ingredients over ice in a wine glass and stir gently.",
-    substitutions:
-      "Use sparkling rosé for a fruitier version.",
-    tags: ["Tropical", "Refreshing", "Sweet", "Fruity"]
-  },
-  {
-    name: "Frosted Coconut Sour",
-    base: "Light Rum",
-    glass: "Coupe",
-    ingredients: [
-      "Light rum",
-      "Coconut cream",
-      "Lime juice",
-      "Simple syrup",
-      "Egg white"
-    ],
-    instructions:
-      "Dry shake all ingredients, then shake again with ice. Double strain into a coupe.",
-    substitutions:
-      "Use aquafaba instead of egg white.",
-    tags: ["Creamy", "Tropical", "Refreshing", "Sweet"]
-  },
-  {
-    name: "Blue Velvet Highball",
-    base: "Vodka",
-    glass: "Highball",
-    ingredients: [
-      "Vodka",
-      "Blue curaçao",
-      "Lemon juice",
-      "Simple syrup",
-      "Club soda"
-    ],
-    instructions:
-      "Shake vodka, curaçao, lemon, and syrup with ice. Strain into a highball and top with soda.",
-    substitutions:
-      "Use gin for a more botanical profile.",
-    tags: ["Citrusy", "Refreshing", "Sweet", "Tropical"]
-  },
-  {
-    name: "Honey Blossom Gimlet",
-    base: "Gin",
-    glass: "Coupe",
-    ingredients: [
-      "Gin",
-      "Honey syrup",
-      "Lime juice",
-      "Orange blossom water"
-    ],
-    instructions:
-      "Shake all ingredients with ice and strain into a chilled coupe.",
-    substitutions:
-      "Use vodka for a softer flavor.",
-    tags: ["Floral", "Citrusy", "Refreshing", "Sweet"]
-  },
-  {
-    name: "Crimson Smoke Sour",
-    base: "Mezcal",
-    glass: "Coupe",
-    ingredients: [
-      "Mezcal",
-      "Pomegranate juice",
-      "Lime juice",
-      "Simple syrup",
-      "Egg white"
-    ],
-    instructions:
-      "Dry shake all ingredients, then shake again with ice. Double strain into a coupe.",
-    substitutions:
-      "Use tequila for a less smoky version.",
-    tags: ["Smoky", "Fruity", "Creamy", "Citrusy"]
-  },
-  {
-    name: "Peach Garden Spritz",
-    base: "Other Spirits",
-    glass: "Wine glass",
-    ingredients: [
-      "Peach nectar",
-      "Elderflower liqueur",
-      "Prosecco",
-      "Club soda"
-    ],
-    instructions:
-      "Build all ingredients over ice and stir gently.",
-    substitutions:
-      "Use sparkling wine for a drier version.",
-    tags: ["Fruity", "Floral", "Refreshing", "Sweet"]
-  },
-  {
-    name: "Winter Spice Highball",
-    base: "Rye",
-    glass: "Highball",
-    ingredients: [
-      "Rye whiskey",
-      "Spiced syrup",
-      "Lemon juice",
-      "Club soda"
-    ],
-    instructions:
-      "Shake rye, syrup, and lemon with ice. Strain into a highball and top with soda.",
-    substitutions:
-      "Use bourbon for a sweeter version.",
-    tags: ["Spicy", "Refreshing", "Citrusy", "Dry"]
-  }
-];
-  {
-    name: "Solar Flare Daiquiri",
-    base: "Light Rum",
-    glass: "Coupe",
-    ingredients: [
-      "Light rum",
-      "Passionfruit syrup",
-      "Lime juice",
-      "Simple syrup"
-    ],
-    instructions:
-      "Shake all ingredients with ice and strain into a chilled coupe.",
-    substitutions:
-      "Use aged rum for a deeper flavor.",
-    tags: ["Tropical", "Citrusy", "Refreshing", "Sweet"]
-  },
-  {
-    name: "Emerald Garden Cooler",
-    base: "Gin",
-    glass: "Highball",
-    ingredients: [
-      "Gin",
-      "Cucumber juice",
-      "Lime juice",
-      "Mint syrup",
-      "Club soda"
-    ],
-    instructions:
-      "Shake gin, cucumber, lime, and syrup with ice. Strain into a highball and top with soda.",
-    substitutions:
-      "Use vodka for a cleaner profile.",
-    tags: ["Refreshing", "Herbal", "Dry", "Citrusy"]
-  },
-  {
-    name: "Crimson Velvet Martini",
-    base: "Vodka",
-    glass: "Coupe",
-    ingredients: [
-      "Vodka",
-      "Raspberry syrup",
-      "Vanilla syrup",
-      "Lemon juice"
-    ],
-    instructions:
-      "Shake all ingredients with ice and strain into a chilled coupe.",
-    substitutions:
-      "Use gin for a more botanical variation.",
-    tags: ["Fruity", "Sweet", "Citrusy", "Refreshing"]
-  },
-  {
-    name: "Honey Fire Old Fashioned",
-    base: "Rye",
-    glass: "Rocks",
-    ingredients: [
-      "Rye whiskey",
-      "Honey syrup",
-      "Cinnamon bitters",
-      "Orange peel"
-    ],
-    instructions:
-      "Stir rye, honey syrup, and bitters with ice. Strain over a large cube and garnish with orange peel.",
-    substitutions:
-      "Use bourbon for a sweeter version.",
-    tags: ["Rich", "Spicy", "Sweet", "Spirit-forward"]
-  },
-  {
-    name: "Blue Lagoon Breeze",
-    base: "Vodka",
-    glass: "Highball",
-    ingredients: [
-      "Vodka",
-      "Blue curaçao",
-      "Pineapple juice",
-      "Lime juice",
-      "Club soda"
-    ],
-    instructions:
-      "Shake vodka, curaçao, pineapple, and lime with ice. Strain into a highball and top with soda.",
-    substitutions:
-      "Use coconut water instead of soda for a tropical twist.",
-    tags: ["Tropical", "Refreshing", "Fruity", "Sweet"]
-  },
-  {
-    name: "Rose Gold Spritz",
-    base: "Other Spirits",
-    glass: "Wine glass",
-    ingredients: [
-      "Elderflower liqueur",
-      "Rose syrup",
-      "Prosecco",
-      "Club soda"
-    ],
-    instructions:
-      "Build all ingredients over ice and stir gently.",
-    substitutions:
-      "Use sparkling rosé for a fruitier version.",
-    tags: ["Floral", "Refreshing", "Sweet", "Citrusy"]
-  },
-  {
-    name: "Cocoa Mint Sour",
-    base: "Gin",
-    glass: "Coupe",
-    ingredients: [
-      "Gin",
-      "Cocoa syrup",
-      "Mint syrup",
-      "Lemon juice",
-      "Egg white"
-    ],
-    instructions:
-      "Dry shake all ingredients, then shake again with ice. Double strain into a coupe.",
-    substitutions:
-      "Use vodka for a cleaner profile.",
-    tags: ["Chocolate", "Herbal", "Creamy", "Citrusy"]
-  },
-  {
-    name: "Pineapple Ember Smash",
-    base: "Mezcal",
-    glass: "Rocks",
-    ingredients: [
-      "Mezcal",
-      "Pineapple juice",
-      "Lime juice",
-      "Agave syrup",
-      "Chili bitters"
-    ],
-    instructions:
-      "Shake all ingredients with ice and strain over fresh ice.",
-    substitutions:
-      "Use tequila for a less smoky version.",
-    tags: ["Smoky", "Tropical", "Spicy", "Fruity"]
-  },
-  {
-    name: "Lavender Moon Collins",
-    base: "Vodka",
-    glass: "Highball",
-    ingredients: [
-      "Vodka",
-      "Lavender syrup",
-      "Lemon juice",
-      "Club soda"
-    ],
-    instructions:
-      "Shake vodka, lavender, and lemon with ice. Strain into a highball and top with soda.",
-    substitutions:
-      "Use gin for a floral-herbal twist.",
-    tags: ["Floral", "Refreshing", "Citrusy", "Dry"]
-  },
-  {
-    name: "Autumn Orchard Fizz",
-    base: "Bourbon",
-    glass: "Highball",
-    ingredients: [
-      "Bourbon",
-      "Apple cider",
-      "Lemon juice",
-      "Maple syrup",
-      "Club soda"
-    ],
-    instructions:
-      "Shake bourbon, cider, lemon, and maple with ice. Strain into a highball and top with soda.",
-    substitutions:
-      "Use rye for a spicier version.",
-    tags: ["Fruity", "Rich", "Refreshing", "Citrusy"]
-  }
-];
-  {
-    name: "Starfall Gin Sparkler",
-    base: "Gin",
-    glass: "Flute",
-    ingredients: [
-      "Gin",
-      "Lemon juice",
-      "Elderflower syrup",
-      "Champagne"
-    ],
-    instructions:
-      "Shake gin, lemon, and syrup with ice. Strain into a flute and top with champagne.",
-    substitutions:
-      "Use prosecco for a sweeter finish.",
-    tags: ["Floral", "Citrusy", "Refreshing", "Dry"]
-  },
-  {
-    name: "Cocoa Cherry Sour",
-    base: "Bourbon",
-    glass: "Coupe",
-    ingredients: [
-      "Bourbon",
-      "Cherry syrup",
-      "Cocoa syrup",
-      "Lemon juice",
-      "Egg white"
-    ],
-    instructions:
-      "Dry shake all ingredients, then shake again with ice. Double strain into a coupe.",
-    substitutions:
-      "Use rye for a spicier version.",
-    tags: ["Chocolate", "Fruity", "Creamy", "Rich"]
-  },
-  {
-    name: "Tangerine Dream Highball",
-    base: "Vodka",
-    glass: "Highball",
-    ingredients: [
-      "Vodka",
-      "Tangerine juice",
-      "Lime juice",
-      "Simple syrup",
-      "Club soda"
-    ],
-    instructions:
-      "Shake vodka, juices, and syrup with ice. Strain into a highball and top with soda.",
-    substitutions:
-      "Use gin for a more botanical twist.",
-    tags: ["Citrusy", "Refreshing", "Fruity", "Sweet"]
-  },
-  {
-    name: "Maple Orchid Old Fashioned",
-    base: "Rye",
-    glass: "Rocks",
-    ingredients: [
-      "Rye whiskey",
-      "Maple syrup",
-      "Orange bitters",
-      "Orange peel"
-    ],
-    instructions:
-      "Stir rye, maple, and bitters with ice. Strain over a large cube and garnish with orange peel.",
-    substitutions:
-      "Use bourbon for a sweeter version.",
-    tags: ["Rich", "Sweet", "Spirit-forward", "Dry"]
-  },
-  {
-    name: "Blue Ember Margarita",
-    base: "Tequila Reposado",
-    glass: "Rocks",
-    ingredients: [
-      "Tequila reposado",
-      "Blue curaçao",
-      "Lime juice",
-      "Agave syrup",
-      "Smoked salt rim"
-    ],
-    instructions:
-      "Shake tequila, curaçao, lime, and agave with ice. Strain over fresh ice in a smoked-salt-rimmed glass.",
-    substitutions:
-      "Use mezcal for a smoky version.",
-    tags: ["Citrusy", "Smoky", "Tropical", "Refreshing"]
-  },
-  {
-    name: "Frosted Berry Fizz",
-    base: "Vodka",
-    glass: "Highball",
-    ingredients: [
-      "Vodka",
-      "Mixed berry syrup",
-      "Lemon juice",
-      "Club soda"
-    ],
-    instructions:
-      "Shake vodka, syrup, and lemon with ice. Strain into a highball and top with soda.",
-    substitutions:
-      "Use gin for a more herbal variation.",
-    tags: ["Fruity", "Refreshing", "Sweet", "Citrusy"]
-  },
-  {
-    name: "Golden Spice Sour",
-    base: "Bourbon",
-    glass: "Coupe",
-    ingredients: [
-      "Bourbon",
-      "Turmeric syrup",
-      "Lemon juice",
-      "Egg white"
-    ],
-    instructions:
-      "Dry shake all ingredients, then shake again with ice. Double strain into a coupe.",
-    substitutions:
-      "Use ginger syrup for a sharper spice profile.",
-    tags: ["Spicy", "Creamy", "Citrusy", "Rich"]
-  },
-  {
-    name: "Coconut Starlight Cooler",
-    base: "Light Rum",
-    glass: "Highball",
-    ingredients: [
-      "Light rum",
-      "Coconut water",
-      "Pineapple juice",
-      "Lime juice"
-    ],
-    instructions:
-      "Build all ingredients in a highball with ice and stir gently.",
-    substitutions:
-      "Use aged rum for a deeper flavor.",
-    tags: ["Tropical", "Refreshing", "Fruity", "Sweet"]
-  },
-  {
-    name: "Lavender Ember Sour",
-    base: "Gin",
-    glass: "Coupe",
-    ingredients: [
-      "Gin",
-      "Lavender syrup",
-      "Lemon juice",
-      "Egg white"
-    ],
-    instructions:
-      "Dry shake all ingredients, then shake again with ice. Double strain into a coupe.",
-    substitutions:
-      "Use vodka for a cleaner profile.",
-    tags: ["Floral", "Creamy", "Citrusy", "Refreshing"]
-  },
-  {
-    name: "Crimson Horizon Spritz",
-    base: "Other Spirits",
-    glass: "Wine glass",
-    ingredients: [
-      "Aperitivo liqueur",
-      "Blood orange juice",
-      "Prosecco",
-      "Club soda"
-    ],
-    instructions:
-      "Build all ingredients over ice and stir gently.",
-    substitutions:
-      "Use sparkling rosé for a fruitier version.",
-    tags: ["Citrusy", "Refreshing", "Sweet", "Fruity"]
-  }
-];
-// ==============================
-// EXPORT
-// ==============================
-
-export const recipes = [
-  ...classicCocktails,
-  ...modernCocktails,
-  ...copilotOriginals
-];
+      "Shake all ingredients with ice and strain into a chilled
